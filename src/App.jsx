@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "./components/ui/card";
-import { Trophy, Medal, Star, Timer, Award } from 'lucide-react';
+import { Trophy, Medal, Star, Timer as TimerIcon, Award, Check, X } from 'lucide-react';
+import { Timer } from './components/Timer';
+import { Books } from './components/Books';
+import { HowToPlay } from './components/HowToPlay';
 
 
 const BASEBALL_MOMENTS = [
@@ -56,17 +59,26 @@ const BASEBALL_MOMENTS = [
     id: 7,
     year: 1982,
     image: '/1982.jpg',
-    hint: "Gary Carter and a young Time Raines among other Expos stars",
+    hint: "Gary Carter and a young Tim Raines among other Expos stars",
     description: "Montreal Expos stars",
     funFact: "Just look at those jerseys though."
   },
   {
     id: 8,
     year: 1984,
-    image: '/allstar-1984.jpg',
+    image: '/1984AS.jpg',
     hint: "Midsummer Classic in America's Finest City",
     description: "1984 All-Star Game at Jack Murphy Stadium",
     funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
+  },
+  {
+    id: 9,
+    year: 1901,
+    image: '/1901Tug.jpg',
+    hint: "Pennant Winning Season for Tug",
+    description: "Tug McGraw in the dugout",
+    funFact: "Hall of Fame skipper John McGraw is pictured here in front of the dugout during the New York Giants National League Pennant winning 1912 season.",
+    source: "https://en.m.wikipedia.org/wiki/File:1912_John_McGraw_by_Conlon.jpeg"
   }
 
 ];
@@ -74,51 +86,101 @@ const BASEBALL_MOMENTS = [
 const ACHIEVEMENTS = {
   FIRST_HIT: { id: 'FIRST_HIT', name: 'Rookie of the Year', description: 'Get your first perfect guess', icon: Star },
   STREAK_3: { id: 'STREAK_3', name: 'Triple Play', description: '3 perfect guesses in a row', icon: Trophy },
-  SPEED_DEMON: { id: 'SPEED_DEMON', name: 'Speed Demon', description: 'Perfect guess under 10 seconds', icon: Timer },
+  SPEED_DEMON: { id: 'SPEED_DEMON', name: 'Speed Demon', description: 'Perfect guess under 10 seconds', icon: TimerIcon },
   POWER_HITTER: { id: 'POWER_HITTER', name: 'Power Hitter', description: 'Score over 1000 points', icon: Award },
   NO_STRIKES: { id: 'NO_STRIKES', name: 'Perfect Game', description: 'Complete a round with no outs', icon: Medal }
 };
 
+const SOUND_EFFECTS = {
+  homeRun: new Audio('/sounds/homerun.mp3'),
+  hit: new Audio('/sounds/hit.mp3'),
+  out: new Audio('/sounds/out.wav'),
+  achievement: new Audio('/sounds/achievement.wav')
+};
+
+function getDailyMoment(index = 0) {
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+  const startIndex = dayOfYear % (BASEBALL_MOMENTS.length - 2);
+  return BASEBALL_MOMENTS[(startIndex + index) % BASEBALL_MOMENTS.length];
+}
+
+function getTodayKey() {
+  const date = new Date();
+  return `baseball-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+}
+
+function loadDailyState() {
+  const savedState = localStorage.getItem(getTodayKey());
+  if (savedState) {
+    return JSON.parse(savedState);
+  }
+  return null;
+}
+
+function saveDailyState(state) {
+  localStorage.setItem(getTodayKey(), JSON.stringify(state));
+}
+
+
 function YearDigit({ digit }) {
   return (
     <div 
-      className="w-16 h-20 bg-white border-2 border-gray-300 rounded flex items-center justify-center text-4xl font-mono font-bold text-blue-900 shadow-lg mx-1"
-      style={{ fontFamily: "'American Typewriter', 'Courier New', monospace" }}
+      className="w-16 h-20 bg-white border-2 border-gray-300 rounded flex items-center justify-center text-5xl font-mono text-blue-900 shadow-lg mx-1"
+      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
     >
       {digit}
     </div>
   );
 }
 
-function GameOver({ score, achievements, onRestart, currentMoment }) {
+function getAllDailyMoments() {
+  return [
+    getDailyMoment(0),
+    getDailyMoment(1),
+    getDailyMoment(2)
+  ];
+}
+
+function GameOver({ score, achievements, onRestart, currentMoment, onShowCollection, onShowBooks, collectedMoments }) {
+  const allMoments = getAllDailyMoments();
+  const [selectedMoment, setSelectedMoment] = useState(currentMoment);
+  
   return (
-    <div className="text-center p-8 max-w-2xl mx-auto">
-      <h2 className="text-5xl font-bold text-white mb-4" style={{ fontFamily: "'American Typewriter', serif" }}>
-        Game Over!
-      </h2>
-      <div className="text-3xl text-green-400 mb-8 font-bold">Final Score: {score}</div>
+    <div className="text-center p-8 max-w-4xl mx-auto min-h-screen">
+      <div className="text-center mb-8">
+        <img  
+          src="/gameLogo.png"
+          className="max-w-[600px] mx-auto"
+          alt="The Daily Baseball Photo Trivia Game" 
+        />
+      </div>
+
+      <div>
+        <h2 className="text-6xl text-white mb-4" 
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+          Game Over!
+        </h2>
+        <div className="text-3xl text-green-400 mb-8 font-bold">
+          Final Score: {score}
+        </div>
+      </div>
       
       {achievements.length > 0 && (
         <div className="mb-8">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-700"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <h3 className="text-2xl text-yellow-400 font-bold bg-gray-900 px-4 mb-6">
-                Boom! Achievements Unlocked!
-              </h3>
-            </div>
-          </div>
+          <h3 className="text-2xl text-yellow-400 mb-6 text-center"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+            Boom! Achievements Unlocked!
+          </h3>
 
           <div className="grid grid-cols-1 gap-4 max-w-md mx-auto">
-            {achievements.map(achievementId => {
+            {achievements.map((achievementId, index) => {
               const achievement = ACHIEVEMENTS[achievementId];
               const AchievementIcon = achievement.icon;
               return (
                 <div 
                   key={achievementId} 
-                  className="bg-gray-800 p-4 rounded-lg flex items-center transform transition-all duration-300 hover:scale-105 hover:bg-gray-750 border border-gray-700 shadow-lg"
+                  className="bg-gray-800/90 p-4 rounded-lg flex items-center transform hover:scale-105 border border-gray-700 shadow-lg"
                 >
                   <div className="bg-blue-900 p-3 rounded-full mr-4">
                     <AchievementIcon className="text-yellow-400 w-8 h-8" />
@@ -134,59 +196,291 @@ function GameOver({ score, achievements, onRestart, currentMoment }) {
         </div>
       )}
 
-      <div className="mb-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-700"></div>
-          </div>
-          <div className="relative flex justify-center">
-            <h3 className="text-2xl text-blue-400 font-bold bg-gray-800 px-4 mb-6">
-              Baseball History Corner
-            </h3>
-          </div>
-        </div>
+      <div className="mb-8" style={{ 
+        backgroundImage: 'url("/textureNavy.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '0.5rem',
+        padding: '2rem',
+        border: '1px solid rgb(55, 65, 81)'
+      }}>
+        <h3 className="text-2xl text-[#f5f2e6] mb-8 text-center">
+          Today's Photos
+        </h3>
         
-        <div className="bg-gray-900 rounded-lg overflow-hidden mb-4">
-               <img
-                    src={currentMoment.image}
-                    alt={currentMoment.description}
-                    className="w-full border border-gray-300"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
+          {allMoments.map((moment, index) => (
+            <div 
+              key={index} 
+              className="flex flex-col items-center cursor-pointer transform transition-transform hover:scale-105"
+              onClick={() => setSelectedMoment(moment)}
+            >
+              <div 
+                className={`relative bg-[#f5f2e6] p-2 ${selectedMoment.id === moment.id ? 'ring-2 ring-blue-500' : ''}`}
+                style={{
+                  boxShadow: '5px 3px 6px rgba(0, 0, 0, 0.9)',
+                }}
+              >
+                <div className="absolute -top-2 -left-2 z-10">
+                  {collectedMoments.includes(moment.id) ? (
+                    <div className="bg-green-500 rounded-full p-1">
+                      <Check className="w-4 h-4 text-white" />
+                    </div>
+                  ) : (
+                    <div className="bg-red-500 rounded-full p-1">
+                      <X className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                </div>
+                <img
+                  src={moment.image}
+                  alt={moment.description}
+                  className="w-full h-auto object-contain"
                 />
-        </div>
-        
-        <div className="text-gray-300 text-left">
-          <span className="text-blue-400 font-bold">Fun Fact: </span>
-          {currentMoment.funFact}
+              </div>
+              <div 
+                className="mt-2 text-xl text-white"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                {moment.year}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      <button
-        onClick={onRestart}
-        className="bg-blue-600 hover:bg-blue-500 text-white py-4 px-12 rounded-lg text-2xl font-bold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-blue-700"
-        style={{ fontFamily: "'American Typewriter', serif" }}
-      >
-        Play Again
-      </button>
+      <div className="mb-8" style={{ 
+        backgroundImage: 'url("/textureNavy.jpg")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '0.5rem',
+        border: '1px solid rgb(55, 65, 81)'
+      }}>
+        <div className="relative"
+             style={{
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center'
+             }}>
+          <div className="relative bg-[#f5f2e6] p-4"
+               style={{
+                 zIndex: 2,
+                 boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
+                 maxWidth: '99%',
+                 margin: '1rem'
+               }}>
+            <img
+              src={selectedMoment.image}
+              alt={selectedMoment.description}
+              className="w-full h-auto object-contain max-h-[600px]"
+              style={{
+                objectFit: 'contain',
+                width: '100%',
+                height: 'auto'
+              }}
+            />
+          </div>
+        </div>
+        
+        <div className="text-gray-300 text-left max-w-3xl mx-auto"
+             style={{
+               lineHeight: '1.7',
+               fontSize: '1.05rem'
+             }}>
+          {selectedMoment.funFact}
+          {selectedMoment.source && (
+            <div className="mt-4 text-sm text-gray-400">
+              <a 
+                href={selectedMoment.source} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-blue-400 underline"
+              >
+                Source
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={onRestart}
+            className="bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+          >
+            Play Again
+          </button>
+
+          <button
+            onClick={onShowCollection}
+            className="bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+          >
+            View Collection
+          </button>
+        </div>
+        
+        <button
+          onClick={onShowBooks}
+          className="text-[#f5f2e6] hover:text-white text-xl transition-all duration-300 ease-in-out underline"
+          style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+        >
+          Recommended Baseball Books
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Collection({ onClose, collectedMoments }) {
+  return (
+    <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
+      <div className="max-w-4xl mx-auto p-4">
+        <div className="flex justify-between items-center mb-8">
+          <h2 
+            className="text-4xl text-white"
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+          >
+            My Collection
+          </h2>
+          <button 
+            onClick={onClose}
+            className="text-white hover:text-gray-300"
+          >
+            Close
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {BASEBALL_MOMENTS.map(moment => {
+            const isCollected = collectedMoments.includes(moment.id);
+            return (
+              <div 
+                key={moment.id}
+                className={`bg-gray-800 rounded-lg overflow-hidden ${!isCollected && 'opacity-50'}`}
+              >
+                <div className="relative bg-[#f5f2e6] p-4">
+                  <img
+                    src={moment.image}
+                    alt={moment.description}
+                    className={`w-full h-auto object-contain ${!isCollected && 'blur-sm'}`}
+                  />
+                  {!isCollected && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl text-white bg-black/50 px-4 py-2 rounded">
+                        Not Yet Discovered
+                      </span>
+                    </div>
+                  )}
+                </div>
+                {isCollected && (
+                  <div className="p-4">
+                    <div className="text-white mb-2" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+                      {moment.year}
+                    </div>
+                    <div className="text-gray-400 text-sm">
+                      {moment.description}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function BaseballTimeMachine() {
-  const [gameState, setGameState] = useState('playing');
-  const [year, setYear] = useState(1950);
-  const [outs, setOuts] = useState(0);
-  const [score, setScore] = useState(0);
+  const [gameState, setGameState] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.gameState : 'playing';
+  });
+  const [year, setYear] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.year : 1950;
+  });
+  const [outs, setOuts] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.outs : 0;
+  });
+  const [score, setScore] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.score : 0;
+  });
   const [feedback, setFeedback] = useState('');
-  const [currentMoment, setCurrentMoment] = useState(BASEBALL_MOMENTS[0]);
-  const [achievements, setAchievements] = useState([]);
-  const [perfectStreak, setPerfectStreak] = useState(0);
+  const [sequenceIndex, setSequenceIndex] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.sequenceIndex : 0;
+  });
+  const [currentMoment, setCurrentMoment] = useState(() => getDailyMoment(sequenceIndex));
+  const [achievements, setAchievements] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.achievements : [];
+  });
+  const [perfectStreak, setPerfectStreak] = useState(() => {
+    const saved = loadDailyState();
+    return saved ? saved.perfectStreak : 0;
+  });
+  const [isTimerActive, setIsTimerActive] = useState(false);
   const [guessStartTime, setGuessStartTime] = useState(null);
+  const [time, setTime] = useState(30);
+  const [isMuted, setIsMuted] = useState(() => {
+    const saved = localStorage.getItem('baseball-muted');
+    return saved ? JSON.parse(saved) : false;
+  });
+  const [isImageTransitioning, setIsImageTransitioning] = useState(false);
+  const [imageOpacity, setImageOpacity] = useState(1);
+  const [collectedMoments, setCollectedMoments] = useState(() => {
+    const saved = localStorage.getItem('baseball-collection');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [showCollection, setShowCollection] = useState(false);
+  const [strikes, setStrikes] = useState(() => {
+    const saved = loadDailyState();
+    return saved?.strikes || 0;
+  });
+  const [previousDifference, setPreviousDifference] = useState(null);
+  const [showBooks, setShowBooks] = useState(false);
+  const [showHowToPlay, setShowHowToPlay] = useState(false);
+
+  useEffect(() => {
+    if (isTimerActive && time === 0) {
+      handleTimeout();
+    }
+  }, [time, isTimerActive]);
+
+  function handleTimeout() {
+    setOuts(prev => prev + 1);
+    setFeedback("Time's up! Strike!");
+    SOUND_EFFECTS.out.play();
+    setIsTimerActive(false);
+    
+    if (outs + 1 >= 3) {
+      setGameState('over');
+    }
+  }
+
+  saveDailyState({
+    gameState,
+    year,
+    outs,
+    strikes,
+    score,
+    achievements,
+    perfectStreak,
+    sequenceIndex
+  });
 
   function handleYearChange(e) {
     const newYear = Math.max(1850, Math.min(2025, parseInt(e.target.value)));
     setYear(newYear);
     if (!guessStartTime) {
       setGuessStartTime(Date.now());
+      setIsTimerActive(true);
     }
   }
 
@@ -225,64 +519,285 @@ export default function BaseballTimeMachine() {
     }
   }
 
+  function playSound(soundName) {
+    if (!isMuted && SOUND_EFFECTS[soundName]) {
+      console.log(`Attempting to play sound: ${soundName}`);
+      SOUND_EFFECTS[soundName].play()
+        .then(() => {
+          console.log(`Successfully played ${soundName}`);
+        })
+        .catch(err => {
+          console.error(`Failed to play ${soundName}:`, err);
+        });
+    }
+  }
 
   function handleGuess() {
     const targetYear = currentMoment.year;
     const difference = Math.abs(targetYear - year);
-    const timeTaken = guessStartTime ? (Date.now() - guessStartTime) / 1000 : null;
-    
-    // Perfect guess
-    if (difference === 0) {
-      setScore(score + 300);
-      setFeedback('Perfect! Home Run! +300 points');
-      const nextIndex = (BASEBALL_MOMENTS.findIndex(m => m.id === currentMoment.id) + 1) % BASEBALL_MOMENTS.length;
-      setCurrentMoment(BASEBALL_MOMENTS[nextIndex]);
-      checkAchievements(true, timeTaken);
-      return;
-    }
-
-    // Close guess
-    if (difference <= 5) {
-      const points = 100 - (difference * 15);
-      setScore(score + points);
-      setFeedback(`Close! +${points} points`);
-      checkAchievements(false);
+    let timeTaken = null;
+  
+    if (!guessStartTime) {
+      setGuessStartTime(Date.now());
     } else {
-      // Complete miss
+      timeTaken = (Date.now() - guessStartTime) / 1000;
+    }
+  
+    // Way off guess (15+ years) = immediate out
+    if (difference >= 15) {
+      playSound('out');
       const newOuts = outs + 1;
       setOuts(newOuts);
-      setFeedback('Out! Try a different era');
-      checkAchievements(false);
       
-      // Check for game over
+      const popUpMessages = [
+        "Pop up to the pitcher! That's an out - you were way off.",
+        "Easy pop fly to the mound! Out - not even close.",
+        "Weak pop up! That's an out - try a different era."
+      ];
+      const randomMessage = popUpMessages[Math.floor(Math.random() * popUpMessages.length)];
+      setFeedback(randomMessage);
+
+      // Move to next image or game over
+      if (newOuts >= 3) {
+        setGameState('over');
+      } else {
+        // Advance to next image
+        const nextIndex = sequenceIndex + 1;
+        if (nextIndex < 3) {
+          setImageOpacity(0);
+          setTimeout(() => {
+            setSequenceIndex(nextIndex);
+            setCurrentMoment(getDailyMoment(nextIndex));
+            setYear(1950);
+            setTime(30);
+            setIsTimerActive(false);
+            setGuessStartTime(null);
+            setStrikes(0);
+            
+            setTimeout(() => {
+              setImageOpacity(1);
+            }, 100);
+          }, 1000);
+        } else {
+          setGameState('over');
+        }
+      }
+      return;
+    }
+  
+    const timeBonus = timeTaken < 10 ? 100 : 0;
+  
+    if (difference === 0) {
+      playSound('homeRun');
+      const points = 400 + timeBonus;
+      setScore((prevScore) => prevScore + points);
+      setFeedback(`HOME RUN! +${points} points ${timeBonus > 0 ? `(includes ${timeBonus} speed bonus!)` : ''}`);
+      checkAchievements(true, timeTaken);
+      
+      const nextIndex = sequenceIndex + 1;
+      if (nextIndex < 3) {
+        setImageOpacity(0);
+        
+        setTimeout(() => {
+          setSequenceIndex(nextIndex);
+          setCurrentMoment(getDailyMoment(nextIndex));
+          setYear(1950);
+          setTime(30);
+          setIsTimerActive(false);
+          setGuessStartTime(null);
+          
+          setTimeout(() => {
+            setImageOpacity(1);
+          }, 100);
+        }, 1000);
+      } else {
+        setGameState('over');
+      }
+      if (!collectedMoments.includes(currentMoment.id)) {
+        setCollectedMoments(prev => [...prev, currentMoment.id]);
+      }
+      return;
+    }
+  
+    const newStrikes = strikes + 1;
+    setStrikes(newStrikes);
+    
+    if (newStrikes >= 3) {
+      const newOuts = outs + 1;
+      setOuts(newOuts);
+      setStrikes(0);
+      
       if (newOuts >= 3) {
         setGameState('over');
       }
     }
+
+    if (difference <= 5) {
+      playSound('hit');
+      let basePoints;
+      let feedbackMessage;
+      
+      // First strike
+      if (newStrikes === 1) {
+        feedbackMessage = "Foul Ball! (Strike One) - You're in the right era!";
+      }
+      // Second strike
+      else if (newStrikes === 2) {
+        if (difference < previousDifference) {
+          feedbackMessage = "Foul Ball! (Strike Two) - Getting warmer!";
+        } else {
+          feedbackMessage = "Foul Ball! (Strike Two) - Stay focused!";
+        }
+      }
+      // Third strike - but close enough to get points
+      else if (newStrikes === 3) {
+        if (difference <= 5) {  // They made contact on their last strike
+          if (difference <= 1) {
+            basePoints = 300;
+            feedbackMessage = `Contact on Strike Three! TRIPLE! +${basePoints} points`;
+          } else if (difference <= 3) {
+            basePoints = 200;
+            feedbackMessage = `Contact on Strike Three! DOUBLE! +${basePoints} points`;
+          } else {
+            basePoints = 100;
+            feedbackMessage = `Contact on Strike Three! SINGLE! +${basePoints} points`;
+          }
+          
+          // Add points
+          const points = basePoints + timeBonus;
+          setScore((prevScore) => prevScore + points);
+          setFeedback(feedbackMessage);
+          
+          // Advance to next image
+          const nextIndex = sequenceIndex + 1;
+          if (nextIndex < 3) {
+            setImageOpacity(0);
+            
+            setTimeout(() => {
+              setSequenceIndex(nextIndex);
+              setCurrentMoment(getDailyMoment(nextIndex));
+              setYear(1950);
+              setTime(30);
+              setIsTimerActive(false);
+              setGuessStartTime(null);
+              setStrikes(0);  // Reset strikes for next image
+              
+              setTimeout(() => {
+                setImageOpacity(1);
+              }, 100);
+            }, 1000);
+          } else {
+            setGameState('over');
+          }
+        } else {
+          // Strike out - not close enough on third strike
+          setFeedback("Strike Three! You're out!");
+          const newOuts = outs + 1;
+          setOuts(newOuts);
+          if (newOuts >= 3) {
+            setGameState('over');
+          }
+        }
+      }
+      
+      setFeedback(feedbackMessage);
+      
+      if (basePoints) {
+        const points = basePoints + timeBonus;
+        setScore((prevScore) => prevScore + points);
+      }
+    } else if (difference <= 10) {
+      // Regular strikes for medium-distance guesses
+      playSound('out');
+      if (newStrikes === 1) {
+        setFeedback("Strike One! - Try a different decade");
+      } else if (newStrikes === 2) {
+        setFeedback("Strike Two! - One more chance!");
+      } else {
+        setFeedback("Strike Three! You're out!");
+      }
+    } else {
+      // Way off guesses
+      playSound('out');
+      const popUpMessages = [
+        `Pop up to the pitcher! (Strike ${newStrikes}) That guess was way off.`,
+        `Easy pop fly to the mound! (Strike ${newStrikes}) Not even close.`,
+        `Weak pop up! (Strike ${newStrikes}) Try a different era.`
+      ];
+      const randomMessage = popUpMessages[Math.floor(Math.random() * popUpMessages.length)];
+      setFeedback(randomMessage);
+    }
     
+    checkAchievements(false, timeTaken);
     setGuessStartTime(null);
+
+    setIsTimerActive(false);
+
+    setPreviousDifference(difference);
   }
 
   function handleRestart() {
     setYear(1950);
     setOuts(0);
+    setStrikes(0);
     setScore(0);
     setFeedback('');
-    setCurrentMoment(BASEBALL_MOMENTS[0]);
     setPerfectStreak(0);
     setAchievements([]);
     setGameState('playing');
+    setTime(30);
+    setIsTimerActive(false);
+    setGuessStartTime(null);
+    setSequenceIndex(0);
+    setCurrentMoment(getDailyMoment(0));
   }
 
-if (gameState === 'over') {
+  useEffect(() => {
+    localStorage.setItem('baseball-muted', JSON.stringify(isMuted));
+  }, [isMuted]);
+
+  useEffect(() => {
+    // Preload sounds
+    Object.values(SOUND_EFFECTS).forEach(sound => {
+      sound.load();
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('baseball-collection', JSON.stringify(collectedMoments));
+  }, [collectedMoments]);
+
+  if (gameState === 'over') {
     return (
-      <div className="min-h-screen w-full bg-gray-900">
+      <div 
+        className="min-h-screen w-full" 
+        style={{ 
+          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 70%), url('/bg.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: 'black'
+        }}>
         <GameOver 
           score={score}
           achievements={achievements}
           onRestart={handleRestart}
           currentMoment={currentMoment}
+          onShowCollection={() => setShowCollection(true)}
+          onShowBooks={() => setShowBooks(true)}
+          collectedMoments={collectedMoments}
         />
+        {showCollection && (
+          <Collection 
+            onClose={() => setShowCollection(false)} 
+            collectedMoments={collectedMoments}
+          />
+        )}
+        {showBooks && (
+          <Books 
+            onClose={() => setShowBooks(false)}
+          />
+        )}
       </div>
     );
   }
@@ -301,11 +816,13 @@ if (gameState === 'over') {
       }}>
 
       <div className="max-w-4xl mx-auto p-4">
-      <div className="text-center">
-        <img  src="/gameLogo.png"
-              className="max-w-[600px] mx-auto"
-              alt="The Daily Baseball Photo Trivia Game" />
-      </div>
+        <div className="text-center relative">
+          <img 
+            src="/gameLogo.png"
+            className="max-w-[600px] mx-auto"
+            alt="The Daily Baseball Photo Trivia Game" 
+          />
+        </div>
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-6">
@@ -319,16 +836,6 @@ if (gameState === 'over') {
                   alignItems: 'center'
                 }}
               >
-                {/* Paper texture frame background 
-                <div className="absolute inset-0" style={{ 
-                  backgroundImage: 'url("/paper-texture.png")',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  transform: 'scale(1.11)',
-                  zIndex: 1
-                }} />*/}
-                
-                {/* Photo with cream border */}
                 <div 
                   className="relative bg-[#f5f2e6] p-4"
                   style={{
@@ -338,19 +845,38 @@ if (gameState === 'over') {
                     margin: '1rem'
                   }}
                 >
-                  <img
-                    src={currentMoment.image}
-                    alt={currentMoment.description}
-                    className="w-full border border-gray-300"
-                />
+                  <div
+                    className="transition-opacity duration-1000 ease-in-out"
+                    style={{ opacity: imageOpacity }}
+                  >
+                    <img
+                      src={currentMoment.image}
+                      alt={currentMoment.description}
+                      className="w-full h-auto object-contain max-h-[600px]"
+                      style={{
+                        objectFit: 'contain',
+                        width: '100%',
+                        height: 'auto'
+                      }}
+                    />
+                  </div>
                 </div>
+              </div>
+              <div className="absolute bottom-0 right-0 transform translate-y-full pt-2">
+                <button
+                  onClick={() => setShowHowToPlay(true)}
+                  className="text-[#f5f2e6] hover:text-[#f5f2e6] text-sm transition-colors duration-200 opacity-30 hover:opacity-100"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  HOW TO PLAY
+                </button>
               </div>
             </div>
             
             
             {feedback && (
-              <div className="text-center mb-2 text-xl font-bold" style={{ 
-                fontFamily: "'American Typewriter', serif",
+              <div className="text-center mb-2 text-2xl" style={{ 
+                fontFamily: 'Douglas-Burlington-Regular',
                 color: feedback.includes('Perfect') ? '#4ade80' : feedback.includes('Close') ? '#fbbf24' : '#ef4444'
               }}>
                 {feedback}
@@ -382,8 +908,8 @@ if (gameState === 'over') {
               
               <button
                 onClick={handleGuess}
-                className="w-full mb-8 bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-lg text-xl font-bold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-blue-700"
-                style={{fontFamily: "'American Typewriter', serif" }}
+                className="w-full mb-8 bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 TAKE A SWING
               </button>
@@ -394,19 +920,22 @@ if (gameState === 'over') {
               <div>
                 <span className="text-gray-300">Outs</span>
                 <div className="text-3xl font-bold">{outs}</div>
+                <div className="text-sm text-gray-300">Strikes: {strikes}</div>
               </div>
               
-              <div className="flex gap-2">
-                {BASEBALL_MOMENTS.map((moment, index) => (
-                  <div 
-                    key={moment.id}
-                    className={`w-3 h-3 rounded-full ${
-                      currentMoment.id === moment.id 
-                        ? 'bg-blue-500' 
-                        : 'bg-gray-600'
-                    }`}
-                  />
-                ))}
+              <div className="flex-1 mx-8 text-center">
+                {feedback && (
+                  <div className="text-xl" style={{ 
+                    fontFamily: 'Douglas-Burlington-Regular',
+                    color: feedback.includes('HOME RUN') ? '#4ade80' : 
+                           feedback.includes('TRIPLE') ? '#fbbf24' : 
+                           feedback.includes('DOUBLE') ? '#60a5fa' : 
+                           feedback.includes('SINGLE') ? '#a78bfa' : 
+                           '#ef4444'
+                  }}>
+                    {feedback}
+                  </div>
+                )}
               </div>
 
               <div>
@@ -424,6 +953,15 @@ if (gameState === 'over') {
           Hint: {currentMoment.hint}
         </div>
       </div>
+      {showCollection && (
+        <Collection 
+          onClose={() => setShowCollection(false)} 
+          collectedMoments={collectedMoments}
+        />
+      )}
+      {showHowToPlay && (
+        <HowToPlay onClose={() => setShowHowToPlay(false)} />
+      )}
     </div>
   );
 }
