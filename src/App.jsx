@@ -17,6 +17,22 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 2,
+    year: 1951,
+    image: '/1951mantle.jpg',
+    hint: "The Commerce Comet's Rookie Card",
+    description: "Mickey Mantle's rookie season with the Yankees",
+    funFact: "This image captures Mickey Mantle during his rookie season with the New York Yankees in 1951. The 19-year-old from Commerce, Oklahoma was initially assigned uniform #6, following in the footsteps of Babe Ruth (#3), Lou Gehrig (#4), and Joe DiMaggio (#5). However, after struggling and being briefly sent down to the minors, he returned wearing his iconic #7. Despite the early setback, Mantle would go on to become one of baseball's greatest switch-hitters, winning three AL MVP awards and helping the Yankees capture seven World Series titles during his 18-year career."
+  },
+  {
+    id: 3,
+    year: 1913,
+    image: '/1913evers.jpg',
+    hint: "Baseball's Brainy Ballplayer",
+    description: "Johnny Evers of the Chicago Cubs",
+    funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
+  },
+  {
+    id: 4,
     year: 1991,
     image: '/1991.jpg',
     hint: "World Series Collision",
@@ -24,7 +40,7 @@ const BASEBALL_MOMENTS = [
     funFact: "This image shows a dramatic moment between Lonnie Smith (runner) and Brian Harper (catcher) during the 1991 World Series between the Atlanta Braves and the Minnesota Twins. The 1991 World Series, often dubbed the Greatest World Series Ever Played, featured a record four games decided by a single run, with three of them going into extra innings. The Minnesota Twins won Game 7 in a nail-biting 1-0 victory, clinching the championship in one of the most intense pitching duels in MLB history! The play in the image exemplifies the grit and intensity that defined this iconic series."
   },
   {
-    id: 3,
+    id: 5,
     year: 1988,
     image: '/1988.jpg',
     hint: "Gibby for the walkoff",
@@ -32,7 +48,7 @@ const BASEBALL_MOMENTS = [
     funFact: "Kirk Gibson hits a world series walkoff etc etc, need a fact here about knees"
   },
   {
-    id: 4,
+    id: 6,
     year: 1987,
     image: '/1987.jpg',
     hint: "The Wizard shows his magic",
@@ -40,7 +56,7 @@ const BASEBALL_MOMENTS = [
     funFact: "Known as 'The Wizard of Oz', Ozzie Smith revolutionized the shortstop position with his acrobatic defensive plays and signature backflips. He won an incredible 13 consecutive Gold Glove awards from 1980-1992. When he retired, he held major league records for assists (8,375) and double plays (1,590) by a shortstop, as well as the National League record for games played at shortstop (2,511). His defensive wizardry was so spectacular that he became the first player elected to the Hall of Fame primarily for his defensive skills, proving that a player didn't need to be a power hitter to be one of baseball's greatest stars."
   },
   {
-    id: 5,
+    id: 7,
     year: 1961,
     image: '/1961.jpg',
     hint: "The Reluctant Record Breaker",
@@ -48,7 +64,7 @@ const BASEBALL_MOMENTS = [
     funFact: "Roger Maris, born in Hibbing, Minnesota and raised in North Dakota, became known as baseball's 'reluctant superstar.' Despite breaking Babe Ruth's single-season home run record in 1961 with 61 homers, Maris never seemed comfortable with fame. The pressure of chasing Ruth's record was so intense that his hair began falling out during the season. Commissioner Ford Frick's decision to put an asterisk next to his record (because Maris hit his in a 162-game season versus Ruth's 154) added to the controversy. The asterisk, which technically never existed in the record books but lived on in baseball lore, wasn't formally removed until 1991 - six years after Maris's death."
   },
   {
-    id: 6,
+    id: 8,
     year: 1913,
     image: '/1913Thorpe.jpg',
     hint: "History's Greatest All-Around Athlete",
@@ -56,7 +72,7 @@ const BASEBALL_MOMENTS = [
     funFact: "Jim Thorpe might be the most talented athlete in American history. A member of the Sac and Fox Nation, he won Olympic gold medals in both the pentathlon and decathlon in 1912, played six seasons of Major League Baseball, was an inaugural member of the Pro Football Hall of Fame, and even played professional basketball. After winning his Olympic medals, King Gustav V of Sweden told him, 'Sir, you are the greatest athlete in the world,' to which Thorpe simply replied, 'Thanks, King.' Tragically, his Olympic medals were stripped away when it was discovered he had played semi-pro baseball (though they were posthumously restored in 1982). Despite this setback, he went on to play MLB baseball from 1913 to 1919, including time with the New York Giants, Cincinnati Reds, and Boston Braves."
   },
   {
-    id: 7,
+    id: 9,
     year: 1982,
     image: '/1982.jpg',
     hint: "Gary Carter and a young Tim Raines among other Expos stars",
@@ -64,15 +80,31 @@ const BASEBALL_MOMENTS = [
     funFact: "Just look at those jerseys though."
   },
   {
-    id: 8,
-    year: 1984,
-    image: '/1984AS.jpg',
-    hint: "Midsummer Classic in America's Finest City",
-    description: "1984 All-Star Game at Jack Murphy Stadium",
-    funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
+    id: 10,
+    year: 1911,
+    image: '/1911_Honus_Wagner.jpg',
+    hint: "Honus Wagner",
+    description: "Honus Wagner",
+    funFact: "Honus Wagner" 
   },
+ {
+  id: 11,
+  year: 1895,
+  image: '/Michigan.jpg',
+  hint: "Michigan",
+  description: "Michigan",
+  funFact: "Michigan"
+},
+{
+id: 12,
+year: 1984,
+image: '/1984AS.jpg',
+hint: "Midsummer Classic in America's Finest City",
+description: "1984 All-Star Game at Jack Murphy Stadium",
+funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
+},
   {
-    id: 9,
+    id: 13,
     year: 1901,
     image: '/1901Tug.jpg',
     hint: "Pennant Winning Season for Tug",
@@ -307,7 +339,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
         <div className="flex justify-center gap-4">
           <button
             onClick={onRestart}
-            className="bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+            className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
             Play Again
@@ -315,7 +347,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
 
           <button
             onClick={onShowCollection}
-            className="bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+            className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
             View Collection
@@ -543,21 +575,20 @@ export default function BaseballTimeMachine() {
       timeTaken = (Date.now() - guessStartTime) / 1000;
     }
   
-    // Way off guess (15+ years) = immediate out
-    if (difference >= 15) {
+    // Way off guess (10+ years) = immediate out
+    if (difference >= 10) {
       playSound('out');
       const newOuts = outs + 1;
       setOuts(newOuts);
       
       const popUpMessages = [
-        "Pop up to the pitcher! That's an out - you were way off.",
-        "Easy pop fly to the mound! Out - not even close.",
-        "Weak pop up! That's an out - try a different era."
+        "Pop up to the pitcher! You were way off.",
+        "That's an out - try a different era.",
+        "Way off! That's an out."
       ];
       const randomMessage = popUpMessages[Math.floor(Math.random() * popUpMessages.length)];
       setFeedback(randomMessage);
 
-      // Move to next image or game over
       if (newOuts >= 3) {
         setGameState('over');
       } else {
@@ -605,6 +636,7 @@ export default function BaseballTimeMachine() {
           setTime(30);
           setIsTimerActive(false);
           setGuessStartTime(null);
+          setStrikes(0);
           
           setTimeout(() => {
             setImageOpacity(1);
@@ -619,120 +651,86 @@ export default function BaseballTimeMachine() {
       return;
     }
   
+    // Handle foul balls (within 10 years)
     const newStrikes = strikes + 1;
     setStrikes(newStrikes);
+    playSound('hit');
     
-    if (newStrikes >= 3) {
+    let basePoints;
+    let feedbackMessage;
+    
+    // First strike
+    if (newStrikes === 1) {
+      feedbackMessage = difference <= 5 
+        ? "Foul Ball! (Strike One) - You're getting close!"
+        : "Foul Ball! (Strike One) - Right decade, wrong year!";
+    }
+    // Second strike
+    else if (newStrikes === 2) {
+      if (difference < previousDifference) {
+        feedbackMessage = "Foul Ball! (Strike Two) - Getting warmer!";
+      } else {
+        feedbackMessage = "Foul Ball! (Strike Two) - Stay focused!";
+      }
+    }
+    // Third strike - but close enough to get points
+    else if (newStrikes === 3) {
+      if (difference <= 5) {  // They made contact on their last strike
+        if (difference <= 1) {
+          basePoints = 300;
+          feedbackMessage = `Contact on Strike Three! TRIPLE! +${basePoints} points`;
+        } else if (difference <= 3) {
+          basePoints = 200;
+          feedbackMessage = `Contact on Strike Three! DOUBLE! +${basePoints} points`;
+        } else {
+          basePoints = 100;
+          feedbackMessage = `Contact on Strike Three! SINGLE! +${basePoints} points`;
+        }
+        
+        // Add points
+        const points = basePoints + timeBonus;
+        setScore((prevScore) => prevScore + points);
+      }
+      
+      // Always record an out on strike three
+      feedbackMessage = basePoints 
+        ? feedbackMessage 
+        : "Strike Three! You're out!";
       const newOuts = outs + 1;
       setOuts(newOuts);
       setStrikes(0);
       
       if (newOuts >= 3) {
         setGameState('over');
+        return;
       }
-    }
-
-    if (difference <= 5) {
-      playSound('hit');
-      let basePoints;
-      let feedbackMessage;
       
-      // First strike
-      if (newStrikes === 1) {
-        feedbackMessage = "Foul Ball! (Strike One) - You're in the right era!";
-      }
-      // Second strike
-      else if (newStrikes === 2) {
-        if (difference < previousDifference) {
-          feedbackMessage = "Foul Ball! (Strike Two) - Getting warmer!";
-        } else {
-          feedbackMessage = "Foul Ball! (Strike Two) - Stay focused!";
-        }
-      }
-      // Third strike - but close enough to get points
-      else if (newStrikes === 3) {
-        if (difference <= 5) {  // They made contact on their last strike
-          if (difference <= 1) {
-            basePoints = 300;
-            feedbackMessage = `Contact on Strike Three! TRIPLE! +${basePoints} points`;
-          } else if (difference <= 3) {
-            basePoints = 200;
-            feedbackMessage = `Contact on Strike Three! DOUBLE! +${basePoints} points`;
-          } else {
-            basePoints = 100;
-            feedbackMessage = `Contact on Strike Three! SINGLE! +${basePoints} points`;
-          }
+      // Advance to next image
+      const nextIndex = sequenceIndex + 1;
+      if (nextIndex < 3) {
+        setImageOpacity(0);
+        setTimeout(() => {
+          setSequenceIndex(nextIndex);
+          setCurrentMoment(getDailyMoment(nextIndex));
+          setYear(1950);
+          setTime(30);
+          setIsTimerActive(false);
+          setGuessStartTime(null);
           
-          // Add points
-          const points = basePoints + timeBonus;
-          setScore((prevScore) => prevScore + points);
-          setFeedback(feedbackMessage);
-          
-          // Advance to next image
-          const nextIndex = sequenceIndex + 1;
-          if (nextIndex < 3) {
-            setImageOpacity(0);
-            
-            setTimeout(() => {
-              setSequenceIndex(nextIndex);
-              setCurrentMoment(getDailyMoment(nextIndex));
-              setYear(1950);
-              setTime(30);
-              setIsTimerActive(false);
-              setGuessStartTime(null);
-              setStrikes(0);  // Reset strikes for next image
-              
-              setTimeout(() => {
-                setImageOpacity(1);
-              }, 100);
-            }, 1000);
-          } else {
-            setGameState('over');
-          }
-        } else {
-          // Strike out - not close enough on third strike
-          setFeedback("Strike Three! You're out!");
-          const newOuts = outs + 1;
-          setOuts(newOuts);
-          if (newOuts >= 3) {
-            setGameState('over');
-          }
-        }
-      }
-      
-      setFeedback(feedbackMessage);
-      
-      if (basePoints) {
-        const points = basePoints + timeBonus;
-        setScore((prevScore) => prevScore + points);
-      }
-    } else if (difference <= 10) {
-      // Regular strikes for medium-distance guesses
-      playSound('out');
-      if (newStrikes === 1) {
-        setFeedback("Strike One! - Try a different decade");
-      } else if (newStrikes === 2) {
-        setFeedback("Strike Two! - One more chance!");
+          setTimeout(() => {
+            setImageOpacity(1);
+          }, 100);
+        }, 1000);
       } else {
-        setFeedback("Strike Three! You're out!");
+        setGameState('over');
       }
-    } else {
-      // Way off guesses
-      playSound('out');
-      const popUpMessages = [
-        `Pop up to the pitcher! (Strike ${newStrikes}) That guess was way off.`,
-        `Easy pop fly to the mound! (Strike ${newStrikes}) Not even close.`,
-        `Weak pop up! (Strike ${newStrikes}) Try a different era.`
-      ];
-      const randomMessage = popUpMessages[Math.floor(Math.random() * popUpMessages.length)];
-      setFeedback(randomMessage);
     }
+    
+    setFeedback(feedbackMessage);
     
     checkAchievements(false, timeTaken);
     setGuessStartTime(null);
-
     setIsTimerActive(false);
-
     setPreviousDifference(difference);
   }
 
@@ -872,17 +870,6 @@ export default function BaseballTimeMachine() {
                 </button>
               </div>
             </div>
-            
-            
-            {feedback && (
-              <div className="text-center mb-2 text-2xl" style={{ 
-                fontFamily: 'Douglas-Burlington-Regular',
-                color: feedback.includes('Perfect') ? '#4ade80' : feedback.includes('Close') ? '#fbbf24' : '#ef4444'
-              }}>
-                {feedback}
-              </div>
-            )}
-
 
             <div className="space-y-6">
               <div className="flex justify-center mb-6">
@@ -908,14 +895,13 @@ export default function BaseballTimeMachine() {
               
               <button
                 onClick={handleGuess}
-                className="w-full mb-8 bg-[#3B5998] hover:bg-[#4B69A8] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#2B4988]"
+                className="w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 TAKE A SWING
               </button>
             </div>
 
-            
             <div className="flex justify-between items-center mt-8 bg-gray-700 rounded-lg p-4 text-white">
               <div>
                 <span className="text-gray-300">Outs</span>
@@ -943,9 +929,6 @@ export default function BaseballTimeMachine() {
                 <div className="text-3xl font-bold text-green-400">+{score}</div>
               </div>
             </div>
-            
-
-
           </CardContent>
         </Card>
         

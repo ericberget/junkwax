@@ -11,7 +11,7 @@ export function HowToPlay({ onClose }) {
           </h2>
           <button 
             onClick={onClose}
-            className="text-[#3B5998] hover:text-[#4B69A8] transition-colors duration-200"
+            className="text-[#1e4fba] hover:text-[#2460e6] transition-colors duration-200"
           >
             Close
           </button>
@@ -34,10 +34,10 @@ export function HowToPlay({ onClose }) {
                 Strikes & Outs
               </h3>
               <ul className="list-disc pl-5 space-y-2 text-[#f5f2e6]">
+                <li>Guesses within 10 years count as a foul ball (strike)</li>
                 <li>Three strikes = One out</li>
+                <li>Way off guesses (10+ years) = Immediate out</li>
                 <li>Three outs = Game over</li>
-                <li>Way off guesses (15+ years) = Immediate out</li>
-                <li>Close guesses count as strikes but can earn points on the third strike</li>
               </ul>
             </section>
 
