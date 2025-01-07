@@ -29,7 +29,7 @@ export function FeedbackOverlay({
   if (isFoulBall) {
     return (
       <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
-        <div className="max-w-2xl w-full mx-auto p-4">
+        <div className="max-w-2xl w-full mx-auto p-4 max-h-screen overflow-y-auto">
           <div className="bg-gray-800/90 rounded-lg p-6 py-12 border border-gray-700">
             <div className="space-y-6 text-center">
               <h2 
@@ -77,7 +77,7 @@ export function FeedbackOverlay({
 
   return (
     <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
-      <div className="max-w-4xl w-full mx-auto p-4">
+      <div className="max-w-4xl w-full mx-auto p-4 max-h-screen overflow-y-auto">
         <div className="bg-gray-800/90 rounded-lg p-6 px-8 border border-gray-700">
           <div className="space-y-6">
             {/* Header with Result, Year, and Points */}
