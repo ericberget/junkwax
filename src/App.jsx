@@ -890,10 +890,10 @@ export default function BaseballTimeMachine() {
       }}>
 
       <div className="max-w-4xl mx-auto p-4">
-        <div className="text-center relative mb-4">
+        <div className="text-center relative mb-2">
           <img  
             src="/LOGO.png"
-            className="max-w-[450px] mx-auto"
+            className="max-w-[475px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
