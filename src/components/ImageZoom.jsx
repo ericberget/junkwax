@@ -3,10 +3,10 @@ import React from 'react';
 export function ImageZoom({ image, description, onClose }) {
   return (
     <div 
-      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+      className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 zoom-overlay"
       onClick={onClose}
     >
-      <div className="relative max-w-7xl w-full mx-auto">
+      <div className="relative max-w-7xl w-full mx-auto zoom-content">
         <button 
           onClick={onClose}
           className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
@@ -14,7 +14,7 @@ export function ImageZoom({ image, description, onClose }) {
           Close
         </button>
         <div 
-          className="relative bg-[#f5f2e6] p-4"
+          className="relative bg-[#f5f2e6] p-2"
           style={{
             boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
           }}

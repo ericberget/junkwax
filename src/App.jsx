@@ -429,6 +429,7 @@ function Collection({ onClose, collectedMoments }) {
   const discoveredMoments = BASEBALL_MOMENTS.filter(moment => 
     collectedMoments.includes(moment.id)
   );
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
@@ -453,28 +454,31 @@ function Collection({ onClose, collectedMoments }) {
             No photos discovered yet! Get a perfect guess to add photos to your collection.
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {discoveredMoments.map(moment => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {discoveredMoments.map((moment, index) => (
               <div 
                 key={moment.id}
-                className="bg-gray-800 rounded-lg overflow-hidden"
+                className="bg-gray-800 rounded-lg overflow-hidden border border-gray-700 animate-fadeIn"
+                style={{
+                  animation: `fadeIn 0.5s ease-out ${index * 0.1}s both`
+                }}
               >
-                <div className="relative bg-[#f5f2e6] p-4">
+                <div 
+                  className="relative bg-[#f5f2e6] p-2 cursor-pointer"
+                  onClick={() => setSelectedImage(moment)}
+                >
                   <img
                     src={moment.image}
                     alt={moment.description}
                     className="w-full h-auto object-contain"
                   />
                 </div>
-                <div className="p-4">
+                <div className="p-3">
                   <div className="text-white mb-2" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
                     {moment.year}
                   </div>
                   <div className="text-gray-400 text-sm">
                     {moment.description}
-                  </div>
-                  <div className="text-gray-400 text-sm mt-4">
-                    {moment.funFact}
                   </div>
                 </div>
               </div>
@@ -482,6 +486,35 @@ function Collection({ onClose, collectedMoments }) {
           </div>
         )}
       </div>
+
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div className="relative max-w-7xl w-full mx-auto">
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
+            >
+              Close
+            </button>
+            <div 
+              className="relative bg-[#f5f2e6] p-2"
+              style={{
+                boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              <img
+                src={selectedImage.image}
+                alt={selectedImage.description}
+                className="w-full h-auto object-contain max-h-[90vh]"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
