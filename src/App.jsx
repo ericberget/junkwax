@@ -425,6 +425,11 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
 }
 
 function Collection({ onClose, collectedMoments }) {
+  // Filter to only show collected moments
+  const discoveredMoments = BASEBALL_MOMENTS.filter(moment => 
+    collectedMoments.includes(moment.id)
+  );
+
   return (
     <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
       <div className="max-w-4xl mx-auto p-4">
@@ -433,7 +438,7 @@ function Collection({ onClose, collectedMoments }) {
             className="text-4xl text-white"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
-            My Collection
+            My Collection ({discoveredMoments.length})
           </h2>
           <button 
             onClick={onClose}
@@ -443,42 +448,39 @@ function Collection({ onClose, collectedMoments }) {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {BASEBALL_MOMENTS.map(moment => {
-            const isCollected = collectedMoments.includes(moment.id);
-            return (
+        {discoveredMoments.length === 0 ? (
+          <div className="text-center text-gray-400 text-xl py-12">
+            No photos discovered yet! Get a perfect guess to add photos to your collection.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {discoveredMoments.map(moment => (
               <div 
                 key={moment.id}
-                className={`bg-gray-800 rounded-lg overflow-hidden ${!isCollected && 'opacity-50'}`}
+                className="bg-gray-800 rounded-lg overflow-hidden"
               >
                 <div className="relative bg-[#f5f2e6] p-4">
                   <img
-                    src={isCollected ? moment.image : '/default.jpg'}
+                    src={moment.image}
                     alt={moment.description}
                     className="w-full h-auto object-contain"
                   />
-                  {!isCollected && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl text-white bg-black/50 px-4 py-2 rounded">
-                        Not Yet Discovered
-                      </span>
-                    </div>
-                  )}
                 </div>
-                {isCollected && (
-                  <div className="p-4">
-                    <div className="text-white mb-2" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-                      {moment.year}
-                    </div>
-                    <div className="text-gray-400 text-sm">
-                      {moment.description}
-                    </div>
+                <div className="p-4">
+                  <div className="text-white mb-2" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+                    {moment.year}
                   </div>
-                )}
+                  <div className="text-gray-400 text-sm">
+                    {moment.description}
+                  </div>
+                  <div className="text-gray-400 text-sm mt-4">
+                    {moment.funFact}
+                  </div>
+                </div>
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
