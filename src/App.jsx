@@ -912,14 +912,21 @@ export default function BaseballTimeMachine() {
               >
                 {/* Background stack effect */}
                 <div 
-                  className="absolute top-2 left-2 right-2 bottom-0 z-0"
+                  className="absolute"
                   style={{
                     backgroundImage: 'url(/bgfade.png)',
-                    backgroundSize: 'contain',
+                    backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    transform: 'translateY(20px)',
-                    opacity: 0.8
+                    width: '100%',
+                    height: '100%',
+                    top: '10px',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                    zIndex: 0,
+                    transform: 'scale(1.1)',
+                    opacity: 0.9
                   }}
                 />
                 
