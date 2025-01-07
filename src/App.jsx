@@ -958,7 +958,7 @@ export default function BaseballTimeMachine() {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between items-center transform translate-y-full pt-2">
+               <div className="flex justify-between items-center transform translate-y-full pt-2">
                 <div 
                   className="text-[#f5f2e6] text-sm opacity-30 hover:opacity-100 transition-colors duration-200"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -1000,8 +1000,14 @@ export default function BaseballTimeMachine() {
               
               <button
                 onClick={handleGuess}
-                className="w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                className="w-full mb-8 text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
+                style={{ 
+                  fontFamily: 'Douglas-Burlington-Regular',
+                  backgroundImage: 'url(/papertexturebg.png)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  transform: 'scale(1)',
+                }}
               >
                 TAKE A SWING
               </button>
