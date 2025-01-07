@@ -194,7 +194,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
     const dateStr = today.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' });
     
     const shareText = `⚾️ Baseball Time Machine ${dateStr}\n` +
-                     `${correctGuesses}/3 Photos Identified\n` +
+                     `${correctGuesses} Perfect ${correctGuesses === 1 ? 'Guess' : 'Guesses'}\n` +
                      `Final Score: ${score} points\n` +
                      `${achievements.length > 0 ? '🏆 Achievements: ' + achievements.length : ''}\n` +
                      `\nPlay at: https://baseballtimemachine.netlify.app/`;
@@ -240,7 +240,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
     `;
     document.body.appendChild(shareMenu);
   }
-  
+
   return (
     <div className="text-center p-8 max-w-4xl mx-auto min-h-screen">
       <div className="text-center mb-16">
@@ -267,7 +267,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
               {score} points
             </div>
             <div className="text-xl text-[#f5f2e6] mb-6">
-              You identified {correctGuesses} out of 3 photos correctly!
+              You got {correctGuesses} perfect {correctGuesses === 1 ? 'guess' : 'guesses'}!
             </div>
 
             {/* Thumbnails Grid */}
@@ -572,10 +572,10 @@ export default function BaseballTimeMachine() {
     }
   }
 
-  function checkAchievements(correct, timeTaken) {
+  function checkAchievements(isExactMatch, timeTaken) {
     const newAchievements = [...achievements];
     
-    if (correct) {
+    if (isExactMatch) {
       if (!achievements.includes('FIRST_HIT')) {
         newAchievements.push('FIRST_HIT');
       }
@@ -664,6 +664,7 @@ export default function BaseballTimeMachine() {
       feedbackResult = "HOME RUN!";
       checkAchievements(true, timeTaken);
       
+      // Only add to collection on perfect guesses
       if (!collectedMoments.includes(currentMoment.id)) {
         setCollectedMoments(prev => [...prev, currentMoment.id]);
       }
@@ -764,8 +765,8 @@ export default function BaseballTimeMachine() {
         setGuessStartTime(null);
         setTimeout(() => {
           setImageOpacity(1);
-        }, 100);
-      }, 100);
+        }, 300);
+      }, 300);
     }
   }
 
@@ -879,7 +880,7 @@ export default function BaseballTimeMachine() {
                   }}
                 >
                   <div
-                    className="transition-opacity duration-1000 ease-in-out relative"
+                    className="transition-opacity duration-300 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
                   >
                     <img
