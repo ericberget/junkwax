@@ -193,10 +193,15 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
     const today = new Date();
     const dateStr = today.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' });
     
+    // Create boxes string based on collected moments
+    const boxes = allMoments.map(moment => 
+      collectedMoments.includes(moment.id) ? '🟩' : '⬜'
+    ).join('');
+    
     const shareText = `⚾️ Baseball Time Machine ${dateStr}\n` +
+                     `${boxes}\n` +
                      `${correctGuesses} Perfect ${correctGuesses === 1 ? 'Guess' : 'Guesses'}\n` +
-                     `Final Score: ${score} points\n` +
-                     `${achievements.length > 0 ? '🏆 Achievements: ' + achievements.length : ''}\n` +
+                     `Score: ⭐ ${score} ⭐\n` +
                      `\nPlay at: https://baseballtimemachine.netlify.app/`;
 
     // Social sharing URLs
@@ -448,9 +453,9 @@ function Collection({ onClose, collectedMoments }) {
               >
                 <div className="relative bg-[#f5f2e6] p-4">
                   <img
-                    src={moment.image}
+                    src={isCollected ? moment.image : '/default.jpg'}
                     alt={moment.description}
-                    className={`w-full h-auto object-contain ${!isCollected && 'blur-sm'}`}
+                    className="w-full h-auto object-contain"
                   />
                   {!isCollected && (
                     <div className="absolute inset-0 flex items-center justify-center">
