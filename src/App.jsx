@@ -924,7 +924,7 @@ export default function BaseballTimeMachine() {
                     left: '-20px',
                     zIndex: 0,
                     transform: 'scale(0.99)',
-                    opacity: 0.4,
+                    opacity: 0.8,
                     pointerEvents: 'none'
                   }}
                 />
@@ -941,7 +941,7 @@ export default function BaseballTimeMachine() {
                     left: '-35px',
                     zIndex: 0,
                     transform: 'scale(0.98)',
-                    opacity: 0.3,
+                    opacity: 0.6,
                     pointerEvents: 'none'
                   }}
                 />
@@ -958,7 +958,7 @@ export default function BaseballTimeMachine() {
                     left: '-50px',
                     zIndex: 0,
                     transform: 'scale(0.97)',
-                    opacity: 0.2,
+                    opacity: 0.4,
                     pointerEvents: 'none'
                   }}
                 />
