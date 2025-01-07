@@ -910,7 +910,7 @@ export default function BaseballTimeMachine() {
                   alignItems: 'center'
                 }}
               >
-                {/* Background stack effect */}
+                {/* Background stack effect - multiple layers */}
                 <div 
                   className="absolute"
                   style={{
@@ -918,14 +918,45 @@ export default function BaseballTimeMachine() {
                     backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    width: '120%',
+                    width: '100%',
                     height: '100%',
-                    top: '0',
-                    left: '-80px',
-                    zIndex: 0,
-                    transform: 'scale(1.1)',
-                    opacity: 1,
-                    pointerEvents: 'none'
+                    top: '5px',
+                    left: '-10px',
+                    zIndex: -3,
+                    transform: 'rotate(-2deg)',
+                    opacity: 0.8
+                  }}
+                />
+                <div 
+                  className="absolute"
+                  style={{
+                    backgroundImage: 'url(/bgfade%20Medium.png)',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                    top: '10px',
+                    left: '-20px',
+                    zIndex: -2,
+                    transform: 'rotate(-4deg)',
+                    opacity: 0.6
+                  }}
+                />
+                <div 
+                  className="absolute"
+                  style={{
+                    backgroundImage: 'url(/bgfade%20Medium.png)',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                    top: '15px',
+                    left: '-30px',
+                    zIndex: -1,
+                    transform: 'rotate(-6deg)',
+                    opacity: 0.4
                   }}
                 />
                 
