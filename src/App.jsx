@@ -1003,7 +1003,7 @@ export default function BaseballTimeMachine() {
                 className="w-full mb-8 text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
                 style={{ 
                   fontFamily: 'Douglas-Burlington-Regular',
-                  backgroundImage: 'url(/papertexturebg.png)',
+                  backgroundImage: 'url(/paperbgtexture.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   transform: 'scale(1)',
