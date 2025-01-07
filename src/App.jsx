@@ -893,7 +893,7 @@ export default function BaseballTimeMachine() {
         <div className="text-center relative mb-4">
           <img  
             src="/LOGO.png"
-            className="max-w-[400px] mx-auto"
+            className="max-w-[450px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
@@ -901,7 +901,7 @@ export default function BaseballTimeMachine() {
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
             {/* Photo container */}
-            <div className="relative mx-2">
+            <div className="relative mx-2 mb-8">
               <div 
                 className="relative"
                 style={{
@@ -915,7 +915,7 @@ export default function BaseballTimeMachine() {
                   style={{
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
-                    maxWidth: '99%',
+                    maxWidth: '90%',
                     margin: '0.25rem'
                   }}
                 >
@@ -926,7 +926,7 @@ export default function BaseballTimeMachine() {
                     <img
                       src={currentMoment.image}
                       alt={currentMoment.description}
-                      className="w-full h-auto object-contain max-h-[600px]"
+                      className="w-full h-auto object-contain max-h-[500px]"
                       style={{
                         objectFit: 'contain',
                         width: '100%',
@@ -958,7 +958,14 @@ export default function BaseballTimeMachine() {
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-0 right-0 transform translate-y-full pt-2">
+              <div className="flex justify-between items-center transform translate-y-full pt-2">
+                <div 
+                  className="text-[#f5f2e6] text-sm opacity-30 hover:opacity-100 transition-colors duration-200"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  {outs > 0 && <span className="mr-3">OUTS: {outs}</span>}
+                  {strikes > 0 && <span>STRIKES: {strikes}</span>}
+                </div>
                 <button
                   onClick={() => setShowHowToPlay(true)}
                   className="text-[#f5f2e6] hover:text-[#f5f2e6] text-sm transition-colors duration-200 opacity-30 hover:opacity-100"
