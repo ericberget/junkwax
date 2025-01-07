@@ -914,7 +914,7 @@ export default function BaseballTimeMachine() {
                 <div 
                   className="absolute"
                   style={{
-                    backgroundImage: 'url(/bgFade Medium.png)',
+                    backgroundImage: 'url(/bgfade%20Medium.png)',
                     backgroundSize: '100% 100%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
