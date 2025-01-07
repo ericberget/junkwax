@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageZoom } from './ImageZoom';
 
 function YearDigit({ digit }) {
   return (
@@ -23,6 +24,8 @@ export function FeedbackOverlay({
   strikes,
   currentYear
 }) {
+  const [showZoom, setShowZoom] = React.useState(false);
+
   if (isFoulBall) {
     return (
       <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
@@ -134,6 +137,28 @@ export function FeedbackOverlay({
                   maxWidth: '100%'
                 }}
               />
+              <button
+                onClick={() => setShowZoom(true)}
+                className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors duration-200"
+                title="Zoom Image"
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="24" 
+                  height="24" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="white" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8"/>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  <line x1="11" y1="8" x2="11" y2="14"/>
+                  <line x1="8" y1="11" x2="14" y2="11"/>
+                </svg>
+              </button>
             </div>
 
             {/* Fun Fact */}
@@ -149,15 +174,22 @@ export function FeedbackOverlay({
             <div className="text-center mt-8">
               <button
                 onClick={onNext}
-                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 px-12 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
+                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-10 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
-                {isGameOver ? 'View Final Results' : 'Next Image'}
+                {isGameOver ? "View Results" : "Next"}
               </button>
             </div>
           </div>
         </div>
       </div>
+      {showZoom && (
+        <ImageZoom
+          image={image}
+          description="Baseball moment"
+          onClose={() => setShowZoom(false)}
+        />
+      )}
     </div>
   );
 } 
