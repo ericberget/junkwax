@@ -907,8 +907,7 @@ export default function BaseballTimeMachine() {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center',
-                  paddingLeft: '40px'
+                  alignItems: 'center'
                 }}
               >
                 {/* Background stack effect */}
@@ -916,16 +915,16 @@ export default function BaseballTimeMachine() {
                   className="absolute"
                   style={{
                     backgroundImage: 'url(/bgFade Medium.png)',
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'left center',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
-                    width: '100%',
+                    width: '120%',
                     height: '100%',
                     top: '0',
-                    left: '-60px',
+                    left: '-80px',
                     zIndex: 0,
-                    transform: 'scale(1.02)',
-                    opacity: 0.95,
+                    transform: 'scale(1.1)',
+                    opacity: 1,
                     pointerEvents: 'none'
                   }}
                 />
@@ -937,8 +936,7 @@ export default function BaseballTimeMachine() {
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
                     maxWidth: '90%',
-                    margin: '0.25rem',
-                    position: 'relative'
+                    margin: '0.25rem'
                   }}
                 >
                   <div
