@@ -250,7 +250,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
     <div className="text-center p-8 max-w-4xl mx-auto min-h-screen">
       <div className="text-center mb-16">
         <img  
-          src="/gameLogo.png"
+          src="/LOGO.png"
           className="max-w-[600px] mx-auto"
           alt="The Daily Baseball Photo Trivia Game" 
         />
@@ -890,16 +890,16 @@ export default function BaseballTimeMachine() {
       }}>
 
       <div className="max-w-4xl mx-auto p-4">
-        <div className="text-center relative mb-8">
+        <div className="text-center relative mb-4">
           <img  
-            src="/gameLogo.png"
+            src="/LOGO.png"
             className="max-w-[400px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
         
         <Card className="bg-transparent border-none">
-          <CardContent className="p-4">
+          <CardContent className="p-2">
             {/* Photo container */}
             <div className="relative mx-2">
               <div 
@@ -916,7 +916,7 @@ export default function BaseballTimeMachine() {
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
                     maxWidth: '99%',
-                    margin: '0.5rem'
+                    margin: '0.25rem'
                   }}
                 >
                   <div
