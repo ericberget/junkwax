@@ -949,7 +949,7 @@ export default function BaseballTimeMachine() {
                     />
                     <button
                       onClick={() => setShowZoom(true)}
-                      className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors duration-200"
+                      className="absolute top-2 left-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors duration-200"
                       title="Zoom Image"
                     >
                       <svg 
