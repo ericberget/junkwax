@@ -4,6 +4,8 @@ import { Trophy, Medal, Star, Timer as TimerIcon, Award, Check, X } from 'lucide
 import { Timer } from './components/Timer';
 import { Books } from './components/Books';
 import { HowToPlay } from './components/HowToPlay';
+import { FeedbackOverlay } from './components/FeedbackOverlay';
+import { ImageZoom } from './components/ImageZoom';
 
 
 const BASEBALL_MOMENTS = [
@@ -130,6 +132,11 @@ const SOUND_EFFECTS = {
   achievement: new Audio('/sounds/achievement.wav')
 };
 
+// Set volume for all sound effects to 20%
+Object.values(SOUND_EFFECTS).forEach(sound => {
+  sound.volume = 0.2;
+});
+
 function getDailyMoment(index = 0) {
   const today = new Date();
   const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
@@ -178,9 +185,37 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
   const allMoments = getAllDailyMoments();
   const [selectedMoment, setSelectedMoment] = useState(currentMoment);
   
+  const correctGuesses = collectedMoments.filter(id => 
+    allMoments.some(moment => moment.id === id)
+  ).length;
+
+  function handleShare() {
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: '2-digit' });
+    
+    const shareText = `⚾️ Baseball Time Machine ${dateStr}\n` +
+                     `${correctGuesses}/3 Photos Identified\n` +
+                     `Final Score: ${score} points\n` +
+                     `${achievements.length > 0 ? '🏆 Achievements: ' + achievements.length : ''}\n` +
+                     `\nPlay at: baseballtimemachine.com`;
+
+    if (navigator.share) {
+      navigator.share({
+        text: shareText,
+        title: 'Baseball Time Machine Results',
+        url: 'https://baseballtimemachine.com'
+      }).catch(console.error);
+    } else {
+      // Fallback to copying to clipboard
+      navigator.clipboard.writeText(shareText).then(() => {
+        alert('Results copied to clipboard!');
+      }).catch(console.error);
+    }
+  }
+  
   return (
     <div className="text-center p-8 max-w-4xl mx-auto min-h-screen">
-      <div className="text-center mb-8">
+      <div className="text-center mb-16">
         <img  
           src="/gameLogo.png"
           className="max-w-[600px] mx-auto"
@@ -188,148 +223,123 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
         />
       </div>
 
-      <div>
-        <h2 className="text-6xl text-white mb-4" 
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-          Game Over!
-        </h2>
-        <div className="text-3xl text-green-400 mb-8 font-bold">
-          Final Score: {score}
-        </div>
-      </div>
-      
-      {achievements.length > 0 && (
-        <div className="mb-8">
-          <h3 className="text-2xl text-yellow-400 mb-6 text-center"
-              style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-            Boom! Achievements Unlocked!
-          </h3>
-
-          <div className="grid grid-cols-1 gap-4 max-w-md mx-auto">
-            {achievements.map((achievementId, index) => {
-              const achievement = ACHIEVEMENTS[achievementId];
-              const AchievementIcon = achievement.icon;
-              return (
-                <div 
-                  key={achievementId} 
-                  className="bg-gray-800/90 p-4 rounded-lg flex items-center transform hover:scale-105 border border-gray-700 shadow-lg"
-                >
-                  <div className="bg-blue-900 p-3 rounded-full mr-4">
-                    <AchievementIcon className="text-yellow-400 w-8 h-8" />
-                  </div>
-                  <div className="text-left flex-1">
-                    <div className="text-xl font-bold text-white mb-1">{achievement.name}</div>
-                    <div className="text-gray-400">{achievement.description}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      <div className="mb-8" style={{ 
-        backgroundImage: 'url("/textureNavy.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '0.5rem',
-        padding: '2rem',
-        border: '1px solid rgb(55, 65, 81)'
-      }}>
-        <h3 className="text-2xl text-[#f5f2e6] mb-8 text-center">
-          Today's Photos
-        </h3>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
-          {allMoments.map((moment, index) => (
+      {/* Two-column layout */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Left Column - Score, Share, and Thumbnails */}
+        <div className="flex flex-col">
+          <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
+            <h2 className="text-3xl text-white mb-4 text-center" 
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+              Game Over!
+            </h2>
             <div 
-              key={index} 
-              className="flex flex-col items-center cursor-pointer transform transition-transform hover:scale-105"
-              onClick={() => setSelectedMoment(moment)}
+              className="text-7xl text-green-400 mb-4 text-center"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
             >
-              <div 
-                className={`relative bg-[#f5f2e6] p-2 ${selectedMoment.id === moment.id ? 'ring-2 ring-blue-500' : ''}`}
-                style={{
-                  boxShadow: '5px 3px 6px rgba(0, 0, 0, 0.9)',
-                }}
-              >
-                <div className="absolute -top-2 -left-2 z-10">
-                  {collectedMoments.includes(moment.id) ? (
-                    <div className="bg-green-500 rounded-full p-1">
-                      <Check className="w-4 h-4 text-white" />
-                    </div>
-                  ) : (
-                    <div className="bg-red-500 rounded-full p-1">
-                      <X className="w-4 h-4 text-white" />
-                    </div>
-                  )}
-                </div>
-                <img
-                  src={moment.image}
-                  alt={moment.description}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-              <div 
-                className="mt-2 text-xl text-white"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
-                {moment.year}
-              </div>
+              {score} points
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="text-xl text-[#f5f2e6] mb-6">
+              You identified {correctGuesses} out of 3 photos correctly!
+            </div>
 
-      <div className="mb-8" style={{ 
-        backgroundImage: 'url("/textureNavy.jpg")',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '0.5rem',
-        border: '1px solid rgb(55, 65, 81)'
-      }}>
-        <div className="relative"
-             style={{
-               display: 'flex',
-               justifyContent: 'center',
-               alignItems: 'center'
-             }}>
-          <div className="relative bg-[#f5f2e6] p-4"
-               style={{
-                 zIndex: 2,
-                 boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
-                 maxWidth: '99%',
-                 margin: '1rem'
-               }}>
-            <img
-              src={selectedMoment.image}
-              alt={selectedMoment.description}
-              className="w-full h-auto object-contain max-h-[600px]"
-              style={{
-                objectFit: 'contain',
-                width: '100%',
-                height: 'auto'
-              }}
-            />
+            {/* Thumbnails Grid */}
+            <div className="grid grid-cols-3 gap-3 mb-6 w-full">
+              {allMoments.map((moment, index) => (
+                <div 
+                  key={index} 
+                  className="flex flex-col items-center"
+                >
+                  <div 
+                    className="relative bg-[#f5f2e6] p-1"
+                    style={{
+                      boxShadow: '3px 2px 4px rgba(0, 0, 0, 0.9)',
+                    }}
+                  >
+                    <div className="absolute -top-1 -left-1 z-10">
+                      {collectedMoments.includes(moment.id) ? (
+                        <div className="bg-green-500 rounded-full p-1">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                      ) : (
+                        <div className="bg-red-500 rounded-full p-1">
+                          <X className="w-3 h-3 text-white" />
+                        </div>
+                      )}
+                    </div>
+                    <img
+                      src={moment.image}
+                      alt={moment.description}
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                  <div 
+                    className="mt-1 text-lg text-white"
+                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                  >
+                    {moment.year}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <button
+              onClick={handleShare}
+              className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c] flex items-center justify-center gap-2 w-full mx-auto whitespace-nowrap"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              >
+                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                <polyline points="16 6 12 2 8 6"/>
+                <line x1="12" y1="2" x2="12" y2="15"/>
+              </svg>
+              Share My Results ({correctGuesses}/3)
+            </button>
           </div>
         </div>
-        
-        <div className="text-gray-300 text-left max-w-3xl mx-auto"
-             style={{
-               lineHeight: '1.7',
-               fontSize: '1.05rem'
-             }}>
-          {selectedMoment.funFact}
-          {selectedMoment.source && (
-            <div className="mt-4 text-sm text-gray-400">
-              <a 
-                href={selectedMoment.source} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:text-blue-400 underline"
-              >
-                Source
-              </a>
+
+        {/* Right Column - Achievements */}
+        <div className="flex flex-col">
+          {achievements.length > 0 ? (
+            <>
+              <h3 className="text-4xl text-yellow-400 mb-6 text-center"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+                Boom! Achievements Unlocked!
+              </h3>
+
+              <div className="grid grid-cols-1 gap-4">
+                {achievements.map((achievementId, index) => {
+                  const achievement = ACHIEVEMENTS[achievementId];
+                  const AchievementIcon = achievement.icon;
+                  return (
+                    <div 
+                      key={achievementId} 
+                      className="bg-gray-800/90 p-4 rounded-lg flex items-center transform hover:scale-105 border border-gray-700 shadow-lg"
+                    >
+                      <div className="bg-[#1e4fba] p-3 rounded-full mr-4">
+                        <AchievementIcon className="text-[#f5f2e6] w-8 h-8" />
+                      </div>
+                      <div className="text-left flex-1">
+                        <div className="text-xl text-[#f5f2e6] mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{achievement.name}</div>
+                        <div className="text-gray-400">{achievement.description}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          ) : (
+            <div className="text-center text-gray-400 text-xl">
+              No achievements unlocked yet!
             </div>
           )}
         </div>
@@ -339,7 +349,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
         <div className="flex justify-center gap-4">
           <button
             onClick={onRestart}
-            className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
+            className="bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6]"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
             Play Again
@@ -347,9 +357,24 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
 
           <button
             onClick={onShowCollection}
-            className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 px-12 rounded-lg text-3xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
+            className="bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6] flex items-center gap-2"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="5" width="16" height="16" rx="2"/>
+              <rect x="6" y="3" width="16" height="16" rx="2"/>
+              <path d="M22 9v10a2 2 0 0 1-2 2H6"/>
+            </svg>
             View Collection
           </button>
         </div>
@@ -478,6 +503,9 @@ export default function BaseballTimeMachine() {
   const [previousDifference, setPreviousDifference] = useState(null);
   const [showBooks, setShowBooks] = useState(false);
   const [showHowToPlay, setShowHowToPlay] = useState(false);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedbackData, setFeedbackData] = useState(null);
+  const [showZoom, setShowZoom] = useState(false);
 
   useEffect(() => {
     if (isTimerActive && time === 0) {
@@ -568,6 +596,8 @@ export default function BaseballTimeMachine() {
     const targetYear = currentMoment.year;
     const difference = Math.abs(targetYear - year);
     let timeTaken = null;
+    let feedbackResult = '';
+    let points = 0;
   
     if (!guessStartTime) {
       setGuessStartTime(Date.now());
@@ -575,79 +605,53 @@ export default function BaseballTimeMachine() {
       timeTaken = (Date.now() - guessStartTime) / 1000;
     }
   
+    const timeBonus = timeTaken < 10 ? 100 : 0;
+  
     // Way off guess (10+ years) = immediate out
     if (difference >= 10) {
       playSound('out');
       const newOuts = outs + 1;
       setOuts(newOuts);
       
-      const popUpMessages = [
-        "Pop up to the pitcher! You were way off.",
-        "That's an out - try a different era.",
-        "Way off! That's an out."
-      ];
-      const randomMessage = popUpMessages[Math.floor(Math.random() * popUpMessages.length)];
-      setFeedback(randomMessage);
-
-      if (newOuts >= 3) {
-        setGameState('over');
-      } else {
-        // Advance to next image
-        const nextIndex = sequenceIndex + 1;
-        if (nextIndex < 3) {
-          setImageOpacity(0);
-          setTimeout(() => {
-            setSequenceIndex(nextIndex);
-            setCurrentMoment(getDailyMoment(nextIndex));
-            setYear(1950);
-            setTime(30);
-            setIsTimerActive(false);
-            setGuessStartTime(null);
-            setStrikes(0);
-            
-            setTimeout(() => {
-              setImageOpacity(1);
-            }, 100);
-          }, 1000);
-        } else {
-          setGameState('over');
-        }
-      }
+      feedbackResult = "OUT!";
+      
+      setFeedbackData({
+        result: feedbackResult,
+        yearDifference: difference,
+        points: 0,
+        image: currentMoment.image,
+        funFact: currentMoment.funFact,
+        isGameOver: newOuts >= 3,
+        isFoulBall: false,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
       return;
     }
   
-    const timeBonus = timeTaken < 10 ? 100 : 0;
-  
     if (difference === 0) {
       playSound('homeRun');
-      const points = 400 + timeBonus;
+      points = 400 + timeBonus;
       setScore((prevScore) => prevScore + points);
-      setFeedback(`HOME RUN! +${points} points ${timeBonus > 0 ? `(includes ${timeBonus} speed bonus!)` : ''}`);
+      feedbackResult = "HOME RUN!";
       checkAchievements(true, timeTaken);
       
-      const nextIndex = sequenceIndex + 1;
-      if (nextIndex < 3) {
-        setImageOpacity(0);
-        
-        setTimeout(() => {
-          setSequenceIndex(nextIndex);
-          setCurrentMoment(getDailyMoment(nextIndex));
-          setYear(1950);
-          setTime(30);
-          setIsTimerActive(false);
-          setGuessStartTime(null);
-          setStrikes(0);
-          
-          setTimeout(() => {
-            setImageOpacity(1);
-          }, 100);
-        }, 1000);
-      } else {
-        setGameState('over');
-      }
       if (!collectedMoments.includes(currentMoment.id)) {
         setCollectedMoments(prev => [...prev, currentMoment.id]);
       }
+
+      const nextIndex = sequenceIndex + 1;
+      setFeedbackData({
+        result: feedbackResult,
+        yearDifference: difference,
+        points: points,
+        image: currentMoment.image,
+        funFact: currentMoment.funFact,
+        isGameOver: nextIndex >= 3,
+        isFoulBall: false,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
       return;
     }
   
@@ -656,82 +660,85 @@ export default function BaseballTimeMachine() {
     setStrikes(newStrikes);
     playSound('hit');
     
-    let basePoints;
-    let feedbackMessage;
-    
-    // First strike
-    if (newStrikes === 1) {
-      feedbackMessage = difference <= 5 
-        ? "Foul Ball! (Strike One) - You're getting close!"
-        : "Foul Ball! (Strike One) - Right decade, wrong year!";
-    }
-    // Second strike
-    else if (newStrikes === 2) {
-      if (difference < previousDifference) {
-        feedbackMessage = "Foul Ball! (Strike Two) - Getting warmer!";
-      } else {
-        feedbackMessage = "Foul Ball! (Strike Two) - Stay focused!";
-      }
-    }
-    // Third strike - but close enough to get points
-    else if (newStrikes === 3) {
-      if (difference <= 5) {  // They made contact on their last strike
+    if (newStrikes === 3) {
+      // On third strike, determine if they get points
+      if (difference <= 5) {
         if (difference <= 1) {
-          basePoints = 300;
-          feedbackMessage = `Contact on Strike Three! TRIPLE! +${basePoints} points`;
+          points = 300 + timeBonus;
+          feedbackResult = "TRIPLE!";
         } else if (difference <= 3) {
-          basePoints = 200;
-          feedbackMessage = `Contact on Strike Three! DOUBLE! +${basePoints} points`;
+          points = 200 + timeBonus;
+          feedbackResult = "DOUBLE!";
         } else {
-          basePoints = 100;
-          feedbackMessage = `Contact on Strike Three! SINGLE! +${basePoints} points`;
+          points = 100 + timeBonus;
+          feedbackResult = "SINGLE!";
         }
-        
-        // Add points
-        const points = basePoints + timeBonus;
         setScore((prevScore) => prevScore + points);
+      } else {
+        feedbackResult = "STRIKE THREE! YOU'RE OUT!";
       }
       
-      // Always record an out on strike three
-      feedbackMessage = basePoints 
-        ? feedbackMessage 
-        : "Strike Three! You're out!";
       const newOuts = outs + 1;
       setOuts(newOuts);
       setStrikes(0);
       
-      if (newOuts >= 3) {
-        setGameState('over');
-        return;
-      }
-      
-      // Advance to next image
       const nextIndex = sequenceIndex + 1;
-      if (nextIndex < 3) {
-        setImageOpacity(0);
-        setTimeout(() => {
-          setSequenceIndex(nextIndex);
-          setCurrentMoment(getDailyMoment(nextIndex));
-          setYear(1950);
-          setTime(30);
-          setIsTimerActive(false);
-          setGuessStartTime(null);
-          
-          setTimeout(() => {
-            setImageOpacity(1);
-          }, 100);
-        }, 1000);
-      } else {
-        setGameState('over');
-      }
+      setFeedbackData({
+        result: feedbackResult,
+        yearDifference: difference,
+        points: points,
+        image: currentMoment.image,
+        funFact: currentMoment.funFact,
+        isGameOver: newOuts >= 3 || nextIndex >= 3,
+        isFoulBall: false,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
+    } else {
+      // First or second strike - show foul ball overlay
+      setFeedbackData({
+        yearDifference: difference,
+        strikes: newStrikes,
+        isFoulBall: true,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
     }
-    
-    setFeedback(feedbackMessage);
     
     checkAchievements(false, timeTaken);
     setGuessStartTime(null);
     setIsTimerActive(false);
     setPreviousDifference(difference);
+  }
+
+  function handleFeedbackNext() {
+    setShowFeedback(false);
+    
+    if (feedbackData.isGameOver) {
+      setGameState('over');
+      return;
+    }
+    
+    // Only advance to next image if it was a scoring hit or an out
+    if (feedbackData.result.includes('HOME RUN') || 
+        feedbackData.result.includes('TRIPLE') || 
+        feedbackData.result.includes('DOUBLE') || 
+        feedbackData.result.includes('SINGLE') ||
+        feedbackData.result.includes('OUT')) {
+      const nextIndex = sequenceIndex + 1;
+      setImageOpacity(0);
+      setTimeout(() => {
+        setSequenceIndex(nextIndex);
+        setCurrentMoment(getDailyMoment(nextIndex));
+        setYear(1950);
+        setTime(30);
+        setIsTimerActive(false);
+        setGuessStartTime(null);
+        setTimeout(() => {
+          setImageOpacity(1);
+        }, 100);
+      }, 100);
+    }
   }
 
   function handleRestart() {
@@ -844,7 +851,7 @@ export default function BaseballTimeMachine() {
                   }}
                 >
                   <div
-                    className="transition-opacity duration-1000 ease-in-out"
+                    className="transition-opacity duration-1000 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
                   >
                     <img
@@ -857,6 +864,28 @@ export default function BaseballTimeMachine() {
                         height: 'auto'
                       }}
                     />
+                    <button
+                      onClick={() => setShowZoom(true)}
+                      className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors duration-200"
+                      title="Zoom Image"
+                    >
+                      <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24" 
+                        viewBox="0 0 24 24" 
+                        fill="none" 
+                        stroke="white" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                      >
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <line x1="11" y1="8" x2="11" y2="14"/>
+                        <line x1="8" y1="11" x2="14" y2="11"/>
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -901,40 +930,8 @@ export default function BaseballTimeMachine() {
                 TAKE A SWING
               </button>
             </div>
-
-            <div className="flex justify-between items-center mt-8 bg-gray-700 rounded-lg p-4 text-white">
-              <div>
-                <span className="text-gray-300">Outs</span>
-                <div className="text-3xl font-bold">{outs}</div>
-                <div className="text-sm text-gray-300">Strikes: {strikes}</div>
-              </div>
-              
-              <div className="flex-1 mx-8 text-center">
-                {feedback && (
-                  <div className="text-xl" style={{ 
-                    fontFamily: 'Douglas-Burlington-Regular',
-                    color: feedback.includes('HOME RUN') ? '#4ade80' : 
-                           feedback.includes('TRIPLE') ? '#fbbf24' : 
-                           feedback.includes('DOUBLE') ? '#60a5fa' : 
-                           feedback.includes('SINGLE') ? '#a78bfa' : 
-                           '#ef4444'
-                  }}>
-                    {feedback}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <span className="text-gray-300">Score</span>
-                <div className="text-3xl font-bold text-green-400">+{score}</div>
-              </div>
-            </div>
           </CardContent>
         </Card>
-        
-        <div className="text-center text-gray-400 mt-4">
-          Hint: {currentMoment.hint}
-        </div>
       </div>
       {showCollection && (
         <Collection 
@@ -944,6 +941,20 @@ export default function BaseballTimeMachine() {
       )}
       {showHowToPlay && (
         <HowToPlay onClose={() => setShowHowToPlay(false)} />
+      )}
+      
+      {showFeedback && feedbackData && (
+        <FeedbackOverlay
+          {...feedbackData}
+          onNext={handleFeedbackNext}
+        />
+      )}
+      {showZoom && (
+        <ImageZoom
+          image={currentMoment.image}
+          description={currentMoment.description}
+          onClose={() => setShowZoom(false)}
+        />
       )}
     </div>
   );
