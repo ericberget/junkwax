@@ -1000,13 +1000,16 @@ export default function BaseballTimeMachine() {
               
               <button
                 onClick={handleGuess}
-                className="w-full mb-8 text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
+                className="w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg relative overflow-hidden"
                 style={{ 
                   fontFamily: 'Douglas-Burlington-Regular',
-                  backgroundImage: 'url(/paperbgtexture.png)',
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  transform: 'scale(1)',
+                  border: '8px solid transparent',
+                  backgroundClip: 'padding-box',
+                  WebkitMask: 'linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                  backgroundImage: `linear-gradient(#1e4fba, #1e4fba), url(/paperbgtexture.jpg)`,
+                  backgroundOrigin: 'border-box',
                 }}
               >
                 TAKE A SWING
