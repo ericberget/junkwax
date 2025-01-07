@@ -890,18 +890,18 @@ export default function BaseballTimeMachine() {
       }}>
 
       <div className="max-w-4xl mx-auto p-4">
-        <div className="text-center relative">
-          <img 
+        <div className="text-center relative mb-8">
+          <img  
             src="/gameLogo.png"
-            className="max-w-[600px] mx-auto"
+            className="max-w-[400px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
         
         <Card className="bg-transparent border-none">
-          <CardContent className="p-6">
+          <CardContent className="p-4">
             {/* Photo container */}
-            <div className="relative mx-2 my-2">
+            <div className="relative mx-2">
               <div 
                 className="relative"
                 style={{
@@ -916,7 +916,7 @@ export default function BaseballTimeMachine() {
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
                     maxWidth: '99%',
-                    margin: '1rem'
+                    margin: '0.5rem'
                   }}
                 >
                   <div
