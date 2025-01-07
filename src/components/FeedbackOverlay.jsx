@@ -125,15 +125,14 @@ export function FeedbackOverlay({
             </div>
 
             {/* Image */}
-            <div className="mx-auto"
-                 style={{
-                   boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
-                   maxWidth: '100%'
-                 }}>
+            <div className="relative bg-[#f5f2e6] p-4">
               <img
                 src={image}
                 alt="Baseball moment"
-                className="w-full h-auto object-contain max-h-[400px]"
+                className="w-full h-[400px] object-cover"
+                style={{
+                  maxWidth: '100%'
+                }}
               />
             </div>
 
