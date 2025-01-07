@@ -907,58 +907,25 @@ export default function BaseballTimeMachine() {
                 style={{
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  paddingLeft: '40px'
                 }}
               >
-                {/* Background stack effect - multiple layers */}
+                {/* Background stack effect */}
                 <div 
                   className="absolute"
                   style={{
-                    backgroundImage: 'url(/bgfade.png)',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
+                    backgroundImage: 'url(/bgFade Medium.png)',
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'left center',
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
-                    top: '5px',
-                    left: '-20px',
+                    top: '0',
+                    left: '-60px',
                     zIndex: 0,
-                    transform: 'scale(0.99)',
-                    opacity: 0.8,
-                    pointerEvents: 'none'
-                  }}
-                />
-                <div 
-                  className="absolute"
-                  style={{
-                    backgroundImage: 'url(/bgfade.png)',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    width: '100%',
-                    height: '100%',
-                    top: '10px',
-                    left: '-35px',
-                    zIndex: 0,
-                    transform: 'scale(0.98)',
-                    opacity: 0.6,
-                    pointerEvents: 'none'
-                  }}
-                />
-                <div 
-                  className="absolute"
-                  style={{
-                    backgroundImage: 'url(/bgfade.png)',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    width: '100%',
-                    height: '100%',
-                    top: '15px',
-                    left: '-50px',
-                    zIndex: 0,
-                    transform: 'scale(0.97)',
-                    opacity: 0.4,
+                    transform: 'scale(1.02)',
+                    opacity: 0.95,
                     pointerEvents: 'none'
                   }}
                 />
@@ -970,7 +937,8 @@ export default function BaseballTimeMachine() {
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
                     maxWidth: '90%',
-                    margin: '0.25rem'
+                    margin: '0.25rem',
+                    position: 'relative'
                   }}
                 >
                   <div
