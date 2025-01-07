@@ -910,7 +910,41 @@ export default function BaseballTimeMachine() {
                   alignItems: 'center'
                 }}
               >
-                {/* Background stack effect */}
+                {/* Background stack effect - multiple layers */}
+                <div 
+                  className="absolute"
+                  style={{
+                    backgroundImage: 'url(/bgfade.png)',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                    top: '0',
+                    left: '-15px',
+                    zIndex: 0,
+                    transform: 'scale(0.98)',
+                    opacity: 0.4,
+                    pointerEvents: 'none'
+                  }}
+                />
+                <div 
+                  className="absolute"
+                  style={{
+                    backgroundImage: 'url(/bgfade.png)',
+                    backgroundSize: '100% 100%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    height: '100%',
+                    top: '5px',
+                    left: '-30px',
+                    zIndex: 0,
+                    transform: 'scale(0.96)',
+                    opacity: 0.3,
+                    pointerEvents: 'none'
+                  }}
+                />
                 <div 
                   className="absolute"
                   style={{
@@ -921,12 +955,11 @@ export default function BaseballTimeMachine() {
                     width: '100%',
                     height: '100%',
                     top: '10px',
-                    left: '0',
-                    right: '0',
-                    bottom: '0',
+                    left: '-45px',
                     zIndex: 0,
-                    transform: 'scale(1.1)',
-                    opacity: 0.9
+                    transform: 'scale(0.94)',
+                    opacity: 0.2,
+                    pointerEvents: 'none'
                   }}
                 />
                 
