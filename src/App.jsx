@@ -197,20 +197,48 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
                      `${correctGuesses}/3 Photos Identified\n` +
                      `Final Score: ${score} points\n` +
                      `${achievements.length > 0 ? '🏆 Achievements: ' + achievements.length : ''}\n` +
-                     `\nPlay at: baseballtimemachine.com`;
+                     `\nPlay at: https://baseballtimemachine.netlify.app/`;
 
-    if (navigator.share) {
-      navigator.share({
-        text: shareText,
-        title: 'Baseball Time Machine Results',
-        url: 'https://baseballtimemachine.com'
-      }).catch(console.error);
-    } else {
-      // Fallback to copying to clipboard
-      navigator.clipboard.writeText(shareText).then(() => {
-        alert('Results copied to clipboard!');
-      }).catch(console.error);
-    }
+    // Social sharing URLs
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://baseballtimemachine.netlify.app/')}&quote=${encodeURIComponent(shareText)}`;
+
+    // Create share menu
+    const shareMenu = document.createElement('div');
+    shareMenu.className = 'fixed inset-0 bg-black/80 z-50 flex items-center justify-center';
+    shareMenu.innerHTML = `
+      <div class="bg-gray-800 p-6 rounded-lg max-w-sm w-full mx-4 space-y-4 relative">
+        <button class="absolute top-2 right-2 text-gray-400 hover:text-white" onclick="this.parentElement.parentElement.remove()">
+          ✕
+        </button>
+        <h3 class="text-white text-xl mb-4" style="font-family: Douglas-Burlington-Regular">Share Your Results</h3>
+        <div class="space-y-3">
+          <a href="${twitterUrl}" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center justify-center gap-2 w-full bg-[#1DA1F2] text-white py-2 px-4 rounded hover:bg-[#1a8cd8] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+            </svg>
+            Share on X/Twitter
+          </a>
+          <a href="${facebookUrl}" target="_blank" rel="noopener noreferrer"
+             class="flex items-center justify-center gap-2 w-full bg-[#4267B2] text-white py-2 px-4 rounded hover:bg-[#365899] transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+            </svg>
+            Share on Facebook
+          </a>
+          <button onclick="navigator.clipboard.writeText('${shareText}').then(() => { 
+            const btn = this;
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
+          })"
+            class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors">
+            Copy to Clipboard
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(shareMenu);
   }
   
   return (
