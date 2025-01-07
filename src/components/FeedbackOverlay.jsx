@@ -50,7 +50,11 @@ export function FeedbackOverlay({
               </div>
 
               <div className="text-[#f5f2e6] text-xl">
-                {yearDifference <= 5 
+                {yearDifference === 1 
+                  ? "Super Close - You're one year off!" 
+                  : yearDifference <= 2
+                  ? "You're just a couple years off!"
+                  : yearDifference <= 5 
                   ? "You're within 5 years!" 
                   : "You're within 10 years!"}
               </div>
