@@ -208,7 +208,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://baseballtimemachine.netlify.app/')}&quote=${encodeURIComponent(shareText)}`;
 
-    // Create share menu
+    // Create share menu with React-style event handling
     const shareMenu = document.createElement('div');
     shareMenu.className = 'fixed inset-0 bg-black/80 z-50 flex items-center justify-center';
     shareMenu.innerHTML = `
@@ -232,18 +232,32 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
             </svg>
             Share on Facebook
           </a>
-          <button onclick="navigator.clipboard.writeText('${shareText}').then(() => { 
-            const btn = this;
-            btn.textContent = 'Copied!';
-            setTimeout(() => btn.textContent = 'Copy to Clipboard', 2000);
-          })"
-            class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors">
+          <button id="copyButton"
+             class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors">
             Copy to Clipboard
           </button>
         </div>
       </div>
     `;
     document.body.appendChild(shareMenu);
+
+    // Add click handler for copy button
+    const copyButton = shareMenu.querySelector('#copyButton');
+    copyButton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        copyButton.textContent = 'Copied!';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy to Clipboard';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy:', err);
+        copyButton.textContent = 'Failed to copy';
+        setTimeout(() => {
+          copyButton.textContent = 'Copy to Clipboard';
+        }, 2000);
+      }
+    });
   }
 
   return (
