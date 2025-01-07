@@ -89,22 +89,22 @@ const BASEBALL_MOMENTS = [
     description: "Honus Wagner",
     funFact: "Honus Wagner" 
   },
- {
-  id: 11,
-  year: 1895,
-  image: '/Michigan.jpg',
-  hint: "Michigan",
-  description: "Michigan",
-  funFact: "Michigan"
-},
-{
-id: 12,
-year: 1984,
-image: '/1984AS.jpg',
-hint: "Midsummer Classic in America's Finest City",
-description: "1984 All-Star Game at Jack Murphy Stadium",
-funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
-},
+  {
+    id: 11,
+    year: 1895,
+    image: '/1895Michigan.jpg',
+    hint: "Michigan",
+    description: "Michigan",
+    funFact: "Back row: Edward Weeks, Edmund Shields, Herbert Gallup, Frank Sexton, William Holmes. Middle row: William McKenzie, Charles Watkins, Ralph Russell, Guy Alonzo Miller, Edwin Deans. Front row: John Condon, William Waterman, John Bloomingston."
+  },
+  {
+    id: 12,
+    year: 1984,
+    image: '/1984AS.jpg',
+    hint: "Midsummer Classic in America's Finest City",
+    description: "1984 All-Star Game at Jack Murphy Stadium",
+    funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
+  },
   {
     id: 13,
     year: 1901,
