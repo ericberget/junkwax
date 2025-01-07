@@ -920,10 +920,10 @@ export default function BaseballTimeMachine() {
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
-                    top: '0',
-                    left: '-15px',
+                    top: '5px',
+                    left: '-20px',
                     zIndex: 0,
-                    transform: 'scale(0.98)',
+                    transform: 'scale(0.99)',
                     opacity: 0.4,
                     pointerEvents: 'none'
                   }}
@@ -937,10 +937,10 @@ export default function BaseballTimeMachine() {
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
-                    top: '5px',
-                    left: '-30px',
+                    top: '10px',
+                    left: '-35px',
                     zIndex: 0,
-                    transform: 'scale(0.96)',
+                    transform: 'scale(0.98)',
                     opacity: 0.3,
                     pointerEvents: 'none'
                   }}
@@ -954,10 +954,10 @@ export default function BaseballTimeMachine() {
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
-                    top: '10px',
-                    left: '-45px',
+                    top: '15px',
+                    left: '-50px',
                     zIndex: 0,
-                    transform: 'scale(0.94)',
+                    transform: 'scale(0.97)',
                     opacity: 0.2,
                     pointerEvents: 'none'
                   }}
