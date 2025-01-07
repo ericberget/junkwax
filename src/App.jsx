@@ -107,6 +107,14 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 13,
+    year: 1981,
+    image: '/boggs.jpg',
+    hint: "longest game in history",
+    description: "1984 All-Star Game at Jack Murphy Stadium",
+    funFact: "Boggs vs Ripken in the longerst game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23. https://www.afootinthebox.com/peter/the-ripken-and-boggs-33-inning-8-hour-minor-league-game"
+  },
+  {
+    id: 14,
     year: 1901,
     image: '/1901Tug.jpg',
     hint: "Pennant Winning Season for Tug",
@@ -277,8 +285,8 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
           <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
             <h2 className="text-3xl text-white mb-4 text-center" 
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-              Game Over!
-            </h2>
+        Game Over!
+      </h2>
             <div 
               className="text-7xl text-green-400 mb-4 text-center"
               style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -365,32 +373,32 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
 
               <div className="grid grid-cols-1 gap-4">
                 {achievements.map((achievementId, index) => {
-                  const achievement = ACHIEVEMENTS[achievementId];
-                  const AchievementIcon = achievement.icon;
-                  return (
-                    <div 
-                      key={achievementId} 
+              const achievement = ACHIEVEMENTS[achievementId];
+              const AchievementIcon = achievement.icon;
+              return (
+                <div 
+                  key={achievementId} 
                       className="bg-gray-800/90 p-4 rounded-lg flex items-center transform hover:scale-105 border border-gray-700 shadow-lg"
-                    >
+                >
                       <div className="bg-[#1e4fba] p-3 rounded-full mr-4">
                         <AchievementIcon className="text-[#f5f2e6] w-8 h-8" />
-                      </div>
-                      <div className="text-left flex-1">
+                  </div>
+                  <div className="text-left flex-1">
                         <div className="text-xl text-[#f5f2e6] mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{achievement.name}</div>
-                        <div className="text-gray-400">{achievement.description}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    <div className="text-gray-400">{achievement.description}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
             </>
           ) : (
             <div className="text-center text-gray-400 text-xl">
               No achievements unlocked yet!
-            </div>
-          )}
         </div>
-      </div>
+      )}
+          </div>
+          </div>
 
       <div className="flex flex-col items-center gap-4">
         <div className="flex justify-center gap-4">
@@ -462,7 +470,7 @@ function Collection({ onClose, collectedMoments }) {
             Close
           </button>
         </div>
-
+        
         {discoveredMoments.length === 0 ? (
           <div className="text-center text-gray-400 text-xl py-12">
             No photos discovered yet! Get a perfect guess to add photos to your collection.
@@ -497,7 +505,7 @@ function Collection({ onClose, collectedMoments }) {
                 </div>
               </div>
             ))}
-          </div>
+        </div>
         )}
       </div>
 
@@ -507,12 +515,12 @@ function Collection({ onClose, collectedMoments }) {
           onClick={() => setSelectedImage(null)}
         >
           <div className="relative max-w-7xl w-full mx-auto">
-            <button 
+      <button
               onClick={() => setSelectedImage(null)}
               className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
-            >
+      >
               Close
-            </button>
+      </button>
             <div 
               className="relative bg-[#f5f2e6] p-2"
               style={{
@@ -689,28 +697,7 @@ export default function BaseballTimeMachine() {
   
     const timeBonus = timeTaken < 10 ? 100 : 0;
   
-    // Way off guess (10+ years) = immediate out
-    if (difference >= 10) {
-      playSound('out');
-      const newOuts = outs + 1;
-      setOuts(newOuts);
-      
-      feedbackResult = "OUT!";
-      
-      setFeedbackData({
-        result: feedbackResult,
-        yearDifference: difference,
-        points: 0,
-        image: currentMoment.image,
-        funFact: currentMoment.funFact,
-        isGameOver: newOuts >= 3,
-        isFoulBall: false,
-        currentYear: currentMoment.year
-      });
-      setShowFeedback(true);
-      return;
-    }
-  
+    // Perfect guess = HOME RUN
     if (difference === 0) {
       playSound('homeRun');
       points = 400 + timeBonus;
@@ -738,6 +725,29 @@ export default function BaseballTimeMachine() {
       return;
     }
   
+    // Way off guess (10+ years) = immediate out
+    if (difference >= 10) {
+      playSound('out');
+      const newOuts = outs + 1;
+      setOuts(newOuts);
+      setStrikes(0); // Reset strikes on out
+      
+      feedbackResult = "OUT!";
+      
+      setFeedbackData({
+        result: feedbackResult,
+        yearDifference: difference,
+        points: 0,
+        image: currentMoment.image,
+        funFact: currentMoment.funFact,
+        isGameOver: newOuts >= 3,
+        isFoulBall: false,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
+      return;
+    }
+  
     // Handle foul balls (within 10 years)
     const newStrikes = strikes + 1;
     setStrikes(newStrikes);
@@ -745,7 +755,7 @@ export default function BaseballTimeMachine() {
     
     if (newStrikes === 3) {
       // On third strike, determine if they get points
-      if (difference <= 5) {
+    if (difference <= 5) {
         if (difference <= 1) {
           points = 300 + timeBonus;
           feedbackResult = "TRIPLE!";
@@ -756,14 +766,14 @@ export default function BaseballTimeMachine() {
           points = 100 + timeBonus;
           feedbackResult = "SINGLE!";
         }
-        setScore((prevScore) => prevScore + points);
-      } else {
+      setScore((prevScore) => prevScore + points);
+    } else {
         feedbackResult = "STRIKE THREE! YOU'RE OUT!";
       }
       
       const newOuts = outs + 1;
       setOuts(newOuts);
-      setStrikes(0);
+      setStrikes(0); // Reset strikes after out
       
       const nextIndex = sequenceIndex + 1;
       setFeedbackData({
@@ -788,8 +798,8 @@ export default function BaseballTimeMachine() {
       setShowFeedback(true);
     }
     
-    checkAchievements(false, timeTaken);
-    setGuessStartTime(null);
+      checkAchievements(false, timeTaken);
+      setGuessStartTime(null);
     setIsTimerActive(false);
     setPreviousDifference(difference);
   }
@@ -798,7 +808,7 @@ export default function BaseballTimeMachine() {
     setShowFeedback(false);
     
     if (feedbackData.isGameOver) {
-      setGameState('over');
+        setGameState('over');
       return;
     }
     
@@ -817,6 +827,7 @@ export default function BaseballTimeMachine() {
         setTime(30);
         setIsTimerActive(false);
         setGuessStartTime(null);
+        setStrikes(0); // Reset strikes for new image
         setTimeout(() => {
           setImageOpacity(1);
         }, 300);
@@ -855,7 +866,7 @@ export default function BaseballTimeMachine() {
     localStorage.setItem('baseball-collection', JSON.stringify(collectedMoments));
   }, [collectedMoments]);
 
-  if (gameState === 'over') {
+if (gameState === 'over') {
     return (
       <div 
         className="min-h-screen w-full" 
@@ -910,7 +921,7 @@ export default function BaseballTimeMachine() {
             className="max-w-[500px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-        </div>
+      </div>
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
@@ -962,7 +973,7 @@ export default function BaseballTimeMachine() {
                   style={{
                     backgroundImage: 'url(/bgfade%20Medium.png)',
                     backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
+                  backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
@@ -987,10 +998,10 @@ export default function BaseballTimeMachine() {
                   <div
                     className="transition-opacity duration-300 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
-                  >
-                    <img
-                      src={currentMoment.image}
-                      alt={currentMoment.description}
+                >
+                  <img
+                    src={currentMoment.image}
+                    alt={currentMoment.description}
                       className="w-full h-auto object-contain max-h-[500px]"
                       style={{
                         objectFit: 'contain',
