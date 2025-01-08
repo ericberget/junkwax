@@ -183,7 +183,7 @@ export function FeedbackOverlay({
             </div>
 
             {/* Next Button */}
-            <div className="text-center mt-8">
+            <div className="text-center mt-8 mb-8 sm:mb-12">
               <button
                 onClick={onNext}
                 className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-10 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
