@@ -976,10 +976,10 @@ if (gameState === 'over') {
         <div className="text-center relative mb-1">
           <img  
             src="/LOGO.png"
-            className="w-full max-w-[500px] mx-auto px-4 md:px-0"
+            className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-      </div>
+        </div>
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
@@ -1136,16 +1136,16 @@ if (gameState === 'over') {
                 </div>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-4">
                 <input
                   type="range"
                   min="1850"
                   max="2025"
                   value={year}
                   onChange={handleYearChange}
-                  className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer mt-4 mb-6"
                 />
-                <div className="flex justify-between text-sm text-gray-400">
+                <div className="flex justify-between text-sm text-gray-400 px-2">
                   <span>1850</span>
                   <span>2025</span>
                 </div>
