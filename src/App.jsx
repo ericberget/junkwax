@@ -1087,26 +1087,26 @@ if (gameState === 'over') {
                         <line x1="8" y1="11" x2="14" y2="11"/>
                       </svg>
                     </button>
-                    <div className="absolute top-2 left-2 text-left">
-                      <div 
-                        className="text-[#1e1e1e]/70 text-sm space-y-1"
-                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                      >
-                        <div>Image: {sequenceIndex + 1} of 3</div>
-                        {strikes > 0 && <div>Strikes: {strikes}</div>}
-                        {outs > 0 && <div>Outs: {outs}</div>}
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="space-y-6">
-              <div className="flex justify-center mb-6">
-                {yearDigits.map((digit, index) => (
-                  <YearDigit key={index} digit={digit} />
-                ))}
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex justify-center">
+                  {yearDigits.map((digit, index) => (
+                    <YearDigit key={index} digit={digit} />
+                  ))}
+                </div>
+                <div 
+                  className="text-[#f5f2e6]/70 text-sm space-y-1 text-right"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  <div>Image: {sequenceIndex + 1} of 3</div>
+                  {strikes > 0 && <div>Strikes: {strikes}</div>}
+                  {outs > 0 && <div>Outs: {outs}</div>}
+                </div>
               </div>
               
               <div className="space-y-2">
