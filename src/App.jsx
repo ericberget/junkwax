@@ -984,7 +984,7 @@ if (gameState === 'over') {
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
             {/* Photo container */}
-            <div className="relative mx-2 mb-8">
+            <div className="relative mx-0 sm:mx-2 mb-4 sm:mb-8">
               <div 
                 className="relative"
                 style={{
@@ -995,7 +995,7 @@ if (gameState === 'over') {
               >
                 {/* Background stack effect - multiple layers */}
                 <div 
-                  className="absolute"
+                  className="absolute hidden sm:block"
                   style={{
                     backgroundImage: 'url(/bgfade%20Medium.png)',
                     backgroundSize: '100% 100%',
@@ -1011,7 +1011,7 @@ if (gameState === 'over') {
                   }}
                 />
                 <div 
-                  className="absolute"
+                  className="absolute hidden sm:block"
                   style={{
                     backgroundImage: 'url(/bgfade%20Medium.png)',
                     backgroundSize: '100% 100%',
@@ -1027,11 +1027,11 @@ if (gameState === 'over') {
                   }}
                 />
                 <div 
-                  className="absolute"
+                  className="absolute hidden sm:block"
                   style={{
                     backgroundImage: 'url(/bgfade%20Medium.png)',
                     backgroundSize: '100% 100%',
-                  backgroundPosition: 'center',
+                    backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     height: '100%',
@@ -1045,22 +1045,22 @@ if (gameState === 'over') {
                 
                 {/* Main image container */}
                 <div 
-                  className="relative bg-[#f5f2e6] p-4"
+                  className="relative bg-[#f5f2e6] p-2 sm:p-4 w-full sm:w-auto"
                   style={{
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
-                    maxWidth: '90%',
-                    margin: '0.25rem'
+                    maxWidth: '100%',
+                    margin: '0'
                   }}
                 >
                   <div
                     className="transition-opacity duration-300 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
-                >
-                  <img
-                    src={currentMoment.image}
-                    alt={currentMoment.description}
-                      className="w-full h-auto object-contain max-h-[500px]"
+                  >
+                    <img
+                      src={currentMoment.image}
+                      alt={currentMoment.description}
+                      className="w-full h-auto object-contain max-h-[600px] sm:max-h-[500px]"
                       style={{
                         objectFit: 'contain',
                         width: '100%',
@@ -1094,10 +1094,35 @@ if (gameState === 'over') {
               </div>
             </div>
 
+            {/* Mobile Stats Display */}
+            <div className="flex justify-between items-center mb-4 sm:hidden px-2">
+              <div 
+                className="text-[#f5f2e6]/70 text-base"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                <span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1}/3
+              </div>
+              <div 
+                className="text-[#f5f2e6]/70 text-base"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                <span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}
+              </div>
+              {outs > 0 && (
+                <div 
+                  className="text-[#f5f2e6]/70 text-base"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  <span className="text-[#f5f2e6]/45">Outs:</span> {outs}
+                </div>
+              )}
+            </div>
+
             <div className="space-y-6">
               <div className="relative mb-6">
+                {/* Desktop Stats Display */}
                 <div 
-                  className="md:absolute md:top-0 md:right-0 text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right mb-4 md:mb-0"
+                  className="hidden md:block md:absolute md:top-0 md:right-0 text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right mb-4 md:mb-0"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>
