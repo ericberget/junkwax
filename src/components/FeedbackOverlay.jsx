@@ -81,11 +81,11 @@ export function FeedbackOverlay({
         <div className="bg-gray-800/90 rounded-lg p-6 px-8 border border-gray-700">
           <div className="space-y-6">
             {/* Header with Result, Year, and Points */}
-            <div className="grid grid-cols-3 items-start mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8">
               {/* Left side - Result */}
-              <div>
+              <div className="text-center md:text-left">
                 <h2 
-                  className="text-5xl mb-2" 
+                  className="text-4xl md:text-5xl mb-2" 
                   style={{ 
                     fontFamily: 'Douglas-Burlington-Regular',
                     color: result.includes('HOME RUN') ? '#4ade80' : 
@@ -98,7 +98,7 @@ export function FeedbackOverlay({
                   {result}
                 </h2>
                 {yearDifference !== null && (
-                  <p className="text-[#f5f2e6] text-2xl">
+                  <p className="text-[#f5f2e6] text-xl md:text-2xl">
                     {yearDifference === 0 
                       ? "Perfect guess!" 
                       : `${yearDifference} ${yearDifference === 1 ? 'year' : 'years'} off`}
@@ -110,7 +110,7 @@ export function FeedbackOverlay({
               <div className="flex justify-center items-center">
                 <div className="flex flex-col items-center">
                   <div 
-                    className="text-[#f5f2e6]/70 mb-2"
+                    className="text-[#f5f2e6]/70 mb-2 text-sm md:text-base"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                   >
                     CORRECT YEAR
@@ -125,14 +125,14 @@ export function FeedbackOverlay({
 
               {/* Right side - Points */}
               {points > 0 && (
-                <div className="text-right">
+                <div className="text-center md:text-right">
                   <div 
-                    className="text-6xl text-green-400"
+                    className="text-5xl md:text-6xl text-green-400"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                   >
                     +{points}
                   </div>
-                  <div className="text-green-300 text-xl">
+                  <div className="text-green-300 text-lg md:text-xl">
                     points
                   </div>
                 </div>
