@@ -972,17 +972,17 @@ if (gameState === 'over') {
         backgroundColor: 'black'
       }}>
 
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="max-w-4xl mx-auto p-1 sm:p-4">
         <div className="text-center relative mb-1">
           <img  
             src="/LOGO.png"
-            className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-2 md:px-0"
+            className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-1 sm:px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
         
         <Card className="bg-transparent border-none">
-          <CardContent className="p-2">
+          <CardContent className="p-1 sm:p-2">
             {/* Photo container */}
             <div className="relative mx-0 sm:mx-2 mb-4 sm:mb-8">
               <div 
