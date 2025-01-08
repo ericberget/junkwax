@@ -1093,18 +1093,18 @@ if (gameState === 'over') {
             </div>
 
             <div className="space-y-6">
-              <div className="flex justify-between items-start mb-6">
+              <div className="relative mb-6">
                 <div className="flex justify-center">
                   {yearDigits.map((digit, index) => (
                     <YearDigit key={index} digit={digit} />
                   ))}
                 </div>
                 <div 
-                  className="text-[#f5f2e6]/70 text-sm space-y-1 text-right"
+                  className="absolute top-0 right-0 text-[#f5f2e6]/70 text-sm space-y-1 text-right"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   <div>Image: {sequenceIndex + 1} of 3</div>
-                  {strikes > 0 && <div>Strikes: {strikes}</div>}
+                  <div>Strikes: {strikes}</div>
                   {outs > 0 && <div>Outs: {outs}</div>}
                 </div>
               </div>
