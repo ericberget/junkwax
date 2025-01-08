@@ -1076,7 +1076,8 @@ if (gameState === 'over') {
               
               <button
                 onClick={handleGuess}
-                className="w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
+                disabled={showFeedback || imageOpacity < 1}
+                className={`w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c] ${(showFeedback || imageOpacity < 1) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 TAKE A SWING
