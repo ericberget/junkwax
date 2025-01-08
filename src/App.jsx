@@ -30,7 +30,7 @@ const BASEBALL_MOMENTS = [
     year: 1913,
     image: '/1913evers.jpg',
     hint: "Baseball's Brainy Ballplayer",
-    description: "Johnny Evers of the Chicago Cubs",
+    description: "Johnny Evers of the Ch`icago Cubs",
     funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
   },
   {
@@ -1079,14 +1079,14 @@ if (gameState === 'over') {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end items-center transform translate-y-full pt-2">
+              <div className="absolute top-4 right-4 text-right">
                 <div 
-                  className="text-[#f5f2e6]/70 text-sm"
+                  className="text-[#f5f2e6]/70 text-sm space-y-1"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  Image: {sequenceIndex + 1} of 3
-                  {outs > 0 && <span className="ml-3">Outs: {outs}</span>}
-                  {strikes > 0 && <span className="ml-3">Strikes: {strikes}</span>}
+                  <div>Image: {sequenceIndex + 1} of 3</div>
+                  {strikes > 0 && <div>Strikes: {strikes}</div>}
+                  {outs > 0 && <div>Outs: {outs}</div>}
                 </div>
               </div>
             </div>
