@@ -160,13 +160,13 @@ const SOUND_EFFECTS = {
   hit: new Audio('/sounds/hit.mp3'),
   out: new Audio('/sounds/out.wav'),
   achievement: new Audio('/sounds/achievement.wav'),
-  sliderTick: new Audio('/sounds/tick.mp3')
+  sliderTick: new Audio('/sounds/tick.wav')
 };
 
 // Set volume for all sound effects
 Object.values(SOUND_EFFECTS).forEach(sound => {
   if (sound === SOUND_EFFECTS.sliderTick) {
-    sound.volume = 0.05; // Very quiet for slider
+    sound.volume = 0.5; // 50% volume for slider tick
   } else {
     sound.volume = 0.2;
   }
