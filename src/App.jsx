@@ -88,7 +88,7 @@ const BASEBALL_MOMENTS = [
     image: '/1911_Honus_Wagner.jpg',
     hint: "Honus Wagner",
     description: "Honus Wagner",
-    funFact: "Known as 'The Flying Dutchman,' Honus Wagner was arguably baseball's greatest shortstop. In this 1911 photo, Wagner was already a baseball legend, having led the National League in batting average eight times. Despite standing only 5'11\" and having notably bowed legs, Wagner was an exceptional athlete who stole 723 bases and collected 3,420 hits during his 21-year career. Today, he's perhaps best known for the T206 Wagner baseball card, which has become the most valuable sports card in the world, with one example selling for $7.25 million in 2022. Wagner had the card pulled from production because he didn't want to promote tobacco to children, making it extremely rare.",
+    funFact: "Honus Wagner earned several memorable nicknames during his legendary career. He was most famously known as 'The Flying Dutchman' due to his German heritage and incredible speed on the basepaths. His Pittsburgh teammates also called him 'Hans' (short for Johannes, his birth name) and 'Old Honus.' But perhaps his most colorful nickname was 'Bowlegged Beauty,' a reference to his distinctive curved legs that didn't stop him from becoming one of baseball's most graceful shortstops.",
     source: "https://en.wikipedia.org/wiki/Honus_Wagner"
   },
   {
