@@ -79,7 +79,8 @@ const BASEBALL_MOMENTS = [
     image: '/1982.jpg',
     hint: "Gary Carter and a young Tim Raines among other Expos stars",
     description: "Montreal Expos stars",
-    funFact: "Just look at those jerseys though."
+    funFact: "This 1982 photo captures a golden era of Montreal Expos baseball, featuring future Hall of Famers Gary Carter and Tim Raines. The Expos' distinctive powder blue uniforms and tricolor caps became iconic symbols of baseball in Montreal. The team was loaded with talent, including Andre Dawson, who would win the NL Rookie of the Year in 1977, and Tim Raines, who led the National League in stolen bases from 1981-1984. Despite never winning a World Series, the Expos of this era were among the most exciting teams in baseball, regularly drawing over 2 million fans to Olympic Stadium.",
+    source: "https://en.wikipedia.org/wiki/Montreal_Expos"
   },
   {
     id: 10,
@@ -87,7 +88,8 @@ const BASEBALL_MOMENTS = [
     image: '/1911_Honus_Wagner.jpg',
     hint: "Honus Wagner",
     description: "Honus Wagner",
-    funFact: "Honus Wagner" 
+    funFact: "Known as 'The Flying Dutchman,' Honus Wagner was arguably baseball's greatest shortstop. In this 1911 photo, Wagner was already a baseball legend, having led the National League in batting average eight times. Despite standing only 5'11\" and having notably bowed legs, Wagner was an exceptional athlete who stole 723 bases and collected 3,420 hits during his 21-year career. Today, he's perhaps best known for the T206 Wagner baseball card, which has become the most valuable sports card in the world, with one example selling for $7.25 million in 2022. Wagner had the card pulled from production because he didn't want to promote tobacco to children, making it extremely rare.",
+    source: "https://en.wikipedia.org/wiki/Honus_Wagner"
   },
   {
     id: 11,
@@ -1043,10 +1045,10 @@ if (gameState === 'over') {
                   <div
                     className="transition-opacity duration-300 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
-                >
-                  <img
-                    src={currentMoment.image}
-                    alt={currentMoment.description}
+                  >
+                    <img
+                      src={currentMoment.image}
+                      alt={currentMoment.description}
                       className="w-full h-auto object-contain max-h-[500px]"
                       style={{
                         objectFit: 'contain',
@@ -1076,17 +1078,17 @@ if (gameState === 'over') {
                         <line x1="8" y1="11" x2="14" y2="11"/>
                       </svg>
                     </button>
+                    <div className="absolute top-2 left-2 text-left">
+                      <div 
+                        className="text-[#1e1e1e]/70 text-sm space-y-1"
+                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                      >
+                        <div>Image: {sequenceIndex + 1} of 3</div>
+                        {strikes > 0 && <div>Strikes: {strikes}</div>}
+                        {outs > 0 && <div>Outs: {outs}</div>}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div className="absolute top-4 right-4 text-right">
-                <div 
-                  className="text-[#f5f2e6]/70 text-sm space-y-1"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  <div>Image: {sequenceIndex + 1} of 3</div>
-                  {strikes > 0 && <div>Strikes: {strikes}</div>}
-                  {outs > 0 && <div>Outs: {outs}</div>}
                 </div>
               </div>
             </div>
