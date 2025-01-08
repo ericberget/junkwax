@@ -973,7 +973,7 @@ if (gameState === 'over') {
       }}>
 
       <div className="max-w-4xl mx-auto p-1 sm:p-4">
-        <div className="text-center relative mb-1">
+        <div className="text-center relative mb-1 pt-3 sm:pt-0">
           <img  
             src="/LOGO.png"
             className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-1 sm:px-2 md:px-0"
