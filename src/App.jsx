@@ -140,7 +140,7 @@ const BASEBALL_MOMENTS = [
     hint: "The Flying Dutchman's Minor League Days",
     description: "Paterson Silk Weavers, Atlantic League, 1896",
     funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball.",
-    source: "https://en.wikipedia.org/wiki/Honus_Wagner#Early_life_and_career"
+    source: "https://ourgame.mlblogs.com/honus-wagners-rookie-year-1895-558e7a006f43"
   }
   
 
