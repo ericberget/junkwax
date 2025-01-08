@@ -863,6 +863,29 @@ export default function BaseballTimeMachine() {
     setCurrentMoment(getDailyMoment(0));
   }
 
+  function handleStagingReset() {
+    // Clear all localStorage data
+    localStorage.removeItem(getTodayKey());
+    localStorage.removeItem('baseball-collection');
+    localStorage.removeItem('baseball-muted');
+    
+    // Reset all state
+    setYear(1950);
+    setOuts(0);
+    setStrikes(0);
+    setScore(0);
+    setFeedback('');
+    setPerfectStreak(0);
+    setAchievements([]);
+    setGameState('playing');
+    setTime(30);
+    setIsTimerActive(false);
+    setGuessStartTime(null);
+    setSequenceIndex(0);
+    setCurrentMoment(getDailyMoment(0));
+    setCollectedMoments([]);
+  }
+
   useEffect(() => {
     localStorage.setItem('baseball-muted', JSON.stringify(isMuted));
   }, [isMuted]);
@@ -933,7 +956,15 @@ if (gameState === 'over') {
             className="max-w-[500px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-      </div>
+          {window.location.hostname === 'localhost' && (
+            <button
+              onClick={handleStagingReset}
+              className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors"
+            >
+              Reset For Testing
+            </button>
+          )}
+        </div>
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
