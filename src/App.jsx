@@ -1100,12 +1100,12 @@ if (gameState === 'over') {
                   ))}
                 </div>
                 <div 
-                  className="absolute top-0 right-0 text-[#f5f2e6]/70 text-sm space-y-1 text-right"
+                  className="absolute top-0 right-0 text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  <div>Image: {sequenceIndex + 1} of 3</div>
-                  <div>Strikes: {strikes}</div>
-                  {outs > 0 && <div>Outs: {outs}</div>}
+                  <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>
+                  <div><span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}</div>
+                  {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
                 </div>
               </div>
               
