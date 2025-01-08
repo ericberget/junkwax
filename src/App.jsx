@@ -956,14 +956,6 @@ if (gameState === 'over') {
             className="max-w-[500px] mx-auto"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-          {window.location.hostname === 'localhost' && (
-            <button
-              onClick={handleStagingReset}
-              className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700 transition-colors"
-            >
-              Reset For Testing
-            </button>
-          )}
         </div>
         
         <Card className="bg-transparent border-none">
@@ -1151,6 +1143,16 @@ if (gameState === 'over') {
           description={currentMoment.description}
           onClose={() => setShowZoom(false)}
         />
+      )}
+      {window.location.hostname === 'localhost' && (
+        <div className="fixed bottom-2 right-2">
+          <button
+            onClick={handleStagingReset}
+            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+          >
+            Reset For Testing
+          </button>
+        </div>
       )}
     </div>
   );
