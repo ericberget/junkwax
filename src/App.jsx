@@ -169,8 +169,10 @@ Object.values(SOUND_EFFECTS).forEach(sound => {
 function getDailyMoment(index = 0) {
   const today = new Date();
   const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-  const startIndex = dayOfYear % (BASEBALL_MOMENTS.length - 2);
-  return BASEBALL_MOMENTS[(startIndex + index) % BASEBALL_MOMENTS.length];
+  // Calculate the starting index for today's set of 3 images
+  // Each day we move forward by 3 images
+  const startIndex = (dayOfYear * 3) % (BASEBALL_MOMENTS.length - 2);
+  return BASEBALL_MOMENTS[startIndex + index];
 }
 
 function getTodayKey() {
