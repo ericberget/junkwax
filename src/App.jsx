@@ -976,10 +976,10 @@ if (gameState === 'over') {
         <div className="text-center relative mb-1">
           <img  
             src="/LOGO.png"
-            className="max-w-[500px] mx-auto"
+            className="w-full max-w-[500px] mx-auto px-4 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-        </div>
+      </div>
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-2">
@@ -1056,10 +1056,10 @@ if (gameState === 'over') {
                   <div
                     className="transition-opacity duration-300 ease-in-out relative"
                     style={{ opacity: imageOpacity }}
-                  >
-                    <img
-                      src={currentMoment.image}
-                      alt={currentMoment.description}
+                >
+                  <img
+                    src={currentMoment.image}
+                    alt={currentMoment.description}
                       className="w-full h-auto object-contain max-h-[500px]"
                       style={{
                         objectFit: 'contain',
@@ -1105,9 +1105,9 @@ if (gameState === 'over') {
                   {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
                 </div>
                 <div className="flex justify-center">
-                  {yearDigits.map((digit, index) => (
-                    <YearDigit key={index} digit={digit} />
-                  ))}
+                {yearDigits.map((digit, index) => (
+                  <YearDigit key={index} digit={digit} />
+                ))}
                 </div>
               </div>
               
