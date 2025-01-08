@@ -112,7 +112,7 @@ const BASEBALL_MOMENTS = [
     year: 1981,
     image: '/boggs.jpg',
     hint: "longest game in history",
-    description: "1984 All-Star Game at Jack Murphy Stadium",
+    description: "boggs",
     funFact: "Boggs vs Ripken in the longerst game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23. https://www.afootinthebox.com/peter/the-ripken-and-boggs-33-inning-8-hour-minor-league-game"
   },
   {

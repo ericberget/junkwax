@@ -108,10 +108,18 @@ export function FeedbackOverlay({
 
               {/* Middle - Year */}
               <div className="flex justify-center items-center">
-                <div className="flex">
-                  {yearDigits.map((digit, index) => (
-                    <YearDigit key={index} digit={digit} />
-                  ))}
+                <div className="flex flex-col items-center">
+                  <div 
+                    className="text-[#f5f2e6]/70 mb-2"
+                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                  >
+                    CORRECT YEAR
+                  </div>
+                  <div className="flex">
+                    {yearDigits.map((digit, index) => (
+                      <YearDigit key={index} digit={digit} />
+                    ))}
+                  </div>
                 </div>
               </div>
 
