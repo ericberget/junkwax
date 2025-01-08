@@ -121,6 +121,14 @@ const BASEBALL_MOMENTS = [
     description: "Tug McGraw in the dugout",
     funFact: "Hall of Fame skipper John McGraw is pictured here in front of the dugout during the New York Giants National League Pennant winning 1912 season.",
     source: "https://en.m.wikipedia.org/wiki/File:1912_John_McGraw_by_Conlon.jpeg"
+  },
+  {
+    id: 15,
+    year: 1984,
+    image: '/kirby.jpg',
+    hint: "The Future Hall of Famer's Rookie Season",
+    description: "Kirby Puckett's rookie season with the Minnesota Twins",
+    funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984. In his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown."
   }
   
 
