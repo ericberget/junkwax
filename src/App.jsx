@@ -122,6 +122,7 @@ const BASEBALL_MOMENTS = [
     funFact: "Hall of Fame skipper John McGraw is pictured here in front of the dugout during the New York Giants National League Pennant winning 1912 season.",
     source: "https://en.m.wikipedia.org/wiki/File:1912_John_McGraw_by_Conlon.jpeg"
   }
+  
 
 ];
 
@@ -1069,21 +1070,15 @@ if (gameState === 'over') {
                   </div>
                 </div>
               </div>
-               <div className="flex justify-between items-center transform translate-y-full pt-2">
+              <div className="flex justify-end items-center transform translate-y-full pt-2">
                 <div 
-                  className="text-[#f5f2e6] text-sm opacity-30 hover:opacity-100 transition-colors duration-200"
+                  className="text-[#f5f2e6]/70 text-sm"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  {outs > 0 && <span className="mr-3">OUTS: {outs}</span>}
-                  {strikes > 0 && <span>STRIKES: {strikes}</span>}
+                  Image: {sequenceIndex + 1} of 3
+                  {outs > 0 && <span className="ml-3">Outs: {outs}</span>}
+                  {strikes > 0 && <span className="ml-3">Strikes: {strikes}</span>}
                 </div>
-                <button
-                  onClick={() => setShowHowToPlay(true)}
-                  className="text-[#f5f2e6] hover:text-[#f5f2e6] text-sm transition-colors duration-200 opacity-30 hover:opacity-100"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  HOW TO PLAY
-                </button>
               </div>
             </div>
 
