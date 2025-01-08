@@ -308,7 +308,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
       <div className="text-center mb-16">
         <img  
           src="/LOGO.png"
-          className="max-w-[600px] mx-auto"
+          className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-1 sm:px-2 md:px-0"
           alt="The Daily Baseball Photo Trivia Game" 
         />
       </div>
