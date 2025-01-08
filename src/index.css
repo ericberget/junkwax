@@ -32,6 +32,7 @@ input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
   border: none;
+  margin-top: -10px;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
@@ -77,6 +78,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
+  margin-top: -10px;
 }
 
 input[type="range"]::-moz-range-thumb:hover {
