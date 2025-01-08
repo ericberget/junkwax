@@ -154,19 +154,31 @@ function getDailyMoment(index = 0) {
 
 function getTodayKey() {
   const date = new Date();
-  return `baseball-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  return `baseball-${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
 function loadDailyState() {
   const savedState = localStorage.getItem(getTodayKey());
   if (savedState) {
-    return JSON.parse(savedState);
+    const state = JSON.parse(savedState);
+    // Check if the saved state is from a previous day
+    const savedKey = getTodayKey();
+    const currentKey = getTodayKey();
+    if (savedKey !== currentKey) {
+      // It's a new day, return null to start fresh
+      localStorage.removeItem(savedKey);
+      return null;
+    }
+    return state;
   }
   return null;
 }
 
 function saveDailyState(state) {
-  localStorage.setItem(getTodayKey(), JSON.stringify(state));
+  localStorage.setItem(getTodayKey(), JSON.stringify({
+    ...state,
+    lastUpdated: new Date().toISOString()
+  }));
 }
 
 
