@@ -230,7 +230,7 @@ function getAllDailyMoments() {
   ];
 }
 
-function GameOver({ score, achievements, onRestart, currentMoment, onShowCollection, onShowBooks, collectedMoments }) {
+function GameOver({ score, achievements, onRestart, currentMoment, onShowCollection, onShowBooks, collectedMoments, setAchievements }) {
   const allMoments = getAllDailyMoments();
   const [selectedMoment, setSelectedMoment] = useState(currentMoment);
   
@@ -241,10 +241,9 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
   // Add Goose Egg achievement if score is 0
   useEffect(() => {
     if (score === 0 && !achievements.includes('GOOSE_EGG')) {
-      const newAchievements = [...achievements, 'GOOSE_EGG'];
-      setAchievements(newAchievements);
+      setAchievements([...achievements, 'GOOSE_EGG']);
     }
-  }, []);
+  }, [score, achievements, setAchievements]);
 
   function handleShare() {
     const today = new Date();
@@ -958,6 +957,7 @@ if (gameState === 'over') {
           onShowCollection={() => setShowCollection(true)}
           onShowBooks={() => setShowBooks(true)}
           collectedMoments={collectedMoments}
+          setAchievements={setAchievements}
         />
         {showCollection && (
           <Collection 
