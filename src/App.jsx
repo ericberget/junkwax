@@ -677,12 +677,7 @@ export default function BaseballTimeMachine() {
   function handleYearChange(e) {
     const newYear = Math.max(1850, Math.min(2025, parseInt(e.target.value)));
     setYear(newYear);
-    if (!isMuted && SOUND_EFFECTS.sliderTick) {
-      // Clone and play the sound to allow overlapping
-      const tickSound = SOUND_EFFECTS.sliderTick.cloneNode();
-      tickSound.volume = 0.05;
-      tickSound.play().catch(err => console.error('Failed to play tick sound:', err));
-    }
+    playSound('sliderTick');
     if (!guessStartTime) {
       setGuessStartTime(Date.now());
       setIsTimerActive(true);
