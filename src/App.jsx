@@ -155,15 +155,20 @@ const ACHIEVEMENTS = {
 };
 
 const SOUND_EFFECTS = {
-  homeRun: new Audio('/sounds/homerun.mp3'),
+  homeRun: new Audio('/sounds/success-chime.mp3'),
   hit: new Audio('/sounds/hit.mp3'),
   out: new Audio('/sounds/out.wav'),
-  achievement: new Audio('/sounds/achievement.wav')
+  achievement: new Audio('/sounds/achievement.wav'),
+  sliderTick: new Audio('/sounds/tick.mp3')
 };
 
-// Set volume for all sound effects to 20%
+// Set volume for all sound effects
 Object.values(SOUND_EFFECTS).forEach(sound => {
-  sound.volume = 0.2;
+  if (sound === SOUND_EFFECTS.sliderTick) {
+    sound.volume = 0.05; // Very quiet for slider
+  } else {
+    sound.volume = 0.2;
+  }
 });
 
 function getDailyMoment(index = 0) {
@@ -663,6 +668,12 @@ export default function BaseballTimeMachine() {
   function handleYearChange(e) {
     const newYear = Math.max(1850, Math.min(2025, parseInt(e.target.value)));
     setYear(newYear);
+    if (!isMuted && SOUND_EFFECTS.sliderTick) {
+      // Clone and play the sound to allow overlapping
+      const tickSound = SOUND_EFFECTS.sliderTick.cloneNode();
+      tickSound.volume = 0.05;
+      tickSound.play().catch(err => console.error('Failed to play tick sound:', err));
+    }
     if (!guessStartTime) {
       setGuessStartTime(Date.now());
       setIsTimerActive(true);
