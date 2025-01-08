@@ -151,7 +151,8 @@ const ACHIEVEMENTS = {
   STREAK_3: { id: 'STREAK_3', name: 'Triple Play', description: '3 perfect guesses in a row', icon: Trophy },
   SPEED_DEMON: { id: 'SPEED_DEMON', name: 'Speed Demon', description: 'Perfect guess under 10 seconds', icon: TimerIcon },
   POWER_HITTER: { id: 'POWER_HITTER', name: 'Power Hitter', description: 'Score over 1000 points', icon: Award },
-  NO_STRIKES: { id: 'NO_STRIKES', name: 'Perfect Game', description: 'Complete a round with no outs', icon: Medal }
+  NO_STRIKES: { id: 'NO_STRIKES', name: 'Perfect Game', description: 'Complete a round with no outs', icon: Medal },
+  GOOSE_EGG: { id: 'GOOSE_EGG', name: 'Goose Egg', description: 'Zero points? Maybe try cricket instead...', icon: X }
 };
 
 const SOUND_EFFECTS = {
@@ -236,6 +237,14 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
   const correctGuesses = collectedMoments.filter(id => 
     allMoments.some(moment => moment.id === id)
   ).length;
+
+  // Add Goose Egg achievement if score is 0
+  useEffect(() => {
+    if (score === 0 && !achievements.includes('GOOSE_EGG')) {
+      const newAchievements = [...achievements, 'GOOSE_EGG'];
+      setAchievements(newAchievements);
+    }
+  }, []);
 
   function handleShare() {
     const today = new Date();
