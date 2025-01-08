@@ -132,6 +132,15 @@ const BASEBALL_MOMENTS = [
     description: "Kirby Puckett's rookie season with the Minnesota Twins",
     funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984. In his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown.",
     source: "https://en.wikipedia.org/wiki/Kirby_Puckett"
+  },
+  {
+    id: 16,
+    year: 1896,
+    image: '/Honus1896.jpg',
+    hint: "The Flying Dutchman's Minor League Days",
+    description: "Paterson Silk Weavers, Atlantic League, 1896",
+    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball.",
+    source: "https://en.wikipedia.org/wiki/Honus_Wagner#Early_life_and_career"
   }
   
 
