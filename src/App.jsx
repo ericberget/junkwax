@@ -940,11 +940,7 @@ export default function BaseballTimeMachine() {
     }
     
     // Only advance to next image if it was a scoring hit or an out
-    if (feedbackData.result.includes('HOME RUN') || 
-        feedbackData.result.includes('TRIPLE') || 
-        feedbackData.result.includes('DOUBLE') || 
-        feedbackData.result.includes('SINGLE') ||
-        feedbackData.result.includes('OUT')) {
+    if (!feedbackData.isFoulBall) {
       const nextIndex = sequenceIndex + 1;
       setImageOpacity(0);
       setTimeout(() => {
