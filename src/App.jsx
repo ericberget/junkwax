@@ -886,41 +886,42 @@ export default function BaseballTimeMachine() {
         currentYear: currentMoment.year
       });
       setShowFeedback(true);
-    } else {
-      // On third strike, determine if they get points
-      setStrikes(0); // Reset strikes
-      playSound('hit');
-      
-      if (difference <= 5) {
-        if (difference <= 1) {
-          points = 300 + timeBonus;
-          feedbackResult = "TRIPLE!";
-        } else if (difference <= 3) {
-          points = 200 + timeBonus;
-          feedbackResult = "DOUBLE!";
-        } else {
-          points = 100 + timeBonus;
-          feedbackResult = "SINGLE!";
-        }
-        setScore((prevScore) => prevScore + points);
-      } else {
-        feedbackResult = "STRIKE THREE! YOU'RE OUT!";
-        const newOuts = outs + 1;
-        setOuts(newOuts);
-      }
-      
-      setFeedbackData({
-        result: feedbackResult,
-        yearDifference: difference,
-        points: points,
-        image: currentMoment.image,
-        funFact: currentMoment.funFact,
-        isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
-        isFoulBall: false,
-        currentYear: currentMoment.year
-      });
-      setShowFeedback(true);
+      return;
     }
+    
+    // On third strike, determine if they get points
+    setStrikes(0); // Reset strikes
+    playSound('hit');
+    
+    if (difference <= 5) {
+      if (difference <= 1) {
+        points = 300 + timeBonus;
+        feedbackResult = "TRIPLE!";
+      } else if (difference <= 3) {
+        points = 200 + timeBonus;
+        feedbackResult = "DOUBLE!";
+      } else {
+        points = 100 + timeBonus;
+        feedbackResult = "SINGLE!";
+      }
+      setScore((prevScore) => prevScore + points);
+    } else {
+      feedbackResult = "STRIKE THREE! YOU'RE OUT!";
+      const newOuts = outs + 1;
+      setOuts(newOuts);
+    }
+    
+    setFeedbackData({
+      result: feedbackResult,
+      yearDifference: difference,
+      points: points,
+      image: currentMoment.image,
+      funFact: currentMoment.funFact,
+      isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
+      isFoulBall: false,
+      currentYear: currentMoment.year
+    });
+    setShowFeedback(true);
     
     checkAchievements(false, timeTaken);
     setGuessStartTime(null);
@@ -931,19 +932,19 @@ export default function BaseballTimeMachine() {
   function handleFeedbackNext() {
     setShowFeedback(false);
     
-    // If it's a foul ball and not the last strike, just continue
-    if (feedbackData.isFoulBall && strikes < 3) {
-      return;
-    }
-    
-    // If we're on the last image (index 2) and it's not a foul ball, go to game over
-    if (sequenceIndex >= 2 && !feedbackData.isFoulBall) {
-      setGameState('over');
+    // If it's a foul ball on the last image, just continue
+    if (feedbackData.isFoulBall && sequenceIndex >= 2) {
       return;
     }
     
     // If we have 3 outs, go to game over
     if (outs >= 3) {
+      setGameState('over');
+      return;
+    }
+    
+    // If we're on the last image and it wasn't a foul ball, go to game over
+    if (sequenceIndex >= 2 && !feedbackData.isFoulBall) {
       setGameState('over');
       return;
     }

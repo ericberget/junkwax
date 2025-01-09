@@ -4,7 +4,11 @@
 
 @font-face {
   font-family: 'Douglas-Burlington-Regular';
-  src: url('/Douglas-Burlington-Regular.woff2') format('woff2');
+  src: url('/font/Douglas-Burlington-Regular.otf') format('opentype'),
+       url('/Douglas-Burlington-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @layer utilities {
