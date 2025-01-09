@@ -28,7 +28,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 3,
     year: 1913,
-    image: '/1913evers.jpg',
+    image: '/1913.jpg',
     hint: "Baseball's Brainy Ballplayer",
     description: "Johnny Evers of the Chicago Cubs",
     funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
@@ -298,7 +298,7 @@ function saveDailyState(state) {
 function YearDigit({ digit }) {
   return (
     <div 
-      className="w-16 h-20 bg-white border-2 border-gray-300 rounded flex items-center justify-center text-5xl font-mono text-blue-900 shadow-lg mx-1"
+      className="w-14 h-[68px] bg-white border-2 border-gray-300 rounded flex items-center justify-center text-4xl font-mono text-blue-900 shadow-lg mx-1"
       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
     >
       {digit}
@@ -405,7 +405,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
       <div className="text-center mb-16">
         <img  
           src="/LOGO.png"
-          className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-1 sm:px-2 md:px-0"
+          className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
           alt="The Daily Baseball Photo Trivia Game" 
         />
       </div>
@@ -883,12 +883,24 @@ export default function BaseballTimeMachine() {
   
     // Handle foul balls (within 10 years)
     const newStrikes = strikes + 1;
-    setStrikes(newStrikes);
-    playSound('hit');
     
-    if (newStrikes === 3) {
+    // First or second strike - show foul ball overlay
+    if (newStrikes < 3) {
+      setStrikes(newStrikes);
+      playSound('hit');
+      setFeedbackData({
+        yearDifference: difference,
+        strikes: newStrikes,
+        isFoulBall: true,
+        currentYear: currentMoment.year
+      });
+      setShowFeedback(true);
+    } else {
       // On third strike, determine if they get points
-    if (difference <= 5) {
+      setStrikes(0); // Reset strikes
+      playSound('hit');
+      
+      if (difference <= 5) {
         if (difference <= 1) {
           points = 300 + timeBonus;
           feedbackResult = "TRIPLE!";
@@ -899,14 +911,12 @@ export default function BaseballTimeMachine() {
           points = 100 + timeBonus;
           feedbackResult = "SINGLE!";
         }
-      setScore((prevScore) => prevScore + points);
-    } else {
+        setScore((prevScore) => prevScore + points);
+      } else {
         feedbackResult = "STRIKE THREE! YOU'RE OUT!";
+        const newOuts = outs + 1;
+        setOuts(newOuts);
       }
-      
-      const newOuts = outs + 1;
-      setOuts(newOuts);
-      setStrikes(0); // Reset strikes after out
       
       const nextIndex = sequenceIndex + 1;
       setFeedbackData({
@@ -915,24 +925,15 @@ export default function BaseballTimeMachine() {
         points: points,
         image: currentMoment.image,
         funFact: currentMoment.funFact,
-        isGameOver: newOuts >= 3 || nextIndex >= 3,
+        isGameOver: outs + 1 >= 3 || nextIndex >= 3,
         isFoulBall: false,
-        currentYear: currentMoment.year
-      });
-      setShowFeedback(true);
-    } else {
-      // First or second strike - show foul ball overlay
-      setFeedbackData({
-        yearDifference: difference,
-        strikes: newStrikes,
-        isFoulBall: true,
         currentYear: currentMoment.year
       });
       setShowFeedback(true);
     }
     
-      checkAchievements(false, timeTaken);
-      setGuessStartTime(null);
+    checkAchievements(false, timeTaken);
+    setGuessStartTime(null);
     setIsTimerActive(false);
     setPreviousDifference(difference);
   }
@@ -983,6 +984,9 @@ export default function BaseballTimeMachine() {
     setGuessStartTime(null);
     setSequenceIndex(0);
     setCurrentMoment(getDailyMoment(0));
+    setShowFeedback(false);
+    setFeedbackData(null);
+    setImageOpacity(1);
   }
 
   function handleStagingReset() {
@@ -1076,7 +1080,7 @@ if (gameState === 'over') {
         <div className="text-center relative mb-1 pt-3 sm:pt-0">
           <img  
             src="/LOGO.png"
-            className="w-full max-w-[450px] sm:max-w-[400px] md:max-w-[500px] mx-auto px-1 sm:px-2 md:px-0"
+            className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
@@ -1162,6 +1166,25 @@ if (gameState === 'over') {
               </div>
             </div>
 
+            {/* Stats and How To Play row with Year */}
+            <div className="hidden md:flex justify-between items-start -mb-8">
+              <button
+                onClick={() => setShowHowToPlay(true)}
+                className="text-[#f5f2e6]/70 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                HOW TO PLAY
+              </button>
+              <div 
+                className="text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>
+                <div><span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}</div>
+                {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
+              </div>
+            </div>
+
             {/* Mobile Stats Display */}
             <div className="flex justify-between items-center mb-4 sm:hidden px-2">
               <div 
@@ -1186,21 +1209,12 @@ if (gameState === 'over') {
               )}
             </div>
 
-            <div className="space-y-6">
-              <div className="relative mb-6">
-                {/* Desktop Stats Display */}
-                <div 
-                  className="hidden md:block md:absolute md:top-0 md:right-0 text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right mb-4 md:mb-0"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>
-                  <div><span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}</div>
-                  {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
-                </div>
+            <div className="space-y-4 -mt-16">
+              <div className="relative">
                 <div className="flex justify-center">
-                {yearDigits.map((digit, index) => (
-                  <YearDigit key={index} digit={digit} />
-                ))}
+                  {yearDigits.map((digit, index) => (
+                    <YearDigit key={index} digit={digit} />
+                  ))}
                 </div>
               </div>
               

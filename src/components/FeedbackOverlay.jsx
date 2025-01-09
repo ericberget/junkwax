@@ -4,7 +4,7 @@ import { ImageZoom } from './ImageZoom';
 function YearDigit({ digit }) {
   return (
     <div 
-      className="w-12 h-16 bg-white border-2 border-gray-300 rounded flex items-center justify-center text-4xl font-mono text-blue-900 shadow-lg mx-1"
+      className="w-10 h-14 bg-white border-2 border-gray-300 rounded flex items-center justify-center text-3xl font-mono text-blue-900 shadow-lg mx-1"
       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
     >
       {digit}
@@ -12,26 +12,16 @@ function YearDigit({ digit }) {
   );
 }
 
-export function FeedbackOverlay({ 
-  result, 
-  yearDifference, 
-  points, 
-  image, 
-  funFact,
-  onNext,
-  isGameOver,
-  isFoulBall,
-  strikes,
-  currentYear
-}) {
+export function FeedbackOverlay({ result, yearDifference, points, image, funFact, onNext, isGameOver, isFoulBall, strikes, currentYear }) {
   const [showZoom, setShowZoom] = React.useState(false);
+  const yearDigits = currentYear.toString().padStart(4, '0').split('');
 
   if (isFoulBall) {
     return (
       <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
         <div className="max-w-2xl w-full mx-auto p-4 max-h-screen overflow-y-auto">
           <div className="bg-gray-800/90 rounded-lg p-6 py-12 border border-gray-700">
-            <div className="space-y-6 text-center">
+            <div className="space-y-6 text-center animate-fadeIn">
               <h2 
                 className="text-4xl mb-4" 
                 style={{ 
@@ -73,15 +63,13 @@ export function FeedbackOverlay({
     );
   }
 
-  const yearDigits = currentYear.toString().padStart(4, '0').split('');
-
   return (
     <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
       <div className="max-w-4xl w-full mx-auto p-4 max-h-screen overflow-y-auto">
         <div className="bg-gray-800/90 rounded-lg p-6 px-8 border border-gray-700">
           <div className="space-y-6">
             {/* Header with Result, Year, and Points */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 animate-fadeIn">
               {/* Left side - Result */}
               <div className="text-center md:text-left">
                 <h2 
@@ -89,10 +77,10 @@ export function FeedbackOverlay({
                   style={{ 
                     fontFamily: 'Douglas-Burlington-Regular',
                     color: result.includes('HOME RUN') ? '#4ade80' : 
-                           result.includes('TRIPLE') ? '#fbbf24' : 
-                           result.includes('DOUBLE') ? '#60a5fa' : 
-                           result.includes('SINGLE') ? '#a78bfa' : 
-                           '#ef4444'
+                             result.includes('TRIPLE') ? '#fbbf24' : 
+                             result.includes('DOUBLE') ? '#60a5fa' : 
+                             result.includes('SINGLE') ? '#a78bfa' : 
+                             '#ef4444'
                   }}
                 >
                   {result}
@@ -105,9 +93,9 @@ export function FeedbackOverlay({
                   </p>
                 )}
               </div>
-
+              
               {/* Middle - Year */}
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center animation-delay-100">
                 <div className="flex flex-col items-center">
                   <div 
                     className="text-[#f5f2e6]/70 mb-2 text-sm md:text-base"
@@ -125,7 +113,7 @@ export function FeedbackOverlay({
 
               {/* Right side - Points */}
               {points > 0 && (
-                <div className="text-center md:text-right">
+                <div className="text-center md:text-right animation-delay-200">
                   <div 
                     className="text-5xl md:text-6xl text-green-400"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -140,7 +128,7 @@ export function FeedbackOverlay({
             </div>
 
             {/* Image */}
-            <div className="relative bg-[#f5f2e6] p-4">
+            <div className="relative bg-[#f5f2e6] p-4 animate-fadeIn animation-delay-300">
               <img
                 src={image}
                 alt="Baseball moment"
@@ -174,7 +162,7 @@ export function FeedbackOverlay({
             </div>
 
             {/* Fun Fact */}
-            <div className="text-gray-300 text-left max-w-3xl mx-auto px-1"
+            <div className="text-gray-300 text-left max-w-3xl mx-auto px-1 animate-fadeIn animation-delay-400"
                  style={{
                    lineHeight: '1.7',
                    fontSize: '1.05rem'
@@ -183,7 +171,7 @@ export function FeedbackOverlay({
             </div>
 
             {/* Next Button */}
-            <div className="text-center mt-8 mb-8 sm:mb-12">
+            <div className="text-center mt-8 mb-8 sm:mb-12 animate-fadeIn animation-delay-500">
               <button
                 onClick={onNext}
                 className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-10 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
