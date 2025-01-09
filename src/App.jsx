@@ -30,7 +30,7 @@ const BASEBALL_MOMENTS = [
     year: 1913,
     image: '/1913evers.jpg',
     hint: "Baseball's Brainy Ballplayer",
-    description: "Johnny Evers of the Ch`icago Cubs",
+    description: "Johnny Evers of the Chicago Cubs",
     funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
   },
   {
@@ -79,8 +79,7 @@ const BASEBALL_MOMENTS = [
     image: '/1982.jpg',
     hint: "Gary Carter and a young Tim Raines among other Expos stars",
     description: "Montreal Expos stars",
-    funFact: "This 1982 photo captures a golden era of Montreal Expos baseball, featuring future Hall of Famers Gary Carter and Tim Raines. The Expos' distinctive powder blue uniforms and tricolor caps became iconic symbols of baseball in Montreal. The team was loaded with talent, including Andre Dawson, who would win the NL Rookie of the Year in 1977, and Tim Raines, who led the National League in stolen bases from 1981-1984. Despite never winning a World Series, the Expos of this era were among the most exciting teams in baseball, regularly drawing over 2 million fans to Olympic Stadium.",
-    source: "https://en.wikipedia.org/wiki/Montreal_Expos"
+    funFact: "This 1982 photo captures a golden era of Montreal Expos baseball, featuring future Hall of Famers Gary Carter and Tim Raines. The Expos' distinctive powder blue uniforms and tricolor caps became iconic symbols of baseball in Montreal. The team was loaded with talent, including Andre Dawson, who would win the NL Rookie of the Year in 1977, and Tim Raines, who led the National League in stolen bases from 1981-1984. Despite never winning a World Series, the Expos of this era were among the most exciting teams in baseball, regularly drawing over 2 million fans to Olympic Stadium."
   },
   {
     id: 10,
@@ -88,8 +87,7 @@ const BASEBALL_MOMENTS = [
     image: '/1911_Honus_Wagner.jpg',
     hint: "Honus Wagner",
     description: "Honus Wagner",
-    funFact: "Honus Wagner earned several memorable nicknames during his legendary career. He was most famously known as 'The Flying Dutchman' due to his German heritage and incredible speed on the basepaths. His Pittsburgh teammates also called him 'Hans' (short for Johannes, his birth name) and 'Old Honus.' But perhaps his most colorful nickname was 'Bowlegged Beauty,' a reference to his distinctive curved legs that didn't stop him from becoming one of baseball's most graceful shortstops.",
-    source: "https://en.wikipedia.org/wiki/Honus_Wagner"
+    funFact: "Honus Wagner earned several memorable nicknames during his legendary career. He was most famously known as 'The Flying Dutchman' due to his German heritage and incredible speed on the basepaths. His Pittsburgh teammates also called him 'Hans' (short for Johannes, his birth name) and 'Old Honus.' But perhaps his most colorful nickname was 'Bowlegged Beauty,' a reference to his distinctive curved legs that didn't stop him from becoming one of baseball's most graceful shortstops."
   },
   {
     id: 11,
@@ -102,10 +100,10 @@ const BASEBALL_MOMENTS = [
   {
     id: 12,
     year: 1984,
-    image: '/1984AS.jpg',
-    hint: "Midsummer Classic in America's Finest City",
-    description: "1984 All-Star Game at Jack Murphy Stadium",
-    funFact: "The 1984 All-Star Game in San Diego marked the first time the Midsummer Classic was held in 'America's Finest City.' The game showcased those memorable brown and yellow Padres uniforms, which perfectly captured baseball's colorful 1980s style. The National League's 21-game unbeaten streak in All-Star competition (19 wins, 1 tie) finally came to an end that night, as the American League won 3-1. The game featured 16 future Hall of Famers, including Cal Ripken Jr., Reggie Jackson, and Dave Winfield. Coincidentally, 1984 would turn out to be a magical year for the host Padres, as they went on to win their first National League pennant that season."
+    image: '/kirby.jpg',
+    hint: "The Future Hall of Famer's Rookie Season",
+    description: "Kirby Puckett's rookie season with the Minnesota Twins",
+    funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984. In his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown."
   },
   {
     id: 13,
@@ -113,37 +111,123 @@ const BASEBALL_MOMENTS = [
     image: '/boggs.jpg',
     hint: "longest game in history",
     description: "boggs",
-    funFact: "Boggs vs Ripken in the longerst game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23. https://www.afootinthebox.com/peter/the-ripken-and-boggs-33-inning-8-hour-minor-league-game"
+    funFact: "Boggs vs Ripken in the longerst game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23."
   },
   {
     id: 14,
     year: 1901,
     image: '/1901Tug.jpg',
-    hint: "Pennant Winning Season for Tug",
-    description: "Tug McGraw in the dugout",
-    funFact: "Hall of Fame skipper John McGraw is pictured here in front of the dugout during the New York Giants National League Pennant winning 1912 season.",
-    source: "https://en.m.wikipedia.org/wiki/File:1912_John_McGraw_by_Conlon.jpeg"
+    hint: "Cleveland's First AL Season",
+    description: "1901 Cleveland Blues Team Photo",
+    funFact: "This Cleveland team played in the very first American League game ever on April 24, 1901. Then called the Blues and managed by Jimmy McAleer (in derby hat), they would later become known as the Indians in 1915 and Guardians in 2022. On May 23rd of their inaugural season, they pulled off one of the greatest comebacks in baseball history, scoring 9 runs with two outs in the ninth to win 14-13.",
+    source: "https://sabr.org/gamesproj/game/may-23-1901-hopeless-defeat-turned-into-glorious-victory/"
   },
   {
     id: 15,
-    year: 1984,
-    image: '/kirby.jpg',
-    hint: "The Future Hall of Famer's Rookie Season",
-    description: "Kirby Puckett's rookie season with the Minnesota Twins",
-    funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984. In his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown.",
-    source: "https://en.wikipedia.org/wiki/Kirby_Puckett"
-  },
-  {
-    id: 16,
     year: 1896,
     image: '/Honus1896.jpg',
     hint: "The Flying Dutchman's Minor League Days",
     description: "Paterson Silk Weavers, Atlantic League, 1896",
-    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball.",
-    source: "https://ourgame.mlblogs.com/honus-wagners-rookie-year-1895-558e7a006f43"
+    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
+  },
+  {
+    id: 16,
+    year: 1933,
+    image: '/1933.jpg',
+    hint: "The First All-Star Game",
+    description: "The First MLB All-Star Game at Comiskey Park",
+    funFact: "This image captures a historic moment in baseball history - the first Major League Baseball All-Star Game, played on July 6, 1933, at Chicago's Comiskey Park. The game was conceived by Chicago Tribune sports editor Arch Ward as part of the city's Century of Progress Exposition. The American League, led by Babe Ruth (who hit the first home run in All-Star Game history), defeated the National League 4-2. The success of this 'one-time' exhibition led to it becoming an annual tradition, marking one of baseball's most enduring innovations from the Great Depression era. The game featured an incredible lineup of future Hall of Famers, including Lou Gehrig, Jimmie Foxx, Al Simmons, and Charlie Gehringer for the American League, facing Carl Hubbell, Bill Terry, Pie Traynor, and Chuck Klein of the National League."
+  },
+  {
+    id: 17,
+    year: 1951,
+    image: '/Mays1951.jpg',
+    hint: "The Say Hey Kid's Rookie Season",
+    description: "Willie Mays' Rookie Season with the New York Giants",
+    funFact: "This photograph captures Willie Mays during his remarkable rookie season with the New York Giants in 1951. Despite a rough 1-for-26 start to his career that had him doubting himself, the 20-year-old center fielder would go on to win the National League Rookie of the Year award, batting .274 with 20 home runs. His natural talent and infectious enthusiasm earned him the nickname 'The Say Hey Kid.' That same year, Mays would help the Giants complete their historic comeback against the Dodgers, culminating in Bobby Thomson's 'Shot Heard 'Round the World.' This was just the beginning of a legendary 22-year career that would see Mays become one of baseball's greatest all-around players, known for his spectacular catches, powerful hitting, and baserunning prowess."
+  },
+  {
+    id: 18,
+    year: 1909,
+    image: '/stPaul.jpg',
+    hint: "The St. Paul Colored Gophers",
+    description: "St. Paul Colored Gophers Team Photo",
+    funFact: "The St. Paul Colored Gophers were one of the most formidable Black baseball teams of the pre-Negro Leagues era. In 1909, they were considered by many to be the strongest African American team in the country. The team featured several legendary players, including Bobby Marshall, who would later become one of the first African American players in the NFL. The Colored Gophers regularly competed against - and often defeated - white teams, helping to demonstrate the high caliber of Black baseball talent decades before integration. Their success helped pave the way for the more formally organized Negro National League, which would be established in 1920 by Rube Foster."
+  },
+  {
+    id: 19,
+    year: 1924,
+    image: '/ruthKnockedOut.jpg',
+    hint: "The Babe's Dangerous Collision",
+    description: "Babe Ruth Knocked Unconscious at Griffith Stadium",
+    funFact: " On July 5th, 1924, in the fourth inning of a game against the Washington Senators at Griffith Stadium, Babe Ruth chased a long fly ball and crashed full-speed into the concrete wall. The collision knocked him unconscious for nearly five minutes, creating a scene that stunned the crowd into silence. Despite the severity of the impact, Ruth not only returned to the game but also hit a double in his next at-bat. This incident exemplified Ruth's legendary toughness and dedication - after the game he simply said, 'I feel a bit woozy, but outside of a slight headache, I'm all right.' The photo became one of baseball's most memorable images, showing the dramatic moment when even the seemingly invincible Babe Ruth proved mortal.",
+    source: "https://www.loc.gov/item/2016838013/"
+  },
+  {
+    id: 20,
+    year: 1969,
+    image: '/metspitchers.jpg',
+    hint: "The Miracle Mets' Arms",
+    description: "1969 Mets Pitching Staff",
+    funFact: "The '69 Mets pitching staff was so dominant that Tom Seaver (25-7), Jerry Koosman (17-9), Gary Gentry (13-12), and Nolan Ryan combined for an incredible 28 shutouts. Their team ERA of 2.99 was tops in the league, and they would go on to shock the heavily favored Baltimore Orioles in the World Series."
+  },
+  {
+    id: 21,
+    year: 1946,
+    image: '/fellerpaige.jpg',
+    hint: "Two Legendary Fireballers Face Off",
+    description: "Bob Feller vs. Satchel Paige",
+    funFact: "This rare photo captures a historic matchup between two of baseball's greatest pitchers. Bob Feller and Satchel Paige faced off in numerous barnstorming games, with Feller later saying Paige was the best pitcher he ever saw. In their matchups, Paige's teams won 6 of the 9 documented games against Feller's teams."
+  },
+  {
+    id: 22,
+    year: 1914,
+    image: '/ruthredsox.jpg',
+    hint: "The Babe as a Rookie Pitcher",
+    description: "Babe Ruth with the Boston Red Sox",
+    funFact: "Before becoming baseball's greatest slugger, Babe Ruth was one of the American League's best left-handed pitchers. He went 89-46 with a 2.28 ERA in six seasons as a Red Sox pitcher before being converted to an outfielder. His pitching was so dominant that he once threw a 13-inning complete game victory in the World Series."
+  },
+  {
+    id: 23,
+    year: 1985,
+    image: '/1985bluejays.jpg',
+    hint: "First Division Title in Toronto",
+    description: "1985 Toronto Blue Jays",
+    funFact: "The '85 Blue Jays captured their first AL East title with a franchise-record 99 wins. Led by Dave Stieb's pitching (14-13, 2.48 ERA) and Jesse Barfield's 27 home runs, they became the first team outside the United States to reach the playoffs."
+  },
+  {
+    id: 24,
+    year: 1957,
+    image: '/hank.jpg',
+    hint: "The Braves' Big Three",
+    description: "Aaron, Mathews and Adcock before World Series",
+    funFact: "Photographed before Game 1 of the '57 Series, the Braves' power trio would help Milwaukee defeat the Yankees. Hank Aaron dominated the Series with a .393 average, 3 home runs, and 7 RBI, leading the Braves to their first championship since 1914."
+  },
+  {
+    id: 25,
+    year: 1917,
+    image: '/ernieShore.jpg',
+    hint: "The Most Unusual Perfect Game",
+    description: "Ernie Shore's Relief Perfect Game",
+    funFact: "On June 23, 1917, Babe Ruth started for the Red Sox and walked Ray Morgan to lead off the game. After arguing balls and strikes, Ruth told umpire Brick Owens 'If you chase me, I'll punch your face.' When ejected, Ruth made good on his threat, hitting Owens behind the ear. Ernie Shore came in, Morgan was caught stealing, and Shore retired all 26 batters he faced in a 4-0 win. Ruth got a 10-game suspension.",
+    source: "https://baseballhall.org/discover/babe-ruth-made-history-with-help-from-ernie-shore"
+  },
+  {
+    id: 26,
+    year: 1947,
+    image: '/ted.jpg',
+    hint: "The Greatest Hitter Who Ever Lived",
+    description: "Ted Williams at Fenway Park",
+    funFact: "Ted Williams was a fighter pilot in both WWII and Korea, missing nearly 5 full seasons in his prime. Despite this, he still hit .344 lifetime and was the last player to hit .400. He also refused to tip his cap to fans for 24 years, until his final at-bat homer in 1960."
+  },
+  {
+    id: 27,
+    year: 1975,
+    image: '/Fisk.jpg',
+    hint: "Stay Fair!",
+    description: "Carlton Fisk's Famous Wave",
+    funFact: "The iconic image of Fisk waving his Game 6 homer fair only exists because the cameraman was distracted by a rat. He was supposed to follow the ball but got startled and kept the camera on Fisk instead, creating one of baseball's most memorable moments."
   }
-  
-
 ];
 
 const ACHIEVEMENTS = {
@@ -156,7 +240,7 @@ const ACHIEVEMENTS = {
 };
 
 const SOUND_EFFECTS = {
-  homeRun: new Audio('/sounds/success-chime.mp3'),
+  homeRun: new Audio('/sounds/HR.wav'),
   hit: new Audio('/sounds/hit.mp3'),
   out: new Audio('/sounds/out.wav'),
   achievement: new Audio('/sounds/achievement.wav'),
@@ -166,7 +250,7 @@ const SOUND_EFFECTS = {
 // Set volume for all sound effects
 Object.values(SOUND_EFFECTS).forEach(sound => {
   if (sound === SOUND_EFFECTS.sliderTick) {
-    sound.volume = 0.4; // 40% volume for slider tick
+    sound.volume = 0.2; // 20% volume for slider tick
   } else {
     sound.volume = 0.2;
   }
@@ -856,8 +940,9 @@ export default function BaseballTimeMachine() {
   function handleFeedbackNext() {
     setShowFeedback(false);
     
-    if (feedbackData.isGameOver) {
-        setGameState('over');
+    // Check if we've reached game over conditions
+    if (outs >= 3 || sequenceIndex >= 2) {
+      setGameState('over');
       return;
     }
     
@@ -1008,23 +1093,7 @@ if (gameState === 'over') {
                   alignItems: 'center'
                 }}
               >
-                {/* Background stack effect - multiple layers */}
-                <div 
-                  className="absolute hidden sm:block"
-                  style={{
-                    backgroundImage: 'url(/bgfade%20Medium.png)',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    width: '100%',
-                    height: '100%',
-                    top: '5px',
-                    left: '-10px',
-                    zIndex: -3,
-                    transform: 'rotate(-2deg)',
-                    opacity: 0.8
-                  }}
-                />
+                {/* Single background layer */}
                 <div 
                   className="absolute hidden sm:block"
                   style={{
@@ -1036,25 +1105,9 @@ if (gameState === 'over') {
                     height: '100%',
                     top: '10px',
                     left: '-20px',
-                    zIndex: -2,
-                    transform: 'rotate(-4deg)',
-                    opacity: 0.6
-                  }}
-                />
-                <div 
-                  className="absolute hidden sm:block"
-                  style={{
-                    backgroundImage: 'url(/bgfade%20Medium.png)',
-                    backgroundSize: '100% 100%',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    width: '100%',
-                    height: '100%',
-                    top: '15px',
-                    left: '-30px',
                     zIndex: -1,
-                    transform: 'rotate(-6deg)',
-                    opacity: 0.4
+                    transform: 'rotate(-3deg)',
+                    opacity: 0.8
                   }}
                 />
                 
