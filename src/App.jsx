@@ -835,14 +835,13 @@ export default function BaseballTimeMachine() {
         setCollectedMoments(prev => [...prev, currentMoment.id]);
       }
 
-      const nextIndex = sequenceIndex + 1;
       setFeedbackData({
         result: feedbackResult,
         yearDifference: difference,
         points: points,
         image: currentMoment.image,
         funFact: currentMoment.funFact,
-        isGameOver: nextIndex >= 3,
+        isGameOver: sequenceIndex >= 2,
         isFoulBall: false,
         currentYear: currentMoment.year
       });
@@ -910,14 +909,13 @@ export default function BaseballTimeMachine() {
         setOuts(newOuts);
       }
       
-      const nextIndex = sequenceIndex + 1;
       setFeedbackData({
         result: feedbackResult,
         yearDifference: difference,
         points: points,
         image: currentMoment.image,
         funFact: currentMoment.funFact,
-        isGameOver: outs + 1 >= 3 || nextIndex >= 3,
+        isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
         isFoulBall: false,
         currentYear: currentMoment.year
       });
@@ -933,13 +931,24 @@ export default function BaseballTimeMachine() {
   function handleFeedbackNext() {
     setShowFeedback(false);
     
-    // Check if we've reached game over conditions
-    if (outs >= 3 || sequenceIndex >= 2) {
+    // If it's a foul ball and not the last strike, just continue
+    if (feedbackData.isFoulBall && strikes < 3) {
+      return;
+    }
+    
+    // If we're on the last image (index 2) and it's not a foul ball, go to game over
+    if (sequenceIndex >= 2 && !feedbackData.isFoulBall) {
       setGameState('over');
       return;
     }
     
-    // Only advance to next image if it was a scoring hit or an out
+    // If we have 3 outs, go to game over
+    if (outs >= 3) {
+      setGameState('over');
+      return;
+    }
+    
+    // Only advance to next image if it wasn't a foul ball
     if (!feedbackData.isFoulBall) {
       const nextIndex = sequenceIndex + 1;
       setImageOpacity(0);
