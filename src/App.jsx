@@ -546,7 +546,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
               <rect x="6" y="3" width="16" height="16" rx="2"/>
               <path d="M22 9v10a2 2 0 0 1-2 2H6"/>
             </svg>
-            View Collection
+            Home Run Trophy Case
           </button>
         </div>
         
@@ -577,7 +577,7 @@ function Collection({ onClose, collectedMoments }) {
             className="text-4xl text-white"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
-            My Collection ({discoveredMoments.length})
+            Home Run Trophy Case ({discoveredMoments.length})
           </h2>
           <button 
             onClick={onClose}
@@ -774,8 +774,21 @@ export default function BaseballTimeMachine() {
         newAchievements.push('POWER_HITTER');
       }
       
-      if (outs === 0 && !achievements.includes('NO_STRIKES')) {
-        newAchievements.push('NO_STRIKES');
+      // Only award Perfect Game if all three images are collected and we're on the last image
+      if (sequenceIndex === 2 && outs === 0 && !achievements.includes('NO_STRIKES') && collectedMoments.length === 3) {
+        // Get today's moments
+        const todaysMoments = [
+          getDailyMoment(0).id,
+          getDailyMoment(1).id,
+          getDailyMoment(2).id
+        ];
+        
+        // Check if all of today's moments are in the collection
+        const hasAllTodaysMoments = todaysMoments.every(id => collectedMoments.includes(id));
+        
+        if (hasAllTodaysMoments) {
+          newAchievements.push('NO_STRIKES');
+        }
       }
     } else {
       setPerfectStreak(0);
@@ -1160,7 +1173,7 @@ if (gameState === 'over') {
             <div className="hidden md:flex justify-between items-start -mb-8">
               <button
                 onClick={() => setShowHowToPlay(true)}
-                className="text-[#f5f2e6]/70 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200"
+                className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 HOW TO PLAY
@@ -1176,7 +1189,7 @@ if (gameState === 'over') {
             </div>
 
             {/* Mobile Stats Display */}
-            <div className="flex justify-between items-center mb-4 md:hidden px-2">
+            <div className="flex justify-between items-center mb-4 md:hidden px-2 py-2 border border-[#f5f2e6]/10 rounded-lg mx-1">
               <div 
                 className="text-[#f5f2e6]/70 text-base"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -1201,7 +1214,7 @@ if (gameState === 'over') {
 
             <div className="space-y-4">
               <div className="relative">
-                <div className="flex justify-center">
+                <div className="flex justify-center md:-mt-4">
                   {yearDigits.map((digit, index) => (
                     <YearDigit key={index} digit={digit} />
                   ))}
@@ -1209,17 +1222,19 @@ if (gameState === 'over') {
               </div>
               
               <div className="space-y-4">
-                <input
-                  type="range"
-                  min="1850"
-                  max="2025"
-                  value={year}
-                  onChange={handleYearChange}
-                  className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer mt-4 mb-2"
-                />
-                <div className="flex justify-between text-sm text-gray-400 px-2">
+                <div className="flex justify-between text-sm text-gray-600 px-2 mb-2">
                   <span>1850</span>
                   <span>2025</span>
+                </div>
+                <div className="-mt-6">
+                  <input
+                    type="range"
+                    min="1850"
+                    max="2025"
+                    value={year}
+                    onChange={handleYearChange}
+                    className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                  />
                 </div>
               </div>
               
