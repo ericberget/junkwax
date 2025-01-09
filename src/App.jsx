@@ -43,11 +43,11 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 5,
-    year: 1913,
-    image: '/1913.jpg',
-    hint: "Baseball's Brainy Ballplayer",
-    description: "Johnny Evers of the Chicago Cubs",
-    funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
+    year: 1896,
+    image: '/Honus1896.jpg',
+    hint: "The Flying Dutchman's Minor League Days",
+    description: "Paterson Silk Weavers, Atlantic League, 1896",
+    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
   },
   {
     id: 6,
@@ -121,14 +121,6 @@ const BASEBALL_MOMENTS = [
     description: "1901 Cleveland Blues Team Photo",
     funFact: "This Cleveland team played in the very first American League game ever on April 24, 1901. Then called the Blues and managed by Jimmy McAleer (in derby hat), they would later become known as the Indians in 1915 and Guardians in 2022. On May 23rd of their inaugural season, they pulled off one of the greatest comebacks in baseball history, scoring 9 runs with two outs in the ninth to win 14-13.",
     source: "https://sabr.org/gamesproj/game/may-23-1901-hopeless-defeat-turned-into-glorious-victory/"
-  },
-  {
-    id: 15,
-    year: 1896,
-    image: '/Honus1896.jpg',
-    hint: "The Flying Dutchman's Minor League Days",
-    description: "Paterson Silk Weavers, Atlantic League, 1896",
-    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
   },
   {
     id: 16,
