@@ -1184,7 +1184,7 @@ if (gameState === 'over') {
             </div>
 
             {/* Mobile Stats Display */}
-            <div className="flex justify-between items-center mb-4 sm:hidden px-2">
+            <div className="flex justify-between items-center mb-4 md:hidden px-2">
               <div 
                 className="text-[#f5f2e6]/70 text-base"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -1207,7 +1207,7 @@ if (gameState === 'over') {
               )}
             </div>
 
-            <div className="space-y-4 -mt-16">
+            <div className="space-y-4">
               <div className="relative">
                 <div className="flex justify-center">
                   {yearDigits.map((digit, index) => (
