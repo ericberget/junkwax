@@ -50,14 +50,6 @@ const BASEBALL_MOMENTS = [
     funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
   },
   {
-    id: 16,
-    year: 1987,
-    image: '/1987.jpg',
-    hint: "The Wizard shows his magic",
-    description: "Ozzie Smith's acrobatic defense",
-    funFact: "Known as 'The Wizard of Oz', Ozzie Smith revolutionized the shortstop position with his acrobatic defensive plays and signature backflips. He won an incredible 13 consecutive Gold Glove awards from 1980-1992. When he retired, he held major league records for assists (8,375) and double plays (1,590) by a shortstop, as well as the National League record for games played at shortstop (2,511). His defensive wizardry was so spectacular that he became the first player elected to the Hall of Fame primarily for his defensive skills, proving that a player didn't need to be a power hitter to be one of baseball's greatest stars."
-  },
-  {
     id: 7,
     year: 1961,
     image: '/1961.jpg',
