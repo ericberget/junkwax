@@ -43,11 +43,11 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 5,
-    year: 1988,
-    image: '/1988.jpg',
-    hint: "Gibby for the walkoff",
-    description: "Kirk Gibson hits a world series walkoff",
-    funFact: "Kirk Gibson hits a world series walkoff etc etc, need a fact here about knees"
+    year: 1913,
+    image: '/1913.jpg',
+    hint: "Baseball's Brainy Ballplayer",
+    description: "Johnny Evers of the Chicago Cubs",
+    funFact: "Johnny Evers, immortalized in baseball lore as the pivot man in the famous 'Tinker to Evers to Chance' double play combination, was known as one of the game's most intelligent and intense players. This 1913 photograph was taken during his final season with the Chicago Cubs, where he had been a key part of their dynasty that won four National League pennants and two World Series (1907, 1908). Standing just 5'9\" and weighing 125 pounds, Evers earned the nickname 'The Human Crab' for his unique, sideways defensive style at second base. He was elected to the Baseball Hall of Fame in 1946."
   },
   {
     id: 6,
