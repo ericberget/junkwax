@@ -1231,8 +1231,15 @@ if (gameState === 'over') {
                         digits[digitIndex] = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
                         const newYear = parseInt(digits.join(''));
                         
+                        // Ensure valid range based on digit position
+                        let isValidYear = true;
+                        if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
+                        if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+                        if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+                        if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
+                        
                         // Only update if within valid range
-                        if (newYear >= 1850 && newYear <= 2025) {
+                        if (newYear >= 1850 && newYear <= 2025 && isValidYear) {
                           setYear(newYear);
                           playSound('sliderTick');
                           if (!guessStartTime) {
