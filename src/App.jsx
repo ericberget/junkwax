@@ -1217,7 +1217,7 @@ if (gameState === 'over') {
               )}
             </div>
 
-            <div className="space-y-4 -mt-12">
+            <div className="space-y-4 md:-mt-12">
               <div className="relative">
                 <div className="flex justify-center">
                   {yearDigits.map((digit, index) => (
