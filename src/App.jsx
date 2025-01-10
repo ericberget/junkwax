@@ -1089,13 +1089,6 @@ if (gameState === 'over') {
             className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
-          <button
-            onClick={() => setShowFeedbackForm(true)}
-            className="absolute top-2 right-2 text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-          >
-            FEEDBACK
-          </button>
         </div>
         
         <Card className="bg-transparent border-none">
@@ -1181,13 +1174,15 @@ if (gameState === 'over') {
 
             {/* Stats and How To Play row with Year */}
             <div className="hidden md:flex justify-between items-start -mb-8">
-              <button
-                onClick={() => setShowHowToPlay(true)}
-                className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
-                HOW TO PLAY
-              </button>
+              <div className="space-y-2">
+                <button
+                  onClick={() => setShowHowToPlay(true)}
+                  className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded block"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  HOW TO PLAY
+                </button>
+              </div>
               <div 
                 className="text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -1306,16 +1301,25 @@ if (gameState === 'over') {
       {showFeedbackForm && (
         <FeedbackForm onClose={() => setShowFeedbackForm(false)} />
       )}
-      {window.location.hostname === 'localhost' && (
-        <div className="fixed bottom-2 right-2">
+      <div className="fixed bottom-2 right-2 flex gap-2">
+        <button
+          onClick={() => {
+            console.log('Feedback button clicked');
+            setShowFeedbackForm(prev => !prev);
+          }}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Feedback (Beta)
+        </button>
+        {window.location.hostname === 'localhost' && (
           <button
             onClick={handleStagingReset}
             className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
           >
             Reset For Testing
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

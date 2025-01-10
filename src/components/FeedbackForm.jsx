@@ -3,11 +3,32 @@ import React, { useState } from 'react';
 export function FeedbackForm({ onClose }) {
   const [feedback, setFeedback] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    window.location.href = `mailto:berget3333@gmail.com?subject=Baseball Time Machine Feedback&body=${encodeURIComponent(feedback)}`;
-    setSubmitted(true);
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'feedback',
+          message: feedback,
+        }).toString(),
+      });
+      
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Sorry, there was an error sending your feedback. Please try again.");
+      }
+    } catch (error) {
+      alert("Sorry, there was an error sending your feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -43,19 +64,25 @@ export function FeedbackForm({ onClose }) {
               <div className="text-green-400 text-2xl mb-4" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
                 Thank you for your feedback!
               </div>
-              <p className="text-[#f5f2e6]">
-                Your default email client should have opened with your feedback. 
-                If it didn't, you can manually send your feedback to: berget3333@gmail.com
+              <p className="text-[#f5f2e6] mb-6">
+                Your feedback has been received and will help us improve the game.
               </p>
               <button
                 onClick={onClose}
-                className="mt-6 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-6 rounded-lg transition-all duration-300 ease-in-out"
+                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-6 rounded-lg transition-all duration-300 ease-in-out"
               >
                 Close
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-4"
+              data-netlify="true"
+              name="feedback"
+              method="POST"
+            >
+              <input type="hidden" name="form-name" value="feedback" />
               <div>
                 <label 
                   htmlFor="feedback" 
@@ -66,6 +93,7 @@ export function FeedbackForm({ onClose }) {
                 </label>
                 <textarea
                   id="feedback"
+                  name="message"
                   value={feedback}
                   onChange={(e) => setFeedback(e.target.value)}
                   className="w-full h-40 px-4 py-3 rounded-lg bg-gray-700 text-[#f5f2e6] border border-gray-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none resize-none"
@@ -76,10 +104,11 @@ export function FeedbackForm({ onClose }) {
               <div className="text-right">
                 <button
                   type="submit"
-                  className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-6 rounded-lg transition-all duration-300 ease-in-out"
+                  disabled={isSubmitting}
+                  className={`bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-6 rounded-lg transition-all duration-300 ease-in-out ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  Send Feedback
+                  {isSubmitting ? 'Sending...' : 'Send Feedback'}
                 </button>
               </div>
             </form>
