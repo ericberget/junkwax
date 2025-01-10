@@ -1228,18 +1228,34 @@ if (gameState === 'over') {
                       onIncrement={(digitIndex) => {
                         const yearStr = year.toString().padStart(4, '0');
                         const digits = yearStr.split('');
-                        digits[digitIndex] = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
-                        const newYear = parseInt(digits.join(''));
                         
-                        // Ensure valid range based on digit position
-                        let isValidYear = true;
+                        // Try incrementing first
+                        const incrementedDigit = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
+                        digits[digitIndex] = incrementedDigit;
+                        let newYear = parseInt(digits.join(''));
+                        
+                        // Check if increment is valid
+                        let isValidYear = newYear >= 1850 && newYear <= 2025;
                         if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
                         if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
                         if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
                         if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
                         
-                        // Only update if within valid range
-                        if (newYear >= 1850 && newYear <= 2025 && isValidYear) {
+                        // If increment isn't valid, try decrementing instead
+                        if (!isValidYear) {
+                          digits[digitIndex] = ((parseInt(yearStr[digitIndex]) - 1 + 10) % 10).toString();
+                          newYear = parseInt(digits.join(''));
+                          isValidYear = newYear >= 1850 && newYear <= 2025;
+                          
+                          // Recheck validity conditions for decrement
+                          if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
+                          if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+                          if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+                          if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
+                        }
+                        
+                        // Update if valid
+                        if (isValidYear) {
                           setYear(newYear);
                           playSound('sliderTick');
                           if (!guessStartTime) {
