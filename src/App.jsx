@@ -1093,8 +1093,8 @@ if (gameState === 'over') {
         
         <Card className="bg-transparent border-none">
           <CardContent className="p-1 sm:p-2">
-            {/* Photo container */}
-            <div className="relative mx-0 sm:mx-2 mb-4 sm:mb-8">
+            {/* Image */}
+            <div className="relative mx-0 sm:mx-2 mb-2 sm:mb-4">
               <div 
                 className="relative"
                 style={{
@@ -1217,9 +1217,9 @@ if (gameState === 'over') {
               )}
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 -mt-12">
               <div className="relative">
-                <div className="flex justify-center md:-mt-4">
+                <div className="flex justify-center">
                   {yearDigits.map((digit, index) => (
                     <YearDigit 
                       key={index} 
@@ -1246,12 +1246,12 @@ if (gameState === 'over') {
                 </div>
               </div>
               
-              <div className="space-y-4">
-                <div className="flex justify-between text-sm text-gray-600 px-2 mb-2">
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm text-gray-600 px-2 mb-1">
                   <span>1850</span>
                   <span>2025</span>
                 </div>
-                <div className="-mt-6">
+                <div className="-mt-2">
                   <input
                     type="range"
                     min="1850"
@@ -1266,7 +1266,7 @@ if (gameState === 'over') {
               <button
                 onClick={handleGuess}
                 disabled={showFeedback || imageOpacity < 1}
-                className={`w-full mb-8 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c] ${(showFeedback || imageOpacity < 1) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`w-full mb-4 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c] ${(showFeedback || imageOpacity < 1) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 TAKE A SWING
