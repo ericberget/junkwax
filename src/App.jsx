@@ -6,6 +6,7 @@ import { Books } from './components/Books';
 import { HowToPlay } from './components/HowToPlay';
 import { FeedbackOverlay } from './components/FeedbackOverlay';
 import { ImageZoom } from './components/ImageZoom';
+import { FeedbackForm } from './components/FeedbackForm';
 
 
 const BASEBALL_MOMENTS = [
@@ -279,11 +280,12 @@ function saveDailyState(state) {
 }
 
 
-function YearDigit({ digit }) {
+function YearDigit({ digit, index, onIncrement }) {
   return (
     <div 
-      className="w-14 h-[68px] bg-white border-2 border-gray-300 rounded flex items-center justify-center text-4xl font-mono text-blue-900 shadow-lg mx-1"
+      className="w-14 h-[68px] bg-white border-2 border-gray-300 rounded flex items-center justify-center text-4xl font-mono text-blue-900 shadow-lg mx-1 cursor-pointer active:bg-gray-100 select-none"
       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+      onClick={() => onIncrement(index)}
     >
       {digit}
     </div>
@@ -712,6 +714,7 @@ export default function BaseballTimeMachine() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [feedbackData, setFeedbackData] = useState(null);
   const [showZoom, setShowZoom] = useState(false);
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
   useEffect(() => {
     if (isTimerActive && time === 0) {
@@ -1086,6 +1089,13 @@ if (gameState === 'over') {
             className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
+          <button
+            onClick={() => setShowFeedbackForm(true)}
+            className="absolute top-2 right-2 text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded"
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+          >
+            FEEDBACK
+          </button>
         </div>
         
         <Card className="bg-transparent border-none">
@@ -1216,7 +1226,27 @@ if (gameState === 'over') {
               <div className="relative">
                 <div className="flex justify-center md:-mt-4">
                   {yearDigits.map((digit, index) => (
-                    <YearDigit key={index} digit={digit} />
+                    <YearDigit 
+                      key={index} 
+                      digit={digit} 
+                      index={index}
+                      onIncrement={(digitIndex) => {
+                        const yearStr = year.toString().padStart(4, '0');
+                        const digits = yearStr.split('');
+                        digits[digitIndex] = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
+                        const newYear = parseInt(digits.join(''));
+                        
+                        // Only update if within valid range
+                        if (newYear >= 1850 && newYear <= 2025) {
+                          setYear(newYear);
+                          playSound('sliderTick');
+                          if (!guessStartTime) {
+                            setGuessStartTime(Date.now());
+                            setIsTimerActive(true);
+                          }
+                        }
+                      }}
+                    />
                   ))}
                 </div>
               </div>
@@ -1272,6 +1302,9 @@ if (gameState === 'over') {
           description={currentMoment.description}
           onClose={() => setShowZoom(false)}
         />
+      )}
+      {showFeedbackForm && (
+        <FeedbackForm onClose={() => setShowFeedbackForm(false)} />
       )}
       {window.location.hostname === 'localhost' && (
         <div className="fixed bottom-2 right-2">

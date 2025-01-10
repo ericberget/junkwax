@@ -71,7 +71,7 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
             {/* Header with Result, Year, and Points */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 animate-fadeIn">
               {/* Left side - Result */}
-              <div className="text-center md:text-left">
+              <div className="text-center md:text-left pt-6">
                 <h2 
                   className="text-4xl md:text-5xl mb-2" 
                   style={{ 
@@ -111,20 +111,33 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
                 </div>
               </div>
 
-              {/* Right side - Points */}
-              {points > 0 && (
-                <div className="text-center md:text-right animation-delay-200">
-                  <div 
-                    className="text-5xl md:text-6xl text-green-400"
-                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                  >
-                    +{points}
-                  </div>
-                  <div className="text-green-300 text-lg md:text-xl">
-                    points
+              {/* Right side - Points and Next Button on Mobile */}
+              <div className="text-center md:text-right animation-delay-200">
+                <div className="flex flex-col md:block">
+                  {points > 0 && (
+                    <div>
+                      <div 
+                        className="text-5xl md:text-6xl text-green-400"
+                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                      >
+                        +{points}
+                      </div>
+                      <div className="text-green-300 text-lg md:text-xl mb-4 md:mb-0">
+                        points
+                      </div>
+                    </div>
+                  )}
+                  <div className="block md:hidden mt-2">
+                    <button
+                      onClick={onNext}
+                      className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-8 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
+                      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                    >
+                      {isGameOver ? "View Results" : "Next"}
+                    </button>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Image */}
@@ -170,8 +183,8 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
               {funFact}
             </div>
 
-            {/* Next Button */}
-            <div className="text-center mt-8 mb-8 sm:mb-12 animate-fadeIn animation-delay-500">
+            {/* Next Button - Desktop Only */}
+            <div className="hidden md:block text-center mt-8 mb-8 sm:mb-12 animate-fadeIn animation-delay-500">
               <button
                 onClick={onNext}
                 className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-10 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
