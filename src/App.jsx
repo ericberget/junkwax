@@ -1174,7 +1174,7 @@ if (gameState === 'over') {
 
             {/* Stats and How To Play row with Year */}
             <div className="hidden md:flex justify-between items-start -mb-8">
-              <div className="space-y-2">
+              <div className="space-y-2 relative z-10 pointer-events-auto">
                 <button
                   onClick={() => setShowHowToPlay(true)}
                   className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded block"
