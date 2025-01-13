@@ -640,11 +640,14 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
               strokeLinecap="round" 
               strokeLinejoin="round"
             >
-              <rect x="2" y="5" width="16" height="16" rx="2"/>
-              <rect x="6" y="3" width="16" height="16" rx="2"/>
-              <path d="M22 9v10a2 2 0 0 1-2 2H6"/>
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5h3.5"/>
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5h-3.5"/>
+              <path d="M4 22h16"/>
+              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
             </svg>
-            Home Run Trophy Case
+            My Career Stats
           </button>
         </div>
         
@@ -667,29 +670,16 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
               </p>
               <button
                 onClick={onShowBooks}
-                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center gap-2"
+                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-xl"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
                 View Recommended Books
               </button>
             </div>
           </div>
         </div>
       </div>
+      <div className="mb-24"></div>
     </div>
   );
 }
@@ -701,9 +691,74 @@ function Collection({ onClose, collectedMoments }) {
   );
   const [selectedImage, setSelectedImage] = useState(null);
 
+  // Load career stats from localStorage
+  const careerStats = JSON.parse(localStorage.getItem('baseball-career-stats') || JSON.stringify({
+    totalPoints: 0,
+    perfectGuesses: 0,
+    gamesPlayed: 0,
+    achievements: [],
+    singles: 0,
+    doubles: 0,
+    triples: 0,
+    streak: 0,
+    lastPlayed: null
+  }));
+
   return (
     <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
       <div className="max-w-4xl mx-auto p-4">
+        {/* Career Stats Section */}
+        <div className="text-center mb-12">
+          <div className="bg-gray-800/90 rounded-lg p-8 border border-gray-700">
+            <h2 
+              className="text-2xl text-white mb-4"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              Total Career Points
+            </h2>
+            <div 
+              className="text-6xl text-green-400 mb-8"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              {careerStats.totalPoints} points
+            </div>
+            <div className="grid grid-cols-1 gap-6 text-[#f5f2e6]/70 text-xl max-w-2xl mx-auto">
+              {/* Hitting Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{discoveredMoments.length}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Home Runs</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.triples || 0}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Triples</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.doubles || 0}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Doubles</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.singles || 0}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Singles</div>
+                </div>
+              </div>
+              
+              {/* Career Stats */}
+              <div className="grid grid-cols-2 gap-4 border-t border-[#f5f2e6]/10 pt-6">
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.gamesPlayed}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Games Played</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.streak}</div>
+                  <div className="text-[#f5f2e6]/50 text-lg">Day Streak</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Trophy Case Section */}
         <div className="flex justify-between items-center mb-8">
           <h2 
             className="text-4xl text-white"
@@ -713,7 +768,7 @@ function Collection({ onClose, collectedMoments }) {
           </h2>
           <button 
             onClick={onClose}
-            className="text-white hover:text-gray-300"
+            className="text-white hover:text-gray-300 absolute top-4 right-4"
           >
             Close
           </button>
@@ -1077,12 +1132,14 @@ export default function BaseballTimeMachine() {
     
     // If we have 3 outs, go to game over
     if (outs >= 3) {
+      updateCareerStats();
       setGameState('over');
       return;
     }
     
     // If we're on the last image and it wasn't a foul ball, go to game over
     if (sequenceIndex >= 2 && !feedbackData.isFoulBall) {
+      updateCareerStats();
       setGameState('over');
       return;
     }
@@ -1104,6 +1161,86 @@ export default function BaseballTimeMachine() {
         }, 300);
       }, 300);
     }
+  }
+
+  function updateCareerStats() {
+    const savedStats = JSON.parse(localStorage.getItem('baseball-career-stats') || JSON.stringify({
+      totalPoints: 0,
+      perfectGuesses: 0,
+      gamesPlayed: 0,
+      achievements: [],
+      singles: 0,
+      doubles: 0,
+      triples: 0,
+      streak: 0,
+      lastPlayed: null
+    }));
+
+    // Check if streak should continue or reset
+    let newStreak = 0;
+    const today = new Date();
+    const lastPlayed = savedStats.lastPlayed ? new Date(savedStats.lastPlayed) : null;
+    
+    if (lastPlayed) {
+      // Set hours to 0 to compare just the dates
+      today.setHours(0, 0, 0, 0);
+      lastPlayed.setHours(0, 0, 0, 0);
+      
+      // Calculate days difference
+      const diffTime = Math.abs(today - lastPlayed);
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 1) {
+        // Consecutive day, increment streak
+        newStreak = savedStats.streak + 1;
+      } else if (diffDays === 0) {
+        // Same day, maintain streak
+        newStreak = savedStats.streak;
+      }
+      // If more than 1 day has passed, streak resets to 1 (initialized above)
+    } else {
+      // First time playing, streak starts at 1
+      newStreak = 1;
+    }
+
+    // Get today's moments
+    const todaysMoments = [
+      getDailyMoment(0).id,
+      getDailyMoment(1).id,
+      getDailyMoment(2).id
+    ];
+    
+    // Count perfect guesses from today's game
+    const perfectGuessesThisGame = todaysMoments.filter(id => 
+      collectedMoments.includes(id)
+    ).length;
+
+    // Count hits from this game's feedback data
+    let singlesThisGame = 0;
+    let doublesThisGame = 0;
+    let triplesThisGame = 0;
+
+    if (feedbackData) {
+      const result = feedbackData.result;
+      if (result === "SINGLE!") singlesThisGame++;
+      if (result === "DOUBLE!") doublesThisGame++;
+      if (result === "TRIPLE!") triplesThisGame++;
+    }
+
+    // Update career stats
+    const updatedStats = {
+      totalPoints: savedStats.totalPoints + score,
+      perfectGuesses: savedStats.perfectGuesses + perfectGuessesThisGame,
+      gamesPlayed: savedStats.gamesPlayed + 1,
+      achievements: [...new Set([...savedStats.achievements, ...achievements])],
+      singles: (savedStats.singles || 0) + singlesThisGame,
+      doubles: (savedStats.doubles || 0) + doublesThisGame,
+      triples: (savedStats.triples || 0) + triplesThisGame,
+      streak: newStreak,
+      lastPlayed: today.toISOString()
+    };
+
+    localStorage.setItem('baseball-career-stats', JSON.stringify(updatedStats));
   }
 
   function handleRestart() {
