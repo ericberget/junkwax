@@ -308,6 +308,14 @@ const BASEBALL_MOMENTS = [
     hint: "The Iron Horse's Farewell",
     description: "Lou Gehrig's Farewell Speech at Yankee Stadium",
     funFact: "On July 4, 1939, Lou Gehrig delivered his famous 'Luckiest Man' speech at Yankee Stadium. What many don't know is that Gehrig initially didn't want to speak at all. He had to be convinced by his wife Eleanor and team officials. When he finally agreed, he spoke without any written notes, from the heart. The Yankees' bat boy that day had the presence of mind to record the speech on a home movie camera, giving us the only known footage of this historic moment. The original speech lasted about 6 minutes, but only about 1 minute of footage survives today."
+  },
+  {
+    id: 39,
+    year: 1911,
+    image: '/1911.jpg',
+    hint: "The First Unofficial All-Star Game",
+    description: "Baseball's First All-Star Gathering",
+    funFact: "In 1911, Cleveland's Addie Joss died tragically of tubercular meningitis at age 31. To support his family, baseball organized what is considered the first all-star game - a benefit featuring Ty Cobb, Walter Johnson, Cy Young, and other stars. The game raised $12,914 (over $375,000 today) for Joss's family. The pitching matchup was legendary: Walter Johnson vs. Ed Walsh, with Johnson striking out 8 in 5 scoreless innings."
   }
 ];
 
@@ -618,10 +626,10 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
         <div className="flex justify-center gap-4">
           <button
             onClick={onRestart}
-            className="bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6]"
+            className="bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-gray-800"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
-            Play Again
+            (Testing Mode) Play Again
           </button>
 
           <button

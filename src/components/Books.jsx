@@ -50,66 +50,25 @@ export function Books({ onClose }) {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {RECOMMENDED_BOOKS.map((book, index) => (
-            <div 
-              key={index}
-              className="bg-gray-800/90 rounded-lg overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300"
-            >
-              <div className="relative bg-[#f5f2e6] p-3">
-                <img
-                  src={book.coverImage}
-                  alt={book.title}
-                  className="w-full h-auto object-contain"
-                  style={{ maxHeight: '300px' }}
-                />
-              </div>
-              <div className="p-4">
-                <h3 
-                  className="text-lg text-white mb-2"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  {book.title}
-                </h3>
-                <p className="text-gray-400 mb-2 text-sm">by {book.author}</p>
-                <p className="text-gray-300 mb-4 text-sm" style={{ lineHeight: '1.6' }}>
-                  {book.description}
-                </p>
-                <a 
-                  href={book.amazonLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-[#3B5998] hover:bg-[#4B69A8] text-white px-4 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-sm"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  View on Amazon
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-gray-800/90 rounded-lg p-8 border border-gray-700 mt-8">
-          <h3 
-            className="text-3xl text-[#f5f2e6] mb-4 text-center"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-          >
-            Essential Baseball Reading
-          </h3>
-          <p className="text-gray-300 text-lg text-center max-w-2xl mx-auto mb-6" style={{ lineHeight: '1.6' }}>
-            These carefully selected books are must-haves for any baseball history enthusiast. From rare photographs to untold stories, they offer unique perspectives on the game's rich heritage. Add them to your wish list or gift them to a fellow baseball fan!
-          </p>
-          <div className="flex justify-center">
             <a 
-              href="https://www.amazon.com/hz/wishlist/ls/create"
+              key={index}
+              href={book.amazonLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-[#1e4fba] hover:bg-[#2460e6] text-white px-8 py-3 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-lg"
-              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              className="bg-gray-800/90 rounded-lg p-4 border border-gray-700 hover:border-gray-500 transition-all duration-300"
             >
-              Create Amazon Wish List
+              <img 
+                src={book.coverImage} 
+                alt={book.title}
+                className="w-full h-auto object-cover rounded mb-4"
+              />
+              <h3 className="text-xl text-[#f5f2e6] mb-2">{book.title}</h3>
+              <p className="text-[#f5f2e6]/50 mb-2">{book.author}</p>
+              <p className="text-gray-400 text-sm">{book.description}</p>
             </a>
-          </div>
+          ))}
         </div>
       </div>
     </div>
