@@ -21,6 +21,13 @@ const RECOMMENDED_BOOKS = [
     description: "A selection of 205 duotone photographs from the archives of The Sporting Age, taken by the preeminent photographer between 1904 and 1942, highlights such moments as Ty Cobb's slide into third and Home Run Baker's batting practice, in a treasury complemented by text on the photographer's enduring legacy.",
     amazonLink: "https://www.amazon.com/Baseballs-Golden-Age-Photographs-Charles/dp/0810991195/",
     coverImage: "/books/book-conlon.jpg"
+  },
+  {
+    title: "The Baseball 100",
+    author: "Joe Posnanski",
+    image: "/books/baseball100.jpg",
+    description: "A fascinating countdown of the 100 greatest baseball players in history, featuring unforgettable tales and unique perspectives on the game's biggest legends.",
+    link: "https://www.amazon.com/Baseball-100-Joe-Posnanski/dp/1982180587/"
   }
 ];
 

@@ -21,7 +21,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 2,
     year: 1951,
-    image: '/1951mantle.jpg',
+    image: '/1951Mantle.jpg',
     hint: "The Commerce Comet's Rookie Card",
     description: "Mickey Mantle's rookie season with the Yankees",
     funFact: "This image captures Mickey Mantle during his rookie season with the New York Yankees in 1951. The 19-year-old from Commerce, Oklahoma was initially assigned uniform #6, following in the footsteps of Babe Ruth (#3), Lou Gehrig (#4), and Joe DiMaggio (#5). However, after struggling and being briefly sent down to the minors, he returned wearing his iconic #7. Despite the early setback, Mantle would go on to become one of baseball's greatest switch-hitters, winning three AL MVP awards and helping the Yankees capture seven World Series titles during his 18-year career."
@@ -159,7 +159,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 21,
     year: 1946,
-    image: '/fellerpaige.jpg',
+    image: '/fellerAndSatchel.jpg',
     hint: "Two Legendary Fireballers Face Off",
     description: "Bob Feller vs. Satchel Paige",
     funFact: "This rare photo captures a historic matchup between two of baseball's greatest pitchers. Bob Feller and Satchel Paige faced off in numerous barnstorming games, with Feller later saying Paige was the best pitcher he ever saw. In their matchups, Paige's teams won 6 of the 9 documented games against Feller's teams."
@@ -167,7 +167,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 22,
     year: 1914,
-    image: '/ruthredsox.jpg',
+    image: '/baberedsox.jpg',
     hint: "The Babe as a Rookie Pitcher",
     description: "Babe Ruth with the Boston Red Sox",
     funFact: "Before becoming baseball's greatest slugger, Babe Ruth was one of the American League's best left-handed pitchers. He went 89-46 with a 2.28 ERA in six seasons as a Red Sox pitcher before being converted to an outfielder. His pitching was so dominant that he once threw a 13-inning complete game victory in the World Series."
@@ -175,7 +175,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 23,
     year: 1985,
-    image: '/1985bluejays.jpg',
+    image: '/blueJays1980s.jpg',
     hint: "First Division Title in Toronto",
     description: "1985 Toronto Blue Jays",
     funFact: "The '85 Blue Jays captured their first AL East title with a franchise-record 99 wins. Led by Dave Stieb's pitching (14-13, 2.48 ERA) and Jesse Barfield's 27 home runs, they became the first team outside the United States to reach the playoffs."
@@ -208,10 +208,98 @@ const BASEBALL_MOMENTS = [
   {
     id: 27,
     year: 1975,
-    image: '/Fisk.jpg',
+    image: '/fisk2.jpg',
     hint: "Stay Fair!",
     description: "Carlton Fisk's Famous Wave",
     funFact: "The iconic image of Fisk waving his Game 6 homer fair only exists because the cameraman was distracted by a rat. He was supposed to follow the ball but got startled and kept the camera on Fisk instead, creating one of baseball's most memorable moments."
+  },
+  {
+    id: 28,
+    year: 1909,
+    image: '/tycobb1909.jpg',
+    hint: "The Georgia Peach's Triple Crown Season",
+    description: "Ty Cobb with the Detroit Tigers",
+    funFact: "In 1909, Ty Cobb won the Triple Crown while wearing specially modified baseball spikes that were extra sharp - a tactic that terrified infielders. He would often file his spikes before games and raise his leg while sliding to intimidate defenders. When asked about his aggressive style, Cobb famously said, 'I had to fight all my life to survive. They were all against me... but I beat the bastards and left them in the ditch.'"
+  },
+  {
+    id: 29,
+    year: 1912,
+    image: '/1912.jpg',
+    hint: "Opening Day at Baseball's New Cathedral",
+    description: "First Game at Fenway Park",
+    funFact: "When Fenway Park opened in 1912, the Red Sox owner didn't invite Boston's mayor to throw out the first pitch - because he was a Yankees fan! The park's first game was actually delayed two days due to rain, and many seats were still being nailed down just hours before the first pitch. The left field wall wouldn't be painted green until 1947, and the term 'Green Monster' wouldn't be coined until the 1960s."
+  },
+  {
+    id: 30,
+    year: 1927,
+    image: '/BabeLou.jpg',
+    hint: "Murderers' Row",
+    description: "Babe Ruth and Lou Gehrig",
+    funFact: "Despite being baseball's most famous duo, Ruth and Gehrig had a complex relationship. They went on a 21-game barnstorming tour together in 1927, splitting $80,000, but didn't speak for much of it. Ruth loved staying up late, drinking, and carousing, while Gehrig preferred reading and going to bed early. During the tour, they took separate cars to games and stayed in different hotels. Still, they combined for 107 home runs that season, with Ruth hitting 60 and Gehrig 47."
+  },
+  {
+    id: 31,
+    year: 1984,
+    image: '/1984AS.jpg',
+    hint: "All-Star Game's First Home Run Derby",
+    description: "MLB's Inaugural Home Run Derby",
+    funFact: "The first official MLB Home Run Derby was held at San Francisco's Candlestick Park in 1984, but the event was nearly cancelled due to the stadium's notorious winds. Dave Parker won with a modest total of 6 home runs - a far cry from today's totals. The real drama came when Reggie Jackson hit a ball that got stuck in the right field foul pole screen, leading to a 10-minute debate about whether it counted as a homer. It didn't, and Reggie wasn't happy about it!"
+  },
+  {
+    id: 32,
+    year: 1987,
+    image: '/1987.jpg',
+    hint: "The Homer Hanky Year",
+    description: "Minnesota Twins World Series Victory",
+    funFact: "The Homer Hanky was accidentally invented when a Minneapolis Star Tribune marketing manager misheard 'homer hankies' as 'homer honkies' in a meeting. The paper initially ordered 100,000 hankies for the 1987 playoffs, but they sold out in hours. The Metrodome's ventilation system had to be adjusted because 55,000 fans waving hankies was actually affecting fly balls! By the World Series, the hankies were so popular that Cardinals manager Whitey Herzog tried (unsuccessfully) to get them banned, claiming they distracted his players."
+  },
+  {
+    id: 33,
+    year: 1988,
+    image: '/1988.jpg',
+    hint: "The Impossible Has Happened!",
+    description: "Kirk Gibson's World Series Homer",
+    funFact: "Kirk Gibson was so injured before his famous World Series homer that he was icing both legs in the clubhouse and didn't even put on his uniform until the 8th inning. When Tommy Lasorda asked if he could pinch hit, Gibson reportedly said, 'Hit? I can't even walk!' The bat he used was accidentally discovered in a storage room at Dodger Stadium in 2010 - it had been mislabeled and forgotten for 22 years."
+  },
+  {
+    id: 34,
+    year: 1908,
+    image: '/cubsMascot.jpg',
+    hint: "The Cubs' Nightmare-Inducing Mascot",
+    description: "The Cubs' Terrifying Bear Mascot",
+    funFact: "This haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.' With temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.' Read More: https://www.toddradom.com/blog/2018/2/28/the-story-behind-the-chicago-cubs-nightmare-inducing-bear-mascot-of-1908"
+  },
+  {
+    id: 35,
+    year: 1947,
+    image: '/pageFence.jpg',
+    hint: "Satchel's Famous Warm-Up Routine",
+    description: "Satchel Paige's Pre-Game Show",
+    funFact: "Satchel Paige was famous for his pre-game warmup routine where he'd set up a wooden matchbox as a target and throw pitch after pitch over it. He'd tell his fielders to sit down in the outfield while he pitched, saying 'I don't need fielders for this one.' He named his pitches things like 'The Bee Ball' (it be where I want it to be), 'The Jump Ball,' 'The Whipsy-Dipsy-Do,' and 'The Hesitation Pitch' - which was so effective it was later banned by MLB."
+  },
+  {
+    id: 36,
+    year: 1914,
+    image: '/ruthBostonPitching.jpg',
+    hint: "The Sultan of Swat's Pitching Days",
+    description: "Babe Ruth with the Boston Red Sox",
+    funFact: "Before he was baseball's home run king, Babe Ruth was one of the best left-handed pitchers in baseball. In 1914, his rookie year, the Red Sox signed him for just $600. His teammates nicknamed him 'Babe' because he was so naive and childlike - he'd never eaten a proper meal, used proper table manners, or worn a suit before joining the team. The team had to assign an older player to be his chaperone and teach him basic life skills!"
+  },
+  {
+    id: 37,
+    year: 1951,
+    image: '/1951.jpg',
+    hint: "The Shot Heard 'Round the World",
+    description: "Bobby Thomson's Pennant-Winning Homer",
+    funFact: "When Bobby Thomson hit the 'Shot Heard 'Round the World' to win the 1951 pennant, the Giants' radio announcer Russ Hodges screamed 'The Giants win the pennant!' so many times that he became hoarse and nearly fainted. Amazingly, the only known full recording of his famous call exists because a Brooklyn Dodgers fan, distraught at his team's loss, had recorded the game on his new Webcor tape recorder to preserve what he thought would be a Dodgers victory!"
+  },
+  {
+    id: 38,
+    year: 1957,
+    image: '/1957.jpg',
+    hint: "The Hammer's First Championship",
+    description: "Hank Aaron and the Milwaukee Braves",
+    funFact: "In 1957, Hank Aaron led the Milwaukee Braves to their only World Series title by hitting .393 and outdueling Mickey Mantle's Yankees. What many don't know is that Aaron played the entire Series with a broken thumb that he kept secret from everyone except the team trainer. He'd ice it between innings and stuff his glove with extra padding. When asked years later how he did it, Aaron simply said, 'The World Series only comes around so often - you play through it.'"
   }
 ];
 
