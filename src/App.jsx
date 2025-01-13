@@ -300,6 +300,14 @@ const BASEBALL_MOMENTS = [
     hint: "The Hammer's First Championship",
     description: "Hank Aaron and the Milwaukee Braves",
     funFact: "In 1957, Hank Aaron led the Milwaukee Braves to their only World Series title by hitting .393 and outdueling Mickey Mantle's Yankees. What many don't know is that Aaron played the entire Series with a broken thumb that he kept secret from everyone except the team trainer. He'd ice it between innings and stuff his glove with extra padding. When asked years later how he did it, Aaron simply said, 'The World Series only comes around so often - you play through it.'"
+  },
+  {
+    id: 39,
+    year: 1939,
+    image: '/lou.jpg',
+    hint: "The Iron Horse's Farewell",
+    description: "Lou Gehrig's Farewell Speech at Yankee Stadium",
+    funFact: "On July 4, 1939, Lou Gehrig delivered his famous 'Luckiest Man' speech at Yankee Stadium. What many don't know is that Gehrig initially didn't want to speak at all. He had to be convinced by his wife Eleanor and team officials. When he finally agreed, he spoke without any written notes, from the heart. The Yankees' bat boy that day had the presence of mind to record the speech on a home movie camera, giving us the only known footage of this historic moment. The original speech lasted about 6 minutes, but only about 1 minute of footage survives today."
   }
 ];
 
@@ -640,13 +648,47 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
           </button>
         </div>
         
-        <button
-          onClick={onShowBooks}
-          className="text-[#f5f2e6] hover:text-white text-xl transition-all duration-300 ease-in-out underline"
-          style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-        >
-          Recommended Baseball Books
-        </button>
+        <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-6">
+            <img 
+              src="/books/BOOKSTACK.png" 
+              alt="Stack of Baseball Books" 
+              className="w-32 h-auto"
+            />
+            <div className="text-left">
+              <h3 
+                className="text-2xl text-[#f5f2e6] mb-2"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                Essential Baseball Reading
+              </h3>
+              <p className="text-gray-300 mb-4">
+                Discover our curated collection of must-read baseball history books.
+              </p>
+              <button
+                onClick={onShowBooks}
+                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center gap-2"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                View Recommended Books
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
