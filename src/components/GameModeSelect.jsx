@@ -1,128 +1,104 @@
 import React from 'react';
+import { FaBaseballBall, FaQuestionCircle } from 'react-icons/fa';
 
 export function GameModeSelect({ onSelectMode }) {
   return (
-    <div className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center">
+    <div 
+      className="min-h-screen w-full" 
+      style={{ 
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: '#1a1a1a'
+      }}
+    >
       <div className="max-w-6xl w-full mx-auto p-4">
-        {/* Logo */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-16 pt-8">
           <img  
             src="/LOGO.png"
             className="w-full max-w-[650px] mx-auto"
-            alt="Baseball Time Machine" 
+            alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
 
-        {/* Mode Selection Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Classic Mode */}
-          <button 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Triple Play Mode Card */}
+          <div 
             onClick={() => onSelectMode('classic')}
-            className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 hover:border-blue-500 transition-all duration-300 text-left group"
+            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#60a5fa]/10 hover:border-[#60a5fa]"
           >
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-500/20 p-2 rounded-lg">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="text-blue-400"
-                  >
-                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                    <circle cx="9" cy="9" r="2"/>
-                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                  </svg>
-                </div>
-                <h3 
-                  className="text-2xl text-[#f5f2e6] group-hover:text-blue-400 transition-colors duration-300"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  Classic Mode
-                </h3>
-              </div>
-              
-              <p className="text-gray-400 text-lg">
-                The original daily challenge. Guess the year of three historic baseball photos.
-              </p>
-
-              {/* Visual Preview */}
-              <div className="flex justify-center gap-2 mt-4">
-                <div className="w-20 h-16 bg-gray-700/50 rounded"></div>
-                <div className="w-20 h-16 bg-gray-700/50 rounded"></div>
-                <div className="w-20 h-16 bg-gray-700/50 rounded"></div>
-              </div>
-
-              <div className="text-sm text-gray-500 mt-4">
-                Three chances to make history
-              </div>
+            <div className="flex items-center gap-4 mb-4">
+              <FaBaseballBall className="text-4xl text-[#60a5fa]" />
+              <h2 
+                className="text-3xl text-[#60a5fa]"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                Triple Play Mode
+              </h2>
             </div>
-          </button>
+            <p className="text-gray-300 mb-6">
+              Test your baseball history knowledge with three daily images. Get points for perfect guesses and close calls!
+            </p>
+            {/* Three rectangles in a row */}
+            <div className="flex gap-2">
+              <div className="w-12 h-10 bg-gray-900/80 rounded-lg"></div>
+              <div className="w-12 h-10 bg-gray-900/80 rounded-lg"></div>
+              <div className="w-12 h-10 bg-gray-900/80 rounded-lg"></div>
+            </div>
+          </div>
 
-          {/* Trivia Mode */}
-          <button 
+          {/* Pic and Quiz Mode Card */}
+          <div 
             onClick={() => onSelectMode('trivia')}
-            className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 hover:border-green-500 transition-all duration-300 text-left group"
+            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#d4b483]/10 hover:border-[#d4b483]"
           >
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="bg-green-500/20 p-2 rounded-lg">
-                  <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="2" 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    className="text-green-400"
-                  >
-                    <path d="M9.31 9.31 5 21l7-4"/>
-                    <path d="m14 10 3-3 3 3-3 3-3-3"/>
-                    <path d="M9.31 9.31 5 21l7-4"/>
-                    <path d="m14 10 3-3 3 3-3 3-3-3"/>
-                  </svg>
-                </div>
-                <h3 
-                  className="text-2xl text-[#f5f2e6] group-hover:text-green-400 transition-colors duration-300"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  Trivia Mode
-                </h3>
-              </div>
-              
-              <p className="text-gray-400 text-lg">
-                Test your baseball knowledge. Guess the year and answer trivia questions for bonus points.
-              </p>
-
-              {/* Visual Preview */}
-              <div className="flex justify-center gap-4 mt-4">
-                <div className="w-32 h-24 bg-gray-700/50 rounded"></div>
-                <div className="space-y-2">
-                  <div className="w-24 h-4 bg-gray-700/50 rounded"></div>
-                  <div className="w-24 h-4 bg-gray-700/50 rounded"></div>
-                </div>
-              </div>
-
-              <div className="text-sm text-gray-500 mt-4">
-                One photo + trivia questions
+            <div className="flex items-center gap-4 mb-4">
+              <FaQuestionCircle className="text-4xl text-[#d4b483]" />
+              <h2 
+                className="text-3xl text-[#d4b483]"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                Daily Mode
+              </h2>
+            </div>
+            <p className="text-gray-300 mb-6">
+              One image plus trivia questions for bonus points
+            </p>
+            {/* One rectangle and multiple choice indicators */}
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-10 bg-gray-900/80 rounded-lg"></div>
+              <div className="space-y-1.5">
+                <div className="w-8 h-2 bg-gray-900/80 rounded-full"></div>
+                <div className="w-8 h-2 bg-gray-900/80 rounded-full"></div>
+                <div className="w-8 h-2 bg-gray-900/80 rounded-full"></div>
               </div>
             </div>
-          </button>
+          </div>
         </div>
 
-        {/* Daily Challenge Note */}
-        <div className="text-center mt-8 text-gray-500">
-          Both modes refresh daily with new content
+        {/* Centered refresh text and feedback button */}
+        <div className="text-center mt-8 space-y-4">
+          <div className="text-sm text-gray-400">
+            New content refreshes daily
+          </div>
+          <button
+            onClick={() => onSelectMode('feedback')}
+            className="text-gray-400 hover:text-gray-300 text-sm bg-gray-800/50 hover:bg-gray-800/70 px-4 py-2 rounded-lg transition-all duration-200"
+          >
+            Share Feedback (Beta)
+          </button>
         </div>
+      </div>
+
+      {/* Reset Button in bottom corner */}
+      <div className="fixed bottom-2 right-2">
+        <button
+          onClick={() => onSelectMode('reset')}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Reset for Testing
+        </button>
       </div>
     </div>
   );

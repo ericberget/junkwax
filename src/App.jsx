@@ -1395,14 +1395,14 @@ export default function BaseballTimeMachine() {
     }
     
     // If we have 3 outs or it's the last image in either mode, go to game over
-    if (outs >= 3 || (gameMode === 'trivia' && sequenceIndex === 0) || (gameMode === 'classic' && sequenceIndex === 2)) {
+    if (outs >= 3 || (gameMode === 'trivia' && sequenceIndex === 0) || (gameMode === 'classic' && sequenceIndex === 2 && !feedbackData.isFoulBall)) {
       updateCareerStats();
       setGameState('over');
       return;
     }
     
-    // In classic mode, continue to next image if available
-    if (gameMode === 'classic' && sequenceIndex < 2) {
+    // In classic mode, continue to next image if available and not a foul ball
+    if (gameMode === 'classic' && sequenceIndex < 2 && !feedbackData.isFoulBall) {
       const nextIndex = sequenceIndex + 1;
       setImageOpacity(0);
       setTimeout(() => {
@@ -1522,6 +1522,8 @@ export default function BaseballTimeMachine() {
     localStorage.removeItem(getTodayKey());
     localStorage.removeItem('baseball-collection');
     localStorage.removeItem('baseball-muted');
+    localStorage.removeItem('baseball-game-mode');
+    localStorage.removeItem('baseball-career-stats');
     
     // Reset all state
     setYear(1950);
@@ -1538,6 +1540,7 @@ export default function BaseballTimeMachine() {
     setSequenceIndex(0);
     setCurrentMoment(getDailyMoment(0));
     setCollectedMoments([]);
+    setGameMode(null); // Reset game mode selection
   }
 
   // Function to preview tomorrow's puzzle
@@ -1601,6 +1604,10 @@ export default function BaseballTimeMachine() {
   }, [gameMode]);
 
   const handleModeSelect = (mode) => {
+    if (mode === 'reset') {
+      handleStagingReset();
+      return;
+    }
     setGameMode(mode);
     handleStagingReset(); // Reset game state when switching modes
   };
