@@ -9,6 +9,16 @@ export function TriviaQuestion({ question, options, correctAnswer, onAnswer, que
     
     setSelectedAnswer(answer);
     setHasAnswered(true);
+    
+    if (answer === correctAnswer) {
+      const correctSound = new Audio('/sounds/correctding.wav');
+      correctSound.volume = 0.2;
+      correctSound.play();
+    } else {
+      const wrongSound = new Audio('/sounds/wrong.wav');
+      wrongSound.volume = 0.2;
+      wrongSound.play();
+    }
   };
 
   const handleNext = () => {

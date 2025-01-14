@@ -348,10 +348,12 @@ const SOUND_EFFECTS = {
 
 // Set volume for all sound effects
 Object.values(SOUND_EFFECTS).forEach(sound => {
-  if (sound === SOUND_EFFECTS.sliderTick) {
+  if (sound === SOUND_EFFECTS.homeRun) {
+    sound.volume = 0.4; // 40% volume for home run sound
+  } else if (sound === SOUND_EFFECTS.sliderTick) {
     sound.volume = 0.2; // 20% volume for slider tick
   } else {
-    sound.volume = 0.2;
+    sound.volume = 0.2; // 20% volume for other sounds
   }
 });
 
@@ -504,157 +506,221 @@ function GameOver({
   }
 
   return (
-    <div className="text-center p-8 max-w-4xl mx-auto min-h-screen">
-      <div className="text-center mb-16">
-        <img  
-          src="/LOGO.png"
-          className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
-          alt="The Daily Baseball Photo Trivia Game" 
-        />
-      </div>
-
-      {/* Two-column layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {/* Left Column - Score and Share */}
-        <div className="flex flex-col">
-          <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
-            <h2 className="text-3xl text-white mb-4 text-center" 
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-        Game Over!
-      </h2>
-            <div 
-              className="text-7xl text-green-400 mb-4 text-center"
-              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-            >
-              {typeof score === 'number' ? score : 0} points
-            </div>
-            <div className="text-xl text-[#f5f2e6] mb-6">
-              {gameMode === 'classic' ? (
-                `You got ${correctGuesses} perfect ${correctGuesses === 1 ? 'guess' : 'guesses'}!`
-              ) : (
-                'Thanks for playing Trivia Mode!'
-              )}
-            </div>
-            
-            {/* Share Button */}
-            <button
-              onClick={handleShare}
-              className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg mb-4"
-              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-            >
-              Share Results
-            </button>
-
-            {/* Mode Indicator */}
-            <div className="text-center mt-4 text-gray-400">
-              Played in {gameMode === 'classic' ? 'Classic' : 'Trivia'} Mode
-            </div>
-          </div>
+    <div 
+      className="min-h-screen w-full overflow-hidden" 
+      style={{ 
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 70%), url('/bg.jpg')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: 'black'
+      }}>
+      <div className="text-center p-4 sm:p-6 max-w-4xl mx-auto">
+        <div className="text-center mb-6">
+          <img  
+            src="/LOGO.png"
+            className="game-over-logo w-full max-w-[944px] sm:max-w-[840px] md:max-w-[1050px] mx-auto px-1 sm:px-2 md:px-0"
+            alt="The Daily Baseball Photo Trivia Game" 
+          />
         </div>
 
-        {/* Right Column - Today's Moments */}
-        <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
-          <h3 
-            className="text-2xl text-[#f5f2e6] mb-4"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          {/* Left Column - Score and Share */}
+          <div className="flex flex-col">
+            <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
+              <h2 className="text-3xl text-white mb-4 text-center" 
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+          Game Over!
+        </h2>
+              <div 
+                className="text-7xl text-green-400 mb-4 text-center"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                {typeof score === 'number' ? score : 0} points
+              </div>
+              <div className="text-xl text-[#f5f2e6] mb-6">
+                {gameMode === 'classic' ? (
+                  `You got ${correctGuesses} perfect ${correctGuesses === 1 ? 'guess' : 'guesses'}!`
+                ) : (
+                  'Thanks for playing Trivia Mode!'
+                )}
+              </div>
+              
+              {/* Share Button */}
+              <button
+                onClick={handleShare}
+                className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg mb-4"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                Share Results
+              </button>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3 mb-4">
+                <button
+                  onClick={onShowCollection}
+                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6] flex items-center justify-center gap-2"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round"
+                  >
+                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5h3.5"/>
+                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5h-3.5"/>
+                    <path d="M4 22h16"/>
+                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                  </svg>
+                  My Career Stats
+                </button>
+              </div>
+
+              {/* Mode Indicator */}
+              <div className="text-center mt-4 text-gray-400">
+                Played in {gameMode === 'classic' ? 'Classic' : 'Trivia'} Mode
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Today's Moments */}
+          <div 
+            className="bg-gray-800/90 p-6 rounded-lg border border-gray-700 relative overflow-hidden"
+            style={{
+              minHeight: '300px'
+            }}
           >
-            {gameMode === 'classic' ? "Today's Moments" : "Today's Moment"}
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `url(${allMoments[0].image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                filter: 'blur(3px)'
+              }}
+            />
+            
+            {/* Content */}
+            <div className="relative z-10">
+              <h3 
+                className="text-2xl text-[#f5f2e6] mb-4"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                {gameMode === 'classic' ? "Today's Moments" : "Today's Moment"}
               </h3>
 
               <div className="grid grid-cols-1 gap-4">
-            {allMoments.slice(0, gameMode === 'classic' ? 3 : 1).map((moment, index) => (
-              <div 
-                key={index}
-                className={`p-4 rounded-lg ${
-                  collectedMoments.includes(moment.id) 
-                    ? 'bg-green-900/20 border border-green-500/30' 
-                    : 'bg-gray-900/50 border border-gray-700'
-                }`}
-              >
-                <div className="flex items-center gap-4">
-                  <img 
-                    src={moment.image} 
-                    alt={moment.description}
-                    className="w-24 h-24 object-cover rounded"
-                  />
-                  <div className="text-left">
-                    <div className="text-[#f5f2e6] mb-1">{moment.description}</div>
-                    <div className="text-gray-400 text-sm">{moment.year}</div>
+                {allMoments.slice(0, gameMode === 'classic' ? 3 : 1).map((moment, index) => (
+                  <div 
+                    key={index}
+                    className={`p-4 rounded-lg ${
+                      collectedMoments.includes(moment.id) 
+                        ? 'bg-green-900/20 border border-green-500/30' 
+                        : 'bg-gray-900/50 border border-gray-700'
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <img 
+                        src={moment.image} 
+                        alt={moment.description}
+                        className="w-24 h-24 object-cover rounded"
+                      />
+                      <div className="text-left">
+                        <div className="text-[#f5f2e6] mb-1">{moment.description}</div>
+                        <div className="text-gray-400 text-sm">{moment.year}</div>
+                      </div>
+                    </div>
                   </div>
-                  </div>
-                </div>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
-          </div>
-          </div>
-
-      <div className="flex flex-col items-center gap-4">
-        <div className="flex justify-center gap-4">
-          <button
-            onClick={onRestart}
-            className="bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-gray-800"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-          >
-            Play Again
-          </button>
-
-          <button
-            onClick={onShowCollection}
-            className="bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6] flex items-center gap-2"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-          >
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5h3.5"/>
-              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5h-3.5"/>
-              <path d="M4 22h16"/>
-              <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
-              <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
-              <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
-            </svg>
-            My Career Stats
-          </button>
         </div>
-        
-        {/* Books Section */}
-        <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-6">
-            <img 
-              src="/books/BOOKSTACK.png" 
-              alt="Stack of Baseball Books" 
-              className="w-32 h-auto"
-            />
-            <div className="text-left">
+
+        <div className="flex flex-col items-center gap-4">
+          {/* Achievements Section */}
+          {achievements.length > 0 && (
+            <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto w-full">
               <h3 
-                className="text-2xl text-[#f5f2e6] mb-2"
+                className="text-2xl text-[#f5f2e6] mb-4"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
-                Essential Baseball Reading
+                <span className="text-yellow-400">Boom!</span> Achievements Unlocked!
               </h3>
-              <p className="text-gray-300 mb-4">
-                Discover our curated collection of must-read baseball history books.
-              </p>
-        <button
-          onClick={onShowBooks}
-                className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-xl"
-          style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-        >
-                View Recommended Books
-        </button>
-      </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {achievements.map((achievementId) => {
+                  const achievement = ACHIEVEMENTS[achievementId];
+                  if (!achievement) return null;
+                  const Icon = achievement.icon;
+                  return (
+                    <div 
+                      key={achievementId}
+                      className="flex items-center gap-3 bg-gray-900/50 p-3 rounded-lg border border-gray-700"
+                    >
+                      <div className="bg-[#1e4fba] p-2 rounded-lg">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <div className="text-[#f5f2e6]">{achievement.name}</div>
+                        <div className="text-gray-400 text-sm">{achievement.description}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          
+          {/* Books Section */}
+          <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-6">
+              <img 
+                src="/books/BOOKSTACK.png" 
+                alt="Stack of Baseball Books" 
+                className="w-32 h-auto"
+              />
+              <div className="text-left">
+                <h3 
+                  className="text-2xl text-[#f5f2e6] mb-2"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  Essential Baseball Reading
+                </h3>
+                <p className="text-gray-300 mb-4">
+                  Discover our curated collection of must-read baseball history books.
+                </p>
+                <button
+                  onClick={onShowBooks}
+                  className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-xl"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  View Recommended Books
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Beta Test Button */}
+          <div className="mt-2 text-center">
+            <button
+              onClick={onRestart}
+              className="text-gray-400 hover:text-gray-300 text-sm bg-gray-800/50 hover:bg-gray-800/70 px-4 py-2 rounded transition-all duration-200"
+            >
+              Beta Test: Play Again
+            </button>
           </div>
         </div>
       </div>
-      <div className="mb-24"></div>
     </div>
   );
 }
@@ -1623,8 +1689,16 @@ export default function BaseballTimeMachine() {
       handleStagingReset();
       return;
     }
+    
+    // Set the game mode first
     setGameMode(mode);
-    // Reset other game state but keep the mode
+    
+    // Initialize the first moment
+    const firstMoment = getDailyMoment(0);
+    setCurrentMoment(firstMoment);
+    
+    // Initialize game state
+    setGameState('playing');
     setYear(1950);
     setOuts(0);
     setStrikes(0);
@@ -1632,13 +1706,22 @@ export default function BaseballTimeMachine() {
     setFeedback('');
     setPerfectStreak(0);
     setAchievements([]);
-    setGameState('playing');
     setTime(30);
     setIsTimerActive(false);
     setGuessStartTime(null);
     setSequenceIndex(0);
-    setCurrentMoment(getDailyMoment(0));
-    setCollectedMoments([]);
+    setImageOpacity(1);
+    setShowFeedback(false);
+    setFeedbackData(null);
+    
+    // Clear any existing collection for today's game
+    const todaysMoments = mode === 'classic' ? [
+      getDailyMoment(0).id,
+      getDailyMoment(1).id,
+      getDailyMoment(2).id
+    ] : [getDailyMoment(0).id];
+    
+    setCollectedMoments(prev => prev.filter(id => !todaysMoments.includes(id)));
   };
 
   // If no mode selected, show mode selection screen
@@ -1647,20 +1730,23 @@ export default function BaseballTimeMachine() {
   }
 
   // Game Over screen
-if (gameState === 'over') {
+  if (gameState === 'over') {
     return (
-        <GameOver 
-          score={score}
-          achievements={achievements}
-          onRestart={handleRestart}
-          currentMoment={currentMoment}
+      <GameOver 
+        score={score}
+        achievements={achievements}
+        onRestart={handleRestart}
+        currentMoment={currentMoment}
         onShowCollection={() => {
           setShowCollection(true);
           setGameState('playing');
         }}
-          onShowBooks={() => setShowBooks(true)}
-          collectedMoments={collectedMoments}
-          setAchievements={setAchievements}
+        onShowBooks={() => {
+          setShowBooks(true);
+          setGameState('playing');
+        }}
+        collectedMoments={collectedMoments}
+        setAchievements={setAchievements}
         gameMode={gameMode}
       />
     );
@@ -1668,6 +1754,7 @@ if (gameState === 'over') {
 
   const yearDigits = year.toString().padStart(4, '0').split('');
 
+  // Main game screen
   return (
     <div 
       className="min-h-screen w-full" 
@@ -1678,16 +1765,15 @@ if (gameState === 'over') {
         backgroundRepeat: 'no-repeat',
         backgroundColor: 'black'
       }}>
-
-      <div className="max-w-4xl mx-auto p-1 sm:p-4">
-        <div className="text-center relative mb-1 pt-3 sm:pt-0">
+      <div className="text-center p-4 sm:p-8 max-w-4xl mx-auto">
+        <div className="text-center mb-8">
           <img  
             src="/LOGO.png"
             className="w-full max-w-[472px] sm:max-w-[420px] md:max-w-[525px] mx-auto px-1 sm:px-2 md:px-0"
             alt="The Daily Baseball Photo Trivia Game" 
           />
         </div>
-        
+
         <Card className="bg-transparent border-none">
           <CardContent className="p-1 sm:p-2">
             {/* Image */}
@@ -1772,13 +1858,13 @@ if (gameState === 'over') {
             {/* Stats and How To Play row with Year */}
             <div className="hidden md:flex justify-between items-start -mb-8">
               <div className="space-y-2 relative z-10 pointer-events-auto">
-              <button
-                onClick={() => setShowHowToPlay(true)}
+                <button
+                  onClick={() => setShowHowToPlay(true)}
                   className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded block"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
-                HOW TO PLAY
-              </button>
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  HOW TO PLAY
+                </button>
               </div>
               <div 
                 className="text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
@@ -1786,7 +1872,7 @@ if (gameState === 'over') {
               >
                 {gameMode === 'classic' && <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>}
                 <div><span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}</div>
-                {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
+                <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>
               </div>
             </div>
 
@@ -1806,17 +1892,15 @@ if (gameState === 'over') {
               >
                 <span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}
               </div>
-              {outs > 0 && (
-                <div 
-                  className="text-[#f5f2e6]/70 text-base"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  <span className="text-[#f5f2e6]/45">Outs:</span> {outs}
-                </div>
-              )}
+              <div 
+                className="text-[#f5f2e6]/70 text-base"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                <span className="text-[#f5f2e6]/45">Outs:</span> {outs}
+              </div>
             </div>
 
-            <div className="space-y-4 md:-mt-12">
+            <div className={`space-y-4 md:-mt-12 ${gameMode === 'trivia' ? 'mt-8' : ''}`}>
               <div className="relative">
                 <div className="flex justify-center">
                   {yearDigits.map((digit, index) => (
@@ -1824,45 +1908,7 @@ if (gameState === 'over') {
                       key={index} 
                       digit={digit} 
                       index={index}
-                      onIncrement={(digitIndex) => {
-                        const yearStr = year.toString().padStart(4, '0');
-                        const digits = yearStr.split('');
-                        
-                        // Try incrementing first
-                        const incrementedDigit = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
-                        digits[digitIndex] = incrementedDigit;
-                        let newYear = parseInt(digits.join(''));
-                        
-                        // Check if increment is valid
-                        let isValidYear = newYear >= 1850 && newYear <= 2025;
-                        if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
-                        if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
-                        if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
-                        if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
-                        
-                        // If increment isn't valid, try decrementing instead
-                        if (!isValidYear) {
-                          digits[digitIndex] = ((parseInt(yearStr[digitIndex]) - 1 + 10) % 10).toString();
-                          newYear = parseInt(digits.join(''));
-                          isValidYear = newYear >= 1850 && newYear <= 2025;
-                          
-                          // Recheck validity conditions for decrement
-                          if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
-                          if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
-                          if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
-                          if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
-                        }
-                        
-                        // Update if valid
-                        if (isValidYear) {
-                          setYear(newYear);
-                          playSound('sliderTick');
-                          if (!guessStartTime) {
-                            setGuessStartTime(Date.now());
-                            setIsTimerActive(true);
-                          }
-                        }
-                      }}
+                      onIncrement={handleYearDigitIncrement}
                     />
                   ))}
                 </div>
@@ -1874,14 +1920,14 @@ if (gameState === 'over') {
                   <span>2025</span>
                 </div>
                 <div className="-mt-2">
-                <input
-                  type="range"
-                  min="1850"
-                  max="2025"
-                  value={year}
-                  onChange={handleYearChange}
+                  <input
+                    type="range"
+                    min="1850"
+                    max="2025"
+                    value={year}
+                    onChange={handleYearChange}
                     className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer"
-                />
+                  />
                 </div>
               </div>
               
@@ -1897,6 +1943,8 @@ if (gameState === 'over') {
           </CardContent>
         </Card>
       </div>
+
+      {/* Overlays */}
       {showCollection && (
         <Collection 
           onClose={() => setShowCollection(false)} 
@@ -1907,7 +1955,6 @@ if (gameState === 'over') {
       {showHowToPlay && (
         <HowToPlay onClose={() => setShowHowToPlay(false)} />
       )}
-      
       {showFeedback && feedbackData && (
         gameMode === 'trivia' && !feedbackData.isFoulBall ? (
           <TriviaFeedback
@@ -1916,10 +1963,10 @@ if (gameState === 'over') {
             onComplete={handleFeedbackNext}
           />
         ) : (
-        <FeedbackOverlay
-          {...feedbackData}
-          onNext={handleFeedbackNext}
-        />
+          <FeedbackOverlay
+            {...feedbackData}
+            onNext={handleFeedbackNext}
+          />
         )
       )}
       {showZoom && (
@@ -1932,6 +1979,11 @@ if (gameState === 'over') {
       {showFeedbackForm && (
         <FeedbackForm onClose={() => setShowFeedbackForm(false)} />
       )}
+      {showBooks && (
+        <Books onClose={() => setShowBooks(false)} />
+      )}
+
+      {/* Footer Buttons */}
       <div className="fixed bottom-2 right-2 flex gap-2">
         <button
           onClick={() => setGameMode(null)}
@@ -1954,15 +2006,55 @@ if (gameState === 'over') {
         >
           Preview Tomorrow
         </button>
-      {window.location.hostname === 'localhost' && (
+        {window.location.hostname === 'localhost' && (
           <button
             onClick={handleStagingReset}
             className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
           >
             Reset For Testing
           </button>
-      )}
+        )}
       </div>
     </div>
   );
 }
+
+const handleYearDigitIncrement = (digitIndex) => {
+  const yearStr = year.toString().padStart(4, '0');
+  const digits = yearStr.split('');
+  
+  // Try incrementing first
+  const incrementedDigit = ((parseInt(digits[digitIndex]) + 1) % 10).toString();
+  digits[digitIndex] = incrementedDigit;
+  let newYear = parseInt(digits.join(''));
+  
+  // Check if increment is valid
+  let isValidYear = newYear >= 1850 && newYear <= 2025;
+  if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
+  if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+  if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+  if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
+  
+  // If increment isn't valid, try decrementing instead
+  if (!isValidYear) {
+    digits[digitIndex] = ((parseInt(yearStr[digitIndex]) - 1 + 10) % 10).toString();
+    newYear = parseInt(digits.join(''));
+    isValidYear = newYear >= 1850 && newYear <= 2025;
+    
+    // Recheck validity conditions for decrement
+    if (digitIndex === 0 && parseInt(digits[0]) > 2) isValidYear = false;
+    if (digitIndex === 0 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+    if (digitIndex === 1 && parseInt(digits[0]) === 2 && parseInt(digits[1]) > 0) isValidYear = false;
+    if (digitIndex === 1 && parseInt(digits[0]) === 1 && parseInt(digits[1]) < 8) isValidYear = false;
+  }
+  
+  // Update if valid
+  if (isValidYear) {
+    setYear(newYear);
+    playSound('sliderTick');
+    if (!guessStartTime) {
+      setGuessStartTime(Date.now());
+      setIsTimerActive(true);
+    }
+  }
+};
