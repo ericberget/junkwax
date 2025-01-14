@@ -318,6 +318,14 @@ const BASEBALL_MOMENTS = [
     hint: "The First Unofficial All-Star Game",
     description: "Baseball's First All-Star Gathering",
     funFact: "In 1911, Cleveland's Addie Joss died tragically of tubercular meningitis at age 31. To support his family, baseball organized what is considered the first all-star game - a benefit featuring Ty Cobb, Walter Johnson, Cy Young, and other stars. The game raised $12,914 (over $375,000 today) for Joss's family. The pitching matchup was legendary: Walter Johnson vs. Ed Walsh, with Johnson striking out 8 in 5 scoreless innings."
+  },
+  {
+    id: 4,
+    year: 1991,
+    image: '/1991.jpg',
+    hint: "World Series Collision",
+    description: "World Series Collision",
+    funFact: "This image shows a dramatic moment between Lonnie Smith (runner) and Brian Harper (catcher) during the 1991 World Series between the Atlanta Braves and the Minnesota Twins. The 1991 World Series, often dubbed the Greatest World Series Ever Played, featured a record four games decided by a single run, with three of them going into extra innings. The Minnesota Twins won Game 7 in a nail-biting 1-0 victory, clinching the championship in one of the most intense pitching duels in MLB history! The play in the image exemplifies the grit and intensity that defined this iconic series."
   }
 ];
 
@@ -512,8 +520,8 @@ function GameOver({
           <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
             <h2 className="text-3xl text-white mb-4 text-center" 
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-              Game Over!
-            </h2>
+        Game Over!
+      </h2>
             <div 
               className="text-7xl text-green-400 mb-4 text-center"
               style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -527,7 +535,7 @@ function GameOver({
                 'Thanks for playing Trivia Mode!'
               )}
             </div>
-
+            
             {/* Share Button */}
             <button
               onClick={handleShare}
@@ -551,9 +559,9 @@ function GameOver({
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
             {gameMode === 'classic' ? "Today's Moments" : "Today's Moment"}
-          </h3>
-          
-          <div className="grid grid-cols-1 gap-4">
+              </h3>
+
+              <div className="grid grid-cols-1 gap-4">
             {allMoments.slice(0, gameMode === 'classic' ? 3 : 1).map((moment, index) => (
               <div 
                 key={index}
@@ -573,12 +581,12 @@ function GameOver({
                     <div className="text-[#f5f2e6] mb-1">{moment.description}</div>
                     <div className="text-gray-400 text-sm">{moment.year}</div>
                   </div>
+                  </div>
                 </div>
-              </div>
             ))}
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
 
       <div className="flex flex-col items-center gap-4">
         <div className="flex justify-center gap-4">
@@ -616,7 +624,7 @@ function GameOver({
             My Career Stats
           </button>
         </div>
-
+        
         {/* Books Section */}
         <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-6">
@@ -635,14 +643,14 @@ function GameOver({
               <p className="text-gray-300 mb-4">
                 Discover our curated collection of must-read baseball history books.
               </p>
-              <button
-                onClick={onShowBooks}
+        <button
+          onClick={onShowBooks}
                 className="bg-[#1e4fba] hover:bg-[#2460e6] text-white px-6 py-2 rounded-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg text-xl"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
+          style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+        >
                 View Recommended Books
-              </button>
-            </div>
+        </button>
+      </div>
           </div>
         </div>
       </div>
@@ -962,6 +970,138 @@ const TRIVIA_QUESTIONS = {
       options: ["1901", "1903", "1905", "1907"],
       correctAnswer: "1903"
     }
+  ],
+  3: [ // Johnny Evers
+    {
+      question: "What was Johnny Evers' nickname?",
+      options: ["The Human Crab", "The Flash", "The Spider", "The Hawk"],
+      correctAnswer: "The Human Crab"
+    },
+    {
+      question: "In what year was Johnny Evers elected to the Hall of Fame?",
+      options: ["1936", "1940", "1946", "1950"],
+      correctAnswer: "1946"
+    }
+  ],
+  6: [ // First All-Star Game
+    {
+      question: "Who hit the first home run in All-Star Game history?",
+      options: ["Lou Gehrig", "Babe Ruth", "Jimmie Foxx", "Al Simmons"],
+      correctAnswer: "Babe Ruth"
+    },
+    {
+      question: "What was the final score of the first MLB All-Star Game?",
+      options: ["AL 4-2", "AL 5-2", "NL 4-2", "NL 3-2"],
+      correctAnswer: "AL 4-2"
+    }
+  ],
+  8: [ // Jim Thorpe
+    {
+      question: "In which Olympic events did Jim Thorpe win gold medals in 1912?",
+      options: ["Pentathlon and Decathlon", "100m and 200m", "Long Jump and High Jump", "Shot Put and Discus"],
+      correctAnswer: "Pentathlon and Decathlon"
+    },
+    {
+      question: "When were Jim Thorpe's Olympic medals posthumously restored?",
+      options: ["1972", "1977", "1982", "1987"],
+      correctAnswer: "1982"
+    }
+  ],
+  17: [ // Willie Mays Rookie Season
+    {
+      question: "What was Willie Mays' batting average in his rookie season?",
+      options: ["0.254", "0.264", "0.274", "0.284"],
+      correctAnswer: "0.274"
+    },
+    {
+      question: "How many home runs did Mays hit in his rookie season?",
+      options: ["15", "20", "25", "30"],
+      correctAnswer: "20"
+    }
+  ],
+  25: [ // Ernie Shore's Relief Perfect Game
+    {
+      question: "What was Babe Ruth's punishment for punching the umpire?",
+      options: ["5-game suspension", "10-game suspension", "15-game suspension", "20-game suspension"],
+      correctAnswer: "10-game suspension"
+    },
+    {
+      question: "What was the final score of Shore's relief perfect game?",
+      options: ["1-0", "2-0", "3-0", "4-0"],
+      correctAnswer: "4-0"
+    }
+  ],
+  26: [ // Ted Williams
+    {
+      question: "What was Ted Williams' lifetime batting average?",
+      options: ["0.334", "0.344", "0.354", "0.364"],
+      correctAnswer: "0.344"
+    },
+    {
+      question: "How many full seasons did Williams miss due to military service?",
+      options: ["3", "4", "5", "6"],
+      correctAnswer: "5"
+    }
+  ],
+  30: [ // Babe Ruth and Lou Gehrig
+    {
+      question: "How many home runs did Ruth and Gehrig combine for in 1927?",
+      options: ["97", "107", "117", "127"],
+      correctAnswer: "107"
+    },
+    {
+      question: "How much money did Ruth and Gehrig split on their 1927 barnstorming tour?",
+      options: ["$40,000", "$60,000", "$80,000", "$100,000"],
+      correctAnswer: "80,000"
+    }
+  ],
+  34: [ // Cubs' Bear Mascot
+    {
+      question: "What was the temperature on the day this photo was taken?",
+      options: ["78°", "83°", "88°", "93°"],
+      correctAnswer: "88°"
+    },
+    {
+      question: "What was the mascot performer's connection to 'The Wizard of Oz'?",
+      options: ["Played the Lion", "Understudy for the Lion", "Played the Bear", "Directed the show"],
+      correctAnswer: "Understudy for the Lion"
+    }
+  ],
+  35: [ // Satchel Paige's Warm-Up
+    {
+      question: "Which of these was NOT one of Paige's named pitches?",
+      options: ["The Bee Ball", "The Jump Ball", "The Whipsy-Dipsy-Do", "The Curve Ball"],
+      correctAnswer: "The Curve Ball"
+    },
+    {
+      question: "Which of Paige's pitches was later banned by MLB?",
+      options: ["The Bee Ball", "The Jump Ball", "The Whipsy-Dipsy-Do", "The Hesitation Pitch"],
+      correctAnswer: "The Hesitation Pitch"
+    }
+  ],
+  39: [ // Lou Gehrig's Farewell
+    {
+      question: "How long was Gehrig's original farewell speech?",
+      options: ["4 minutes", "6 minutes", "8 minutes", "10 minutes"],
+      correctAnswer: "6 minutes"
+    },
+    {
+      question: "Who recorded the only known footage of the speech?",
+      options: ["A news reporter", "The team photographer", "The bat boy", "A fan"],
+      correctAnswer: "The bat boy"
+    }
+  ],
+  4: [ // 1991 World Series Collision
+    {
+      question: "Which players are involved in this collision at home plate?",
+      options: ["Lonnie Smith and Brian Harper", "Terry Pendleton and Junior Ortiz", "Ron Gant and Greg Olson", "David Justice and Brian Harper"],
+      correctAnswer: "Lonnie Smith and Brian Harper"
+    },
+    {
+      question: "How many games in the 1991 World Series were decided by a single run?",
+      options: ["Two", "Three", "Four", "Five"],
+      correctAnswer: "Four"
+    }
   ]
 };
 
@@ -1102,7 +1242,7 @@ export default function BaseballTimeMachine() {
         const hasAllTodaysMoments = todaysMoments.every(id => collectedMoments.includes(id));
         
         if (hasAllTodaysMoments) {
-          newAchievements.push('NO_STRIKES');
+        newAchievements.push('NO_STRIKES');
         }
       }
     } else {
@@ -1318,11 +1458,11 @@ export default function BaseballTimeMachine() {
     }
 
     // Get today's moments
-    const todaysMoments = [
+    const todaysMoments = gameMode === 'classic' ? [
       getDailyMoment(0).id,
       getDailyMoment(1).id,
       getDailyMoment(2).id
-    ];
+    ] : [getDailyMoment(0).id];
     
     // Count perfect guesses from today's game
     const perfectGuessesThisGame = todaysMoments.filter(id => 
@@ -1351,9 +1491,9 @@ export default function BaseballTimeMachine() {
       perfectGuesses: (savedStats.perfectGuesses || 0) + perfectGuessesThisGame,
       gamesPlayed: (savedStats.gamesPlayed || 0) + 1,
       achievements: [...new Set([...savedStats.achievements, ...achievements])],
-      singles: (savedStats.singles || 0) + singlesThisGame,
-      doubles: (savedStats.doubles || 0) + doublesThisGame,
-      triples: (savedStats.triples || 0) + triplesThisGame,
+      singles: gameMode === 'classic' ? (savedStats.singles || 0) + singlesThisGame : (savedStats.singles || 0),
+      doubles: gameMode === 'classic' ? (savedStats.doubles || 0) + doublesThisGame : (savedStats.doubles || 0),
+      triples: gameMode === 'classic' ? (savedStats.triples || 0) + triplesThisGame : (savedStats.triples || 0),
       streak: newStreak,
       lastPlayed: today.toISOString()
     };
@@ -1470,20 +1610,20 @@ export default function BaseballTimeMachine() {
   }
 
   // Game Over screen
-  if (gameState === 'over') {
+if (gameState === 'over') {
     return (
-      <GameOver 
-        score={score}
-        achievements={achievements}
-        onRestart={handleRestart}
-        currentMoment={currentMoment}
+        <GameOver 
+          score={score}
+          achievements={achievements}
+          onRestart={handleRestart}
+          currentMoment={currentMoment}
         onShowCollection={() => {
           setShowCollection(true);
           setGameState('playing');
         }}
-        onShowBooks={() => setShowBooks(true)}
-        collectedMoments={collectedMoments}
-        setAchievements={setAchievements}
+          onShowBooks={() => setShowBooks(true)}
+          collectedMoments={collectedMoments}
+          setAchievements={setAchievements}
         gameMode={gameMode}
       />
     );
@@ -1595,13 +1735,13 @@ export default function BaseballTimeMachine() {
             {/* Stats and How To Play row with Year */}
             <div className="hidden md:flex justify-between items-start -mb-8">
               <div className="space-y-2 relative z-10 pointer-events-auto">
-                <button
-                  onClick={() => setShowHowToPlay(true)}
+              <button
+                onClick={() => setShowHowToPlay(true)}
                   className="text-[#f5f2e6]/50 hover:text-[#f5f2e6] text-[0.9375rem] transition-colors duration-200 bg-[#f5f2e6]/5 px-3 py-1 rounded block"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                >
-                  HOW TO PLAY
-                </button>
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                HOW TO PLAY
+              </button>
               </div>
               <div 
                 className="text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
@@ -1695,14 +1835,14 @@ export default function BaseballTimeMachine() {
                   <span>2025</span>
                 </div>
                 <div className="-mt-2">
-                  <input
-                    type="range"
-                    min="1850"
-                    max="2025"
-                    value={year}
-                    onChange={handleYearChange}
+                <input
+                  type="range"
+                  min="1850"
+                  max="2025"
+                  value={year}
+                  onChange={handleYearChange}
                     className="w-full h-3 bg-gray-600 rounded-lg appearance-none cursor-pointer"
-                  />
+                />
                 </div>
               </div>
               
@@ -1737,10 +1877,10 @@ export default function BaseballTimeMachine() {
             onComplete={handleFeedbackNext}
           />
         ) : (
-          <FeedbackOverlay
-            {...feedbackData}
-            onNext={handleFeedbackNext}
-          />
+        <FeedbackOverlay
+          {...feedbackData}
+          onNext={handleFeedbackNext}
+        />
         )
       )}
       {showZoom && (
@@ -1775,14 +1915,14 @@ export default function BaseballTimeMachine() {
         >
           Preview Tomorrow
         </button>
-        {window.location.hostname === 'localhost' && (
+      {window.location.hostname === 'localhost' && (
           <button
             onClick={handleStagingReset}
             className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
           >
             Reset For Testing
           </button>
-        )}
+      )}
       </div>
     </div>
   );
