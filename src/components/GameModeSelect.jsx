@@ -8,7 +8,7 @@ export function GameModeSelect({ onSelectMode }) {
         <div className="text-center mb-12">
           <img  
             src="/LOGO.png"
-            className="w-full max-w-[525px] mx-auto"
+            className="w-full max-w-[650px] mx-auto"
             alt="Baseball Time Machine" 
           />
         </div>
