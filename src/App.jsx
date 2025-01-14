@@ -840,14 +840,14 @@ const TRIVIA_QUESTIONS = {
   ],
   2: [ // Mickey Mantle's rookie season
     {
-      question: "What was Mickey Mantle's initial uniform number with the Yankees?",
-      options: ["6", "7", "8", "9"],
-      correctAnswer: "6"
+      question: "How many World Series home runs did Mickey Mantle hit in his career?",
+      options: ["5", "10", "15", "18"],
+      correctAnswer: "18"
     },
     {
-      question: "What was Mantle's nickname?",
-      options: ["The Commerce Comet", "The Oklahoma Kid", "The Switch-Hitter", "The Yankee Clipper"],
-      correctAnswer: "The Commerce Comet"
+      question: "What was Mickey Mantle's career batting average in World Series games?",
+      options: [".275", ".295", ".305", ".315"],
+      correctAnswer: ".305"
     }
   ],
   7: [ // Roger Maris
@@ -1106,10 +1106,7 @@ const TRIVIA_QUESTIONS = {
 };
 
 export default function BaseballTimeMachine() {
-  const [gameMode, setGameMode] = useState(() => {
-    const saved = localStorage.getItem('baseball-game-mode');
-    return saved || null; // null means mode selection screen should show
-  });
+  const [gameMode, setGameMode] = useState(null);
   
   const [gameState, setGameState] = useState(() => {
     const saved = loadDailyState();
@@ -1597,6 +1594,10 @@ export default function BaseballTimeMachine() {
     if (gameMode) {
       localStorage.setItem('baseball-game-mode', gameMode);
     }
+    // Clear game mode when component unmounts
+    return () => {
+      localStorage.removeItem('baseball-game-mode');
+    };
   }, [gameMode]);
 
   const handleModeSelect = (mode) => {
@@ -1747,7 +1748,7 @@ if (gameState === 'over') {
                 className="text-[#f5f2e6]/70 text-[0.9375rem] space-y-1 text-right"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
-                <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>
+                {gameMode === 'classic' && <div><span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1} of 3</div>}
                 <div><span className="text-[#f5f2e6]/45">Strikes:</span> {strikes}</div>
                 {outs > 0 && <div><span className="text-[#f5f2e6]/45">Outs:</span> {outs}</div>}
               </div>
@@ -1755,12 +1756,14 @@ if (gameState === 'over') {
 
             {/* Mobile Stats Display */}
             <div className="flex justify-between items-center mb-4 md:hidden px-2 py-2 border border-[#f5f2e6]/10 rounded-lg mx-1">
-              <div 
-                className="text-[#f5f2e6]/70 text-base"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
-                <span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1}/3
-              </div>
+              {gameMode === 'classic' && (
+                <div 
+                  className="text-[#f5f2e6]/70 text-base"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  <span className="text-[#f5f2e6]/45">Image:</span> {sequenceIndex + 1}/3
+                </div>
+              )}
               <div 
                 className="text-[#f5f2e6]/70 text-base"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
