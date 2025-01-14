@@ -7,6 +7,8 @@ import { HowToPlay } from './components/HowToPlay';
 import { FeedbackOverlay } from './components/FeedbackOverlay';
 import { ImageZoom } from './components/ImageZoom';
 import { FeedbackForm } from './components/FeedbackForm';
+import { GameModeSelect } from './components/GameModeSelect';
+import { TriviaFeedback } from './components/TriviaFeedback';
 
 
 const BASEBALL_MOMENTS = [
@@ -158,7 +160,7 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 21,
-    year: 1946,
+    year: 1948,
     image: '/fellerAndSatchel.jpg',
     hint: "Two Legendary Fireballers Face Off",
     description: "Bob Feller vs. Satchel Paige",
@@ -345,13 +347,40 @@ Object.values(SOUND_EFFECTS).forEach(sound => {
   }
 });
 
+// Xorshift for deterministic random number generation
+function xorshift(seed) {
+  let state = seed;
+  
+  return function() {
+    state ^= state << 13;
+    state ^= state >> 17;
+    state ^= state << 5;
+    return Math.abs(state);
+  };
+}
+
 function getDailyMoment(index = 0) {
   const today = new Date();
-  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
-  // Calculate the starting index for today's set of 3 images
-  // Each day we move forward by 3 images
-  const startIndex = (dayOfYear * 3) % (BASEBALL_MOMENTS.length - 2);
-  return BASEBALL_MOMENTS[startIndex + index];
+  today.setHours(0, 0, 0, 0);
+  
+  // Create a seed based on the year and day of year
+  const yearDay = `${today.getFullYear()}${Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24))}`;
+  const seed = parseInt(yearDay);
+  
+  // Initialize our random number generator with today's seed
+  const rng = xorshift(seed);
+  
+  // Create a shuffled array of indices
+  const indices = Array.from({ length: BASEBALL_MOMENTS.length }, (_, i) => i);
+  
+  // Fisher-Yates shuffle with our seeded RNG
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = rng() % (i + 1);
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  
+  // Use the first three indices for today's moments
+  return BASEBALL_MOMENTS[indices[index]];
 }
 
 function getTodayKey() {
@@ -404,20 +433,22 @@ function getAllDailyMoments() {
   ];
 }
 
-function GameOver({ score, achievements, onRestart, currentMoment, onShowCollection, onShowBooks, collectedMoments, setAchievements }) {
+function GameOver({ 
+  score, 
+  achievements, 
+  onRestart, 
+  currentMoment, 
+  onShowCollection, 
+  onShowBooks, 
+  collectedMoments, 
+  setAchievements,
+  gameMode
+}) {
   const allMoments = getAllDailyMoments();
   const [selectedMoment, setSelectedMoment] = useState(currentMoment);
-  
-  const correctGuesses = collectedMoments.filter(id => 
-    allMoments.some(moment => moment.id === id)
+  const correctGuesses = allMoments.filter(moment => 
+    collectedMoments.includes(moment.id)
   ).length;
-
-  // Add Goose Egg achievement if score is 0
-  useEffect(() => {
-    if (score === 0 && !achievements.includes('GOOSE_EGG')) {
-      setAchievements([...achievements, 'GOOSE_EGG']);
-    }
-  }, [score, achievements, setAchievements]);
 
   function handleShare() {
     const today = new Date();
@@ -432,13 +463,14 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
                      `${boxes}\n` +
                      `${correctGuesses} Perfect ${correctGuesses === 1 ? 'Guess' : 'Guesses'}\n` +
                      `Score: ⭐ ${score} ⭐\n` +
+                     `Mode: ${gameMode === 'classic' ? 'Classic' : 'Trivia'}\n` +
                      `\nPlay at: https://baseballtimemachine.netlify.app/`;
 
     // Social sharing URLs
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://baseballtimemachine.netlify.app/')}&quote=${encodeURIComponent(shareText)}`;
 
-    // Create share menu with React-style event handling
+    // Create share menu
     const shareMenu = document.createElement('div');
     shareMenu.className = 'fixed inset-0 bg-black/80 z-50 flex items-center justify-center';
     shareMenu.innerHTML = `
@@ -448,46 +480,19 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
         </button>
         <h3 class="text-white text-xl mb-4" style="font-family: Douglas-Burlington-Regular">Share Your Results</h3>
         <div class="space-y-3">
-          <a href="${twitterUrl}" target="_blank" rel="noopener noreferrer" 
-             class="flex items-center justify-center gap-2 w-full bg-[#1DA1F2] text-white py-2 px-4 rounded hover:bg-[#1a8cd8] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
-            </svg>
-            Share on X/Twitter
+          <a href="${twitterUrl}" target="_blank" class="flex items-center gap-2 bg-[#1DA1F2] text-white p-3 rounded-lg hover:bg-[#1a8cd8] transition-colors w-full justify-center">
+            Share on Twitter
           </a>
-          <a href="${facebookUrl}" target="_blank" rel="noopener noreferrer"
-             class="flex items-center justify-center gap-2 w-full bg-[#4267B2] text-white py-2 px-4 rounded hover:bg-[#365899] transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-            </svg>
+          <a href="${facebookUrl}" target="_blank" class="flex items-center gap-2 bg-[#4267B2] text-white p-3 rounded-lg hover:bg-[#365899] transition-colors w-full justify-center">
             Share on Facebook
           </a>
-          <button id="copyButton"
-             class="w-full bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600 transition-colors">
+          <button onclick="navigator.clipboard.writeText('${shareText}').then(() => { this.textContent = 'Copied!'; setTimeout(() => { this.textContent = 'Copy to Clipboard'; }, 2000); })" class="w-full bg-gray-700 text-white p-3 rounded-lg hover:bg-gray-600 transition-colors">
             Copy to Clipboard
           </button>
         </div>
       </div>
     `;
     document.body.appendChild(shareMenu);
-
-    // Add click handler for copy button
-    const copyButton = shareMenu.querySelector('#copyButton');
-    copyButton.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(shareText);
-        copyButton.textContent = 'Copied!';
-        setTimeout(() => {
-          copyButton.textContent = 'Copy to Clipboard';
-        }, 2000);
-      } catch (err) {
-        console.error('Failed to copy:', err);
-        copyButton.textContent = 'Failed to copy';
-        setTimeout(() => {
-          copyButton.textContent = 'Copy to Clipboard';
-        }, 2000);
-      }
-    });
   }
 
   return (
@@ -502,125 +507,78 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
 
       {/* Two-column layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {/* Left Column - Score, Share, and Thumbnails */}
+        {/* Left Column - Score and Share */}
         <div className="flex flex-col">
           <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
             <h2 className="text-3xl text-white mb-4 text-center" 
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-        Game Over!
-      </h2>
+              Game Over!
+            </h2>
             <div 
               className="text-7xl text-green-400 mb-4 text-center"
               style={{ fontFamily: 'Douglas-Burlington-Regular' }}
             >
-              {score} points
+              {typeof score === 'number' ? score : 0} points
             </div>
             <div className="text-xl text-[#f5f2e6] mb-6">
-              You got {correctGuesses} perfect {correctGuesses === 1 ? 'guess' : 'guesses'}!
+              {gameMode === 'classic' ? (
+                `You got ${correctGuesses} perfect ${correctGuesses === 1 ? 'guess' : 'guesses'}!`
+              ) : (
+                'Thanks for playing Trivia Mode!'
+              )}
             </div>
 
-            {/* Thumbnails Grid */}
-            <div className="grid grid-cols-3 gap-3 mb-6 w-full">
-              {allMoments.map((moment, index) => (
-                <div 
-                  key={index} 
-                  className="flex flex-col items-center"
-                >
-                  <div 
-                    className="relative bg-[#f5f2e6] p-1"
-                    style={{
-                      boxShadow: '3px 2px 4px rgba(0, 0, 0, 0.9)',
-                    }}
-                  >
-                    <div className="absolute -top-1 -left-1 z-10">
-                      {collectedMoments.includes(moment.id) ? (
-                        <div className="bg-green-500 rounded-full p-1">
-                          <Check className="w-3 h-3 text-white" />
-                        </div>
-                      ) : (
-                        <div className="bg-red-500 rounded-full p-1">
-                          <X className="w-3 h-3 text-white" />
-                        </div>
-                      )}
-                    </div>
-                    <img
-                      src={moment.image}
-                      alt={moment.description}
-                      className="w-full h-auto object-contain"
-                    />
-                  </div>
-                  <div 
-                    className="mt-1 text-lg text-white"
-                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                  >
-                    {moment.year}
-                  </div>
-                </div>
-              ))}
-            </div>
-            
+            {/* Share Button */}
             <button
               onClick={handleShare}
-              className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c] flex items-center justify-center gap-2 w-full mx-auto whitespace-nowrap"
+              className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg mb-4"
               style={{ fontFamily: 'Douglas-Burlington-Regular' }}
             >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" 
-                height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-                <polyline points="16 6 12 2 8 6"/>
-                <line x1="12" y1="2" x2="12" y2="15"/>
-              </svg>
-              Share My Results ({correctGuesses}/3)
+              Share Results
             </button>
+
+            {/* Mode Indicator */}
+            <div className="text-center mt-4 text-gray-400">
+              Played in {gameMode === 'classic' ? 'Classic' : 'Trivia'} Mode
+            </div>
           </div>
         </div>
 
-        {/* Right Column - Achievements */}
-        <div className="flex flex-col">
-          {achievements.length > 0 ? (
-            <>
-              <h3 className="text-4xl text-yellow-400 mb-6 text-center"
-                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-                Boom! Achievements Unlocked!
-              </h3>
-
-              <div className="grid grid-cols-1 gap-4">
-                {achievements.map((achievementId, index) => {
-              const achievement = ACHIEVEMENTS[achievementId];
-              const AchievementIcon = achievement.icon;
-              return (
-                <div 
-                  key={achievementId} 
-                      className="bg-gray-800/90 p-4 rounded-lg flex items-center transform hover:scale-105 border border-gray-700 shadow-lg"
-                >
-                      <div className="bg-[#1e4fba] p-3 rounded-full mr-4">
-                        <AchievementIcon className="text-[#f5f2e6] w-8 h-8" />
-                  </div>
-                  <div className="text-left flex-1">
-                        <div className="text-xl text-[#f5f2e6] mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{achievement.name}</div>
-                    <div className="text-gray-400">{achievement.description}</div>
+        {/* Right Column - Today's Moments */}
+        <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
+          <h3 
+            className="text-2xl text-[#f5f2e6] mb-4"
+            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+          >
+            {gameMode === 'classic' ? "Today's Moments" : "Today's Moment"}
+          </h3>
+          
+          <div className="grid grid-cols-1 gap-4">
+            {allMoments.slice(0, gameMode === 'classic' ? 3 : 1).map((moment, index) => (
+              <div 
+                key={index}
+                className={`p-4 rounded-lg ${
+                  collectedMoments.includes(moment.id) 
+                    ? 'bg-green-900/20 border border-green-500/30' 
+                    : 'bg-gray-900/50 border border-gray-700'
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <img 
+                    src={moment.image} 
+                    alt={moment.description}
+                    className="w-24 h-24 object-cover rounded"
+                  />
+                  <div className="text-left">
+                    <div className="text-[#f5f2e6] mb-1">{moment.description}</div>
+                    <div className="text-gray-400 text-sm">{moment.year}</div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
-            </>
-          ) : (
-            <div className="text-center text-gray-400 text-xl">
-              No achievements unlocked yet!
         </div>
-      )}
-          </div>
-          </div>
+      </div>
 
       <div className="flex flex-col items-center gap-4">
         <div className="flex justify-center gap-4">
@@ -629,7 +587,7 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
             className="bg-gray-600 hover:bg-gray-700 text-white py-3 px-8 rounded-lg text-2xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-gray-800"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
           >
-            (Testing Mode) Play Again
+            Play Again
           </button>
 
           <button
@@ -658,7 +616,8 @@ function GameOver({ score, achievements, onRestart, currentMoment, onShowCollect
             My Career Stats
           </button>
         </div>
-        
+
+        {/* Books Section */}
         <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-6">
             <img 
@@ -852,7 +811,77 @@ function Collection({ onClose, collectedMoments }) {
   );
 }
 
+// Add trivia questions for each baseball moment
+const TRIVIA_QUESTIONS = {
+  20: [ // 1969 Mets Pitching Staff
+    {
+      question: "What was the team's nickname during their miraculous 1969 season?",
+      options: ["Amazing Mets", "Miracle Mets", "Amazin' Mets", "Magnificent Mets"],
+      correctAnswer: "Miracle Mets"
+    },
+    {
+      question: "Who was the Mets' ace pitcher in 1969?",
+      options: ["Nolan Ryan", "Jerry Koosman", "Tom Seaver", "Gary Gentry"],
+      correctAnswer: "Tom Seaver"
+    }
+  ],
+  21: [ // Satchel Paige and Bob Feller
+    {
+      question: "How old was Satchel Paige when he made his MLB debut with the Cleveland Indians?",
+      options: ["32 years old", "38 years old", "42 years old", "45 years old"],
+      correctAnswer: "42 years old"
+    },
+    {
+      question: "What was Bob Feller's nickname?",
+      options: ["Rapid Robert", "The Heater", "Bullet Bob", "Speed King"],
+      correctAnswer: "Rapid Robert"
+    }
+  ],
+  22: [ // Babe Ruth with Red Sox
+    {
+      question: "What was Babe Ruth's ERA during his six seasons as a Red Sox pitcher?",
+      options: ["2.28", "2.98", "3.12", "3.45"],
+      correctAnswer: "2.28"
+    },
+    {
+      question: "How many World Series did Ruth win as a pitcher with the Red Sox?",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: "3"
+    }
+  ],
+  23: [ // 1985 Blue Jays
+    {
+      question: "Who was the Blue Jays' manager during their first division title in 1985?",
+      options: ["Bobby Cox", "Cito Gaston", "Jimy Williams", "Roy Hartsfield"],
+      correctAnswer: "Bobby Cox"
+    },
+    {
+      question: "Which team did the Blue Jays beat to clinch the 1985 AL East title?",
+      options: ["New York Yankees", "Boston Red Sox", "Detroit Tigers", "Baltimore Orioles"],
+      correctAnswer: "New York Yankees"
+    }
+  ],
+  // Add default trivia questions for images that don't have specific ones yet
+  default: [
+    {
+      question: "What is considered the 'Dead Ball Era' in baseball history?",
+      options: ["1900-1919", "1920-1939", "1940-1959", "1960-1979"],
+      correctAnswer: "1900-1919"
+    },
+    {
+      question: "When was the first World Series played?",
+      options: ["1901", "1903", "1905", "1907"],
+      correctAnswer: "1903"
+    }
+  ]
+};
+
 export default function BaseballTimeMachine() {
+  const [gameMode, setGameMode] = useState(() => {
+    const saved = localStorage.getItem('baseball-game-mode');
+    return saved || null; // null means mode selection screen should show
+  });
+  
   const [gameState, setGameState] = useState(() => {
     const saved = loadDailyState();
     return saved ? saved.gameState : 'playing';
@@ -908,6 +937,7 @@ export default function BaseballTimeMachine() {
   const [feedbackData, setFeedbackData] = useState(null);
   const [showZoom, setShowZoom] = useState(false);
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+  const [triviaPoints, setTriviaPoints] = useState(0);
 
   useEffect(() => {
     if (isTimerActive && time === 0) {
@@ -1130,30 +1160,23 @@ export default function BaseballTimeMachine() {
     setPreviousDifference(difference);
   }
 
-  function handleFeedbackNext() {
+  // Modify handleFeedbackNext to handle trivia mode
+  function handleFeedbackNext(additionalPoints = 0) {
     setShowFeedback(false);
     
-    // If it's a foul ball on the last image, just continue
-    if (feedbackData.isFoulBall && sequenceIndex >= 2) {
-      return;
+    if (typeof additionalPoints === 'number' && additionalPoints > 0) {
+      setScore(prev => (typeof prev === 'number' ? prev : 0) + additionalPoints);
     }
     
-    // If we have 3 outs, go to game over
-    if (outs >= 3) {
+    // If we have 3 outs or it's the last image (and trivia mode), go to game over
+    if (outs >= 3 || (gameMode === 'trivia' && !feedbackData.isFoulBall)) {
       updateCareerStats();
       setGameState('over');
       return;
     }
     
-    // If we're on the last image and it wasn't a foul ball, go to game over
-    if (sequenceIndex >= 2 && !feedbackData.isFoulBall) {
-      updateCareerStats();
-      setGameState('over');
-      return;
-    }
-    
-    // Only advance to next image if it wasn't a foul ball
-    if (!feedbackData.isFoulBall) {
+    // In classic mode, continue to next image if available
+    if (gameMode === 'classic' && sequenceIndex < 2 && !feedbackData.isFoulBall) {
       const nextIndex = sequenceIndex + 1;
       setImageOpacity(0);
       setTimeout(() => {
@@ -1163,7 +1186,7 @@ export default function BaseballTimeMachine() {
         setTime(30);
         setIsTimerActive(false);
         setGuessStartTime(null);
-        setStrikes(0); // Reset strikes for new image
+        setStrikes(0);
         setTimeout(() => {
           setImageOpacity(1);
         }, 300);
@@ -1293,6 +1316,41 @@ export default function BaseballTimeMachine() {
     setCollectedMoments([]);
   }
 
+  // Function to preview tomorrow's puzzle
+  function handlePreviewTomorrow() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    // Reset game state
+    setYear(1950);
+    setOuts(0);
+    setStrikes(0);
+    setScore(0);
+    setFeedback('');
+    setPerfectStreak(0);
+    setAchievements([]);
+    setGameState('playing');
+    setTime(30);
+    setIsTimerActive(false);
+    setGuessStartTime(null);
+    setSequenceIndex(0);
+    
+    // Override the current date for getDailyMoment
+    const originalDate = new Date();
+    Date = class extends Date {
+      constructor() {
+        super();
+        return tomorrow;
+      }
+    };
+    
+    // Get tomorrow's moment
+    setCurrentMoment(getDailyMoment(0));
+    
+    // Restore the original Date
+    Date = originalDate.constructor;
+  }
+
   useEffect(() => {
     localStorage.setItem('baseball-muted', JSON.stringify(isMuted));
   }, [isMuted]);
@@ -1308,39 +1366,36 @@ export default function BaseballTimeMachine() {
     localStorage.setItem('baseball-collection', JSON.stringify(collectedMoments));
   }, [collectedMoments]);
 
-if (gameState === 'over') {
+  useEffect(() => {
+    if (gameMode) {
+      localStorage.setItem('baseball-game-mode', gameMode);
+    }
+  }, [gameMode]);
+
+  const handleModeSelect = (mode) => {
+    setGameMode(mode);
+    handleStagingReset(); // Reset game state when switching modes
+  };
+
+  // If no mode selected, show mode selection screen
+  if (!gameMode) {
+    return <GameModeSelect onSelectMode={handleModeSelect} />;
+  }
+
+  // Game Over screen
+  if (gameState === 'over') {
     return (
-      <div 
-        className="min-h-screen w-full" 
-        style={{ 
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 70%), url('/bg.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: 'black'
-        }}>
-        <GameOver 
-          score={score}
-          achievements={achievements}
-          onRestart={handleRestart}
-          currentMoment={currentMoment}
-          onShowCollection={() => setShowCollection(true)}
-          onShowBooks={() => setShowBooks(true)}
-          collectedMoments={collectedMoments}
-          setAchievements={setAchievements}
-        />
-        {showCollection && (
-          <Collection 
-            onClose={() => setShowCollection(false)} 
-            collectedMoments={collectedMoments}
-          />
-        )}
-        {showBooks && (
-          <Books 
-            onClose={() => setShowBooks(false)}
-          />
-        )}
-      </div>
+      <GameOver 
+        score={score}
+        achievements={achievements}
+        onRestart={handleRestart}
+        currentMoment={currentMoment}
+        onShowCollection={() => setShowCollection(true)}
+        onShowBooks={() => setShowBooks(true)}
+        collectedMoments={collectedMoments}
+        setAchievements={setAchievements}
+        gameMode={gameMode}
+      />
     );
   }
 
@@ -1584,10 +1639,18 @@ if (gameState === 'over') {
       )}
       
       {showFeedback && feedbackData && (
-        <FeedbackOverlay
-          {...feedbackData}
-          onNext={handleFeedbackNext}
-        />
+        gameMode === 'trivia' && !feedbackData.isFoulBall ? (
+          <TriviaFeedback
+            {...feedbackData}
+            trivia={TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default}
+            onComplete={handleFeedbackNext}
+          />
+        ) : (
+          <FeedbackOverlay
+            {...feedbackData}
+            onNext={handleFeedbackNext}
+          />
+        )
       )}
       {showZoom && (
         <ImageZoom
@@ -1601,6 +1664,12 @@ if (gameState === 'over') {
       )}
       <div className="fixed bottom-2 right-2 flex gap-2">
         <button
+          onClick={() => setGameMode(null)}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Switch Game Mode
+        </button>
+        <button
           onClick={() => {
             console.log('Feedback button clicked');
             setShowFeedbackForm(prev => !prev);
@@ -1608,6 +1677,12 @@ if (gameState === 'over') {
           className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
         >
           Feedback (Beta)
+        </button>
+        <button
+          onClick={handlePreviewTomorrow}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Preview Tomorrow
         </button>
         {window.location.hostname === 'localhost' && (
           <button
