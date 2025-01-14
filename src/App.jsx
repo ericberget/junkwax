@@ -651,14 +651,14 @@ function GameOver({
   );
 }
 
-function Collection({ onClose, collectedMoments }) {
+function Collection({ onClose, collectedMoments, gameMode }) {
   // Filter to only show collected moments
   const discoveredMoments = BASEBALL_MOMENTS.filter(moment => 
     collectedMoments.includes(moment.id)
   );
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Load career stats from localStorage
+  // Load career stats from localStorage and ensure totalPoints is a number
   const careerStats = JSON.parse(localStorage.getItem('baseball-career-stats') || JSON.stringify({
     totalPoints: 0,
     perfectGuesses: 0,
@@ -670,6 +670,9 @@ function Collection({ onClose, collectedMoments }) {
     streak: 0,
     lastPlayed: null
   }));
+
+  // Ensure totalPoints is a number
+  const displayPoints = typeof careerStats.totalPoints === 'number' ? careerStats.totalPoints : 0;
 
   return (
     <div className="fixed inset-0 bg-black/90 z-50 overflow-y-auto">
@@ -687,28 +690,30 @@ function Collection({ onClose, collectedMoments }) {
               className="text-6xl text-green-400 mb-8"
               style={{ fontFamily: 'Douglas-Burlington-Regular' }}
             >
-              {careerStats.totalPoints} points
+              {displayPoints} points
             </div>
             <div className="grid grid-cols-1 gap-6 text-[#f5f2e6]/70 text-xl max-w-2xl mx-auto">
-              {/* Hitting Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{discoveredMoments.length}</div>
-                  <div className="text-[#f5f2e6]/50 text-lg">Home Runs</div>
+              {/* Hitting Stats - Only show in Classic Mode */}
+              {gameMode === 'classic' && (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{discoveredMoments.length}</div>
+                    <div className="text-[#f5f2e6]/50 text-lg">Home Runs</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.triples || 0}</div>
+                    <div className="text-[#f5f2e6]/50 text-lg">Triples</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.doubles || 0}</div>
+                    <div className="text-[#f5f2e6]/50 text-lg">Doubles</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.singles || 0}</div>
+                    <div className="text-[#f5f2e6]/50 text-lg">Singles</div>
+                  </div>
                 </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.triples || 0}</div>
-                  <div className="text-[#f5f2e6]/50 text-lg">Triples</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.doubles || 0}</div>
-                  <div className="text-[#f5f2e6]/50 text-lg">Doubles</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-1" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{careerStats.singles || 0}</div>
-                  <div className="text-[#f5f2e6]/50 text-lg">Singles</div>
-                </div>
-              </div>
+              )}
               
               {/* Career Stats */}
               <div className="grid grid-cols-2 gap-4 border-t border-[#f5f2e6]/10 pt-6">
@@ -813,6 +818,66 @@ function Collection({ onClose, collectedMoments }) {
 
 // Add trivia questions for each baseball moment
 const TRIVIA_QUESTIONS = {
+  1: [ // Satchel in Bismarck
+    {
+      question: "In what year did Satchel Paige play for the Bismarck team?",
+      options: ["1934", "1935", "1936", "1937"],
+      correctAnswer: "1935"
+    },
+    {
+      question: "Who was the player-manager of the Bismarck team?",
+      options: ["Satchel Paige", "Neil Churchill", "Moose Johnson", "Jackie Robinson"],
+      correctAnswer: "Neil Churchill"
+    }
+  ],
+  2: [ // Mickey Mantle's rookie season
+    {
+      question: "What was Mickey Mantle's initial uniform number with the Yankees?",
+      options: ["6", "7", "8", "9"],
+      correctAnswer: "6"
+    },
+    {
+      question: "What was Mantle's nickname?",
+      options: ["The Commerce Comet", "The Oklahoma Kid", "The Switch-Hitter", "The Yankee Clipper"],
+      correctAnswer: "The Commerce Comet"
+    }
+  ],
+  7: [ // Roger Maris
+    {
+      question: "How many home runs did Maris hit to break Babe Ruth's record?",
+      options: ["59", "60", "61", "62"],
+      correctAnswer: "61"
+    },
+    {
+      question: "In what year was the asterisk next to Maris's record officially removed?",
+      options: ["1985", "1988", "1991", "1995"],
+      correctAnswer: "1991"
+    }
+  ],
+  12: [ // Kirby Puckett
+    {
+      question: "How many hits did Puckett get in his MLB debut?",
+      options: ["2", "3", "4", "5"],
+      correctAnswer: "4"
+    },
+    {
+      question: "How many World Series championships did Puckett win with the Twins?",
+      options: ["1", "2", "3", "4"],
+      correctAnswer: "2"
+    }
+  ],
+  19: [ // Babe Ruth Knocked Out
+    {
+      question: "How long was Babe Ruth unconscious after hitting the wall?",
+      options: ["2 minutes", "5 minutes", "7 minutes", "10 minutes"],
+      correctAnswer: "5 minutes"
+    },
+    {
+      question: "What did Ruth do in his next at-bat after the collision?",
+      options: ["Struck out", "Hit a single", "Hit a double", "Hit a home run"],
+      correctAnswer: "Hit a double"
+    }
+  ],
   20: [ // 1969 Mets Pitching Staff
     {
       question: "What was the team's nickname during their miraculous 1969 season?",
@@ -861,7 +926,31 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "New York Yankees"
     }
   ],
-  // Add default trivia questions for images that don't have specific ones yet
+  27: [ // Carlton Fisk's Wave
+    {
+      question: "Why did the cameraman keep the camera on Fisk instead of following the ball?",
+      options: ["He was distracted by a rat", "The camera malfunctioned", "He was told to", "He lost sight of the ball"],
+      correctAnswer: "He was distracted by a rat"
+    },
+    {
+      question: "Which World Series game featured Fisk's famous wave?",
+      options: ["Game 5", "Game 6", "Game 7", "Game 4"],
+      correctAnswer: "Game 6"
+    }
+  ],
+  32: [ // 1987 Twins
+    {
+      question: "What caused the Metrodome's ventilation system to be adjusted?",
+      options: ["55,000 fans waving Homer Hankies", "High humidity", "Power outage", "Air pressure issues"],
+      correctAnswer: "55,000 fans waving Homer Hankies"
+    },
+    {
+      question: "Which opposing manager tried to get the Homer Hankies banned?",
+      options: ["Whitey Herzog", "Tommy Lasorda", "Sparky Anderson", "Dick Williams"],
+      correctAnswer: "Whitey Herzog"
+    }
+  ],
+  // Default questions for moments without specific trivia
   default: [
     {
       question: "What is considered the 'Dead Ball Era' in baseball history?",
@@ -1168,15 +1257,15 @@ export default function BaseballTimeMachine() {
       setScore(prev => (typeof prev === 'number' ? prev : 0) + additionalPoints);
     }
     
-    // If we have 3 outs or it's the last image (and trivia mode), go to game over
-    if (outs >= 3 || (gameMode === 'trivia' && !feedbackData.isFoulBall)) {
+    // If we have 3 outs or it's the last image in either mode, go to game over
+    if (outs >= 3 || (gameMode === 'trivia' && sequenceIndex === 0) || (gameMode === 'classic' && sequenceIndex === 2)) {
       updateCareerStats();
       setGameState('over');
       return;
     }
     
     // In classic mode, continue to next image if available
-    if (gameMode === 'classic' && sequenceIndex < 2 && !feedbackData.isFoulBall) {
+    if (gameMode === 'classic' && sequenceIndex < 2) {
       const nextIndex = sequenceIndex + 1;
       setImageOpacity(0);
       setTimeout(() => {
@@ -1213,24 +1302,18 @@ export default function BaseballTimeMachine() {
     const lastPlayed = savedStats.lastPlayed ? new Date(savedStats.lastPlayed) : null;
     
     if (lastPlayed) {
-      // Set hours to 0 to compare just the dates
       today.setHours(0, 0, 0, 0);
       lastPlayed.setHours(0, 0, 0, 0);
       
-      // Calculate days difference
       const diffTime = Math.abs(today - lastPlayed);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       
       if (diffDays === 1) {
-        // Consecutive day, increment streak
         newStreak = savedStats.streak + 1;
       } else if (diffDays === 0) {
-        // Same day, maintain streak
         newStreak = savedStats.streak;
       }
-      // If more than 1 day has passed, streak resets to 1 (initialized above)
     } else {
-      // First time playing, streak starts at 1
       newStreak = 1;
     }
 
@@ -1246,23 +1329,27 @@ export default function BaseballTimeMachine() {
       collectedMoments.includes(id)
     ).length;
 
-    // Count hits from this game's feedback data
+    // Only track hits for classic mode
     let singlesThisGame = 0;
     let doublesThisGame = 0;
     let triplesThisGame = 0;
 
-    if (feedbackData) {
+    if (gameMode === 'classic' && feedbackData) {
       const result = feedbackData.result;
       if (result === "SINGLE!") singlesThisGame++;
       if (result === "DOUBLE!") doublesThisGame++;
       if (result === "TRIPLE!") triplesThisGame++;
     }
 
+    // Ensure all numbers are properly typed
+    const currentScore = typeof score === 'number' ? score : 0;
+    const previousTotal = typeof savedStats.totalPoints === 'number' ? savedStats.totalPoints : 0;
+
     // Update career stats
     const updatedStats = {
-      totalPoints: savedStats.totalPoints + score,
-      perfectGuesses: savedStats.perfectGuesses + perfectGuessesThisGame,
-      gamesPlayed: savedStats.gamesPlayed + 1,
+      totalPoints: previousTotal + currentScore,
+      perfectGuesses: (savedStats.perfectGuesses || 0) + perfectGuessesThisGame,
+      gamesPlayed: (savedStats.gamesPlayed || 0) + 1,
       achievements: [...new Set([...savedStats.achievements, ...achievements])],
       singles: (savedStats.singles || 0) + singlesThisGame,
       doubles: (savedStats.doubles || 0) + doublesThisGame,
@@ -1390,7 +1477,10 @@ export default function BaseballTimeMachine() {
         achievements={achievements}
         onRestart={handleRestart}
         currentMoment={currentMoment}
-        onShowCollection={() => setShowCollection(true)}
+        onShowCollection={() => {
+          setShowCollection(true);
+          setGameState('playing');
+        }}
         onShowBooks={() => setShowBooks(true)}
         collectedMoments={collectedMoments}
         setAchievements={setAchievements}
@@ -1632,6 +1722,7 @@ export default function BaseballTimeMachine() {
         <Collection 
           onClose={() => setShowCollection(false)} 
           collectedMoments={collectedMoments}
+          gameMode={gameMode}
         />
       )}
       {showHowToPlay && (

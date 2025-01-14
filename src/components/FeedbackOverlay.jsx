@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageZoom } from './ImageZoom';
 
 function YearDigit({ digit }) {
@@ -13,7 +13,7 @@ function YearDigit({ digit }) {
 }
 
 export function FeedbackOverlay({ result, yearDifference, points, image, funFact, onNext, isGameOver, isFoulBall, strikes, currentYear }) {
-  const [showZoom, setShowZoom] = React.useState(false);
+  const [showZoom, setShowZoom] = useState(false);
   const yearDigits = currentYear.toString().padStart(4, '0').split('');
 
   if (isFoulBall) {
@@ -23,7 +23,7 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
           <div className="bg-gray-800/90 rounded-lg p-6 py-12 border border-gray-700">
             <div className="space-y-6 text-center animate-fadeIn">
               <h2 
-                className="text-4xl mb-4" 
+                className="text-4xl mb-4"
                 style={{ 
                   fontFamily: 'Douglas-Burlington-Regular',
                   color: '#fbbf24'
@@ -38,7 +38,7 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
               >
                 Strike {strikes}
               </div>
-
+              
               <div className="text-[#f5f2e6] text-xl">
                 {yearDifference === 1 
                   ? "Super Close - You're one year off!" 
