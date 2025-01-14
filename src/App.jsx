@@ -1300,7 +1300,8 @@ export default function BaseballTimeMachine() {
         funFact: currentMoment.funFact,
         isGameOver: sequenceIndex >= 2,
         isFoulBall: false,
-        currentYear: currentMoment.year
+        currentYear: currentMoment.year,
+        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
       });
       setShowFeedback(true);
       return;
@@ -1323,7 +1324,8 @@ export default function BaseballTimeMachine() {
         funFact: currentMoment.funFact,
         isGameOver: newOuts >= 3,
         isFoulBall: false,
-        currentYear: currentMoment.year
+        currentYear: currentMoment.year,
+        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
       });
       setShowFeedback(true);
       return;
@@ -1340,7 +1342,8 @@ export default function BaseballTimeMachine() {
         yearDifference: difference,
         strikes: newStrikes,
         isFoulBall: true,
-        currentYear: currentMoment.year
+        currentYear: currentMoment.year,
+        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
       });
       setShowFeedback(true);
       return;
@@ -1376,7 +1379,8 @@ export default function BaseballTimeMachine() {
       funFact: currentMoment.funFact,
       isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
       isFoulBall: false,
-      currentYear: currentMoment.year
+      currentYear: currentMoment.year,
+      trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
     });
     setShowFeedback(true);
     
@@ -1394,10 +1398,21 @@ export default function BaseballTimeMachine() {
       setScore(prev => (typeof prev === 'number' ? prev : 0) + additionalPoints);
     }
     
-    // If we have 3 outs or it's the last image in either mode, go to game over
-    if (outs >= 3 || (gameMode === 'trivia' && sequenceIndex === 0) || (gameMode === 'classic' && sequenceIndex === 2 && !feedbackData.isFoulBall)) {
+    // If we have 3 outs or it's the last image in either mode AND it's not a foul ball, go to game over
+    if ((outs >= 3) || 
+        (gameMode === 'trivia' && sequenceIndex === 0 && !feedbackData.isFoulBall) || 
+        (gameMode === 'classic' && sequenceIndex === 2 && !feedbackData.isFoulBall)) {
       updateCareerStats();
       setGameState('over');
+      return;
+    }
+    
+    // Reset for next guess if it was a foul ball
+    if (feedbackData.isFoulBall) {
+      setYear(1950);
+      setTime(30);
+      setIsTimerActive(false);
+      setGuessStartTime(null);
       return;
     }
     
@@ -1609,7 +1624,21 @@ export default function BaseballTimeMachine() {
       return;
     }
     setGameMode(mode);
-    handleStagingReset(); // Reset game state when switching modes
+    // Reset other game state but keep the mode
+    setYear(1950);
+    setOuts(0);
+    setStrikes(0);
+    setScore(0);
+    setFeedback('');
+    setPerfectStreak(0);
+    setAchievements([]);
+    setGameState('playing');
+    setTime(30);
+    setIsTimerActive(false);
+    setGuessStartTime(null);
+    setSequenceIndex(0);
+    setCurrentMoment(getDailyMoment(0));
+    setCollectedMoments([]);
   };
 
   // If no mode selected, show mode selection screen

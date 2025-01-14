@@ -2,6 +2,16 @@ import React from 'react';
 import { FaBaseballBall, FaQuestionCircle } from 'react-icons/fa';
 
 export function GameModeSelect({ onSelectMode }) {
+  const handleClassicClick = () => {
+    console.log('Classic mode clicked');
+    onSelectMode('classic');
+  };
+
+  const handleTriviaClick = () => {
+    console.log('Trivia mode clicked');
+    onSelectMode('trivia');
+  };
+
   return (
     <div 
       className="min-h-screen w-full" 
@@ -25,8 +35,11 @@ export function GameModeSelect({ onSelectMode }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Triple Play Mode Card */}
           <div 
-            onClick={() => onSelectMode('classic')}
-            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#60a5fa]/10 hover:border-[#60a5fa]"
+            role="button"
+            tabIndex={0}
+            onClick={handleClassicClick}
+            onKeyPress={(e) => e.key === 'Enter' && handleClassicClick()}
+            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#60a5fa]/10 hover:border-[#60a5fa] text-left w-full"
           >
             <div className="flex items-center gap-4 mb-4">
               <FaBaseballBall className="text-4xl text-[#60a5fa]" />
@@ -50,8 +63,11 @@ export function GameModeSelect({ onSelectMode }) {
 
           {/* Pic and Quiz Mode Card */}
           <div 
-            onClick={() => onSelectMode('trivia')}
-            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#d4b483]/10 hover:border-[#d4b483]"
+            role="button"
+            tabIndex={0}
+            onClick={handleTriviaClick}
+            onKeyPress={(e) => e.key === 'Enter' && handleTriviaClick()}
+            className="bg-gray-800/90 p-8 rounded-lg border border-gray-700 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:bg-gray-800/95 hover:shadow-lg hover:shadow-[#d4b483]/10 hover:border-[#d4b483] text-left w-full"
           >
             <div className="flex items-center gap-4 mb-4">
               <FaQuestionCircle className="text-4xl text-[#d4b483]" />
