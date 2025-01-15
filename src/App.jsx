@@ -1083,7 +1083,12 @@ const TRIVIA_QUESTIONS = {
 };
 
 export default function BaseballTimeMachine() {
-  const [gameMode, setGameMode] = useState(null);
+  const [gameMode, setGameMode] = useState(() => {
+    // Check if there's a saved game mode in localStorage
+    const savedMode = localStorage.getItem('baseball-game-mode');
+    // Default to 'trivia' if no saved mode
+    return savedMode || 'trivia';
+  });
   
   const [gameState, setGameState] = useState(() => {
     const saved = loadDailyState();
@@ -1903,7 +1908,7 @@ export default function BaseballTimeMachine() {
           onClick={() => setGameMode(null)}
           className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
         >
-          Switch Game Mode
+          Try Classic Mode (3 Images)
         </button>
         <button
           onClick={() => {
