@@ -894,134 +894,172 @@ function Collection({ onClose, collectedMoments, gameMode }) {
 const TRIVIA_QUESTIONS = {
   1: [ // Satchel in Bismarck
     {
-      question: "In what year did Satchel Paige play for the Bismarck team?",
-      options: ["1934", "1935", "1936", "1937"],
-      correctAnswer: "1935"
+      question: "How many future Hall of Famers appear in this team photo?",
+      options: ["None", "One (Satchel Paige)", "Two", "Three"],
+      correctAnswer: "One (Satchel Paige)"
     },
     {
-      question: "Who was the player-manager of the Bismarck team?",
+      question: "Who was the player-manager of this integrated team?",
       options: ["Satchel Paige", "Neil Churchill", "Moose Johnson", "Jackie Robinson"],
       correctAnswer: "Neil Churchill"
+    },
+    {
+      question: "What made this team historically significant?",
+      options: ["First professional night game", "First integrated professional team", "First team to tour Japan", "First team to use batting helmets"],
+      correctAnswer: "First integrated professional team"
     }
   ],
   2: [ // Mickey Mantle's rookie season
     {
-      question: "How many World Series home runs did Mickey Mantle hit in his career?",
-      options: ["5", "10", "15", "18"],
-      correctAnswer: "18"
+      question: "What uniform number was Mantle initially assigned in this rookie season?",
+      options: ["7", "6", "3", "9"],
+      correctAnswer: "6"
     },
     {
-      question: "What was Mickey Mantle's career batting average in World Series games?",
-      options: [".275", ".295", ".305", ".315"],
-      correctAnswer: ".305"
+      question: "What happened to Mantle during this rookie season?",
+      options: ["Won Rookie of the Year", "Was briefly sent to the minors", "Hit for the cycle", "Made the All-Star team"],
+      correctAnswer: "Was briefly sent to the minors"
+    },
+    {
+      question: "Why did Mantle switch from #6 to his famous #7?",
+      options: ["He preferred lucky number 7", "After returning from minors", "To honor Miller Huggins", "The team retired #6"],
+      correctAnswer: "After returning from minors"
     }
   ],
   7: [ // Roger Maris
     {
-      question: "How many home runs did Maris hit to break Babe Ruth's record?",
-      options: ["59", "60", "61", "62"],
-      correctAnswer: "61"
+      question: "During this 1961 season, what physical symptom did Maris experience due to pressure?",
+      options: ["Lost weight", "Hair fell out", "Developed ulcers", "Lost his voice"],
+      correctAnswer: "Hair fell out"
     },
     {
-      question: "In what year was the asterisk next to Maris's record officially removed?",
-      options: ["1985", "1988", "1991", "1995"],
-      correctAnswer: "1991"
+      question: "Who was Maris competing with for the home run record in 1961?",
+      options: ["Mickey Mantle", "Willie Mays", "Harmon Killebrew", "Norm Cash"],
+      correctAnswer: "Mickey Mantle"
+    },
+    {
+      question: "What did Commissioner Ford Frick decide about Maris's record?",
+      options: ["Immediate recognition", "Added an asterisk", "Denied the record", "Delayed recognition"],
+      correctAnswer: "Added an asterisk"
     }
   ],
   12: [ // Kirby Puckett
     {
-      question: "How many hits did Puckett get in his MLB debut?",
+      question: "In his MLB debut shown here, how many hits did Puckett collect?",
       options: ["2", "3", "4", "5"],
       correctAnswer: "4"
     },
     {
-      question: "How many World Series championships did Puckett win with the Twins?",
-      options: ["1", "2", "3", "4"],
-      correctAnswer: "2"
+      question: "Who discovered Puckett playing in a semi-pro tournament?",
+      options: ["Jim Rantz", "Tom Kelly", "Calvin Griffith", "Andy MacPhail"],
+      correctAnswer: "Jim Rantz"
+    },
+    {
+      question: "What was unique about Puckett's path to the majors?",
+      options: ["Never played high school ball", "Drafted three times", "Played in Japan first", "Started as a pitcher"],
+      correctAnswer: "Never played high school ball"
     }
   ],
   19: [ // Babe Ruth Knocked Out
     {
-      question: "How long was Babe Ruth unconscious after hitting the wall?",
+      question: "After being knocked unconscious in this game, what did Ruth do in his next at-bat?",
+      options: ["Struck out", "Hit a single", "Hit a double", "Hit a home run"],
+      correctAnswer: "Hit a double"
+    },
+    {
+      question: "How long was Ruth unconscious after hitting the wall?",
       options: ["2 minutes", "5 minutes", "7 minutes", "10 minutes"],
       correctAnswer: "5 minutes"
     },
     {
-      question: "What did Ruth do in his next at-bat after the collision?",
-      options: ["Struck out", "Hit a single", "Hit a double", "Hit a home run"],
-      correctAnswer: "Hit a double"
+      question: "What was Ruth's famous quote after the game?",
+      options: ["I feel a bit woozy", "Just another day", "The wall hit me", "Can't stop the Bambino"],
+      correctAnswer: "I feel a bit woozy"
     }
   ],
   20: [ // 1969 Mets Pitching Staff
     {
-      question: "What was the team's nickname during their miraculous 1969 season?",
-      options: ["Amazing Mets", "Miracle Mets", "Amazin' Mets", "Magnificent Mets"],
-      correctAnswer: "Miracle Mets"
+      question: "How many future Hall of Fame pitchers appear in this photo?",
+      options: ["One", "Two", "Three", "Four"],
+      correctAnswer: "Two"
     },
     {
-      question: "Who was the Mets' ace pitcher in 1969?",
-      options: ["Nolan Ryan", "Jerry Koosman", "Tom Seaver", "Gary Gentry"],
-      correctAnswer: "Tom Seaver"
+      question: "What was the team's ERA that season?",
+      options: ["2.99", "3.12", "3.24", "3.42"],
+      correctAnswer: "2.99"
+    },
+    {
+      question: "Which of these pitchers would go on to throw the most career no-hitters?",
+      options: ["Tom Seaver", "Jerry Koosman", "Gary Gentry", "Nolan Ryan"],
+      correctAnswer: "Nolan Ryan"
     }
   ],
   21: [ // Satchel Paige and Bob Feller
     {
-      question: "How old was Satchel Paige when he made his MLB debut with the Cleveland Indians?",
-      options: ["32 years old", "38 years old", "42 years old", "45 years old"],
-      correctAnswer: "42 years old"
+      question: "In their documented matchups, what was Paige's record against Feller?",
+      options: ["Won 4 of 6", "Won 6 of 9", "Won 5 of 8", "Won 3 of 5"],
+      correctAnswer: "Won 6 of 9"
     },
     {
-      question: "What was Bob Feller's nickname?",
-      options: ["Rapid Robert", "The Heater", "Bullet Bob", "Speed King"],
-      correctAnswer: "Rapid Robert"
-    }
-  ],
-  22: [ // Babe Ruth with Red Sox
-    {
-      question: "What was Babe Ruth's ERA during his six seasons as a Red Sox pitcher?",
-      options: ["2.28", "2.98", "3.12", "3.45"],
-      correctAnswer: "2.28"
+      question: "What did Feller later say about Paige?",
+      options: ["Best pitcher he ever saw", "Fastest pitcher ever", "Most deceptive delivery", "Greatest competitor"],
+      correctAnswer: "Best pitcher he ever saw"
     },
     {
-      question: "How many World Series did Ruth win as a pitcher with the Red Sox?",
-      options: ["1", "2", "3", "4"],
-      correctAnswer: "3"
-    }
-  ],
-  23: [ // 1985 Blue Jays
-    {
-      question: "Who was the Blue Jays' manager during their first division title in 1985?",
-      options: ["Bobby Cox", "Cito Gaston", "Jimy Williams", "Roy Hartsfield"],
-      correctAnswer: "Bobby Cox"
-    },
-    {
-      question: "Which team did the Blue Jays beat to clinch the 1985 AL East title?",
-      options: ["New York Yankees", "Boston Red Sox", "Detroit Tigers", "Baltimore Orioles"],
-      correctAnswer: "New York Yankees"
+      question: "How old was Paige when he finally made his MLB debut?",
+      options: ["38", "40", "42", "45"],
+      correctAnswer: "42"
     }
   ],
   27: [ // Carlton Fisk's Wave
     {
       question: "Why did the cameraman keep the camera on Fisk instead of following the ball?",
-      options: ["He was distracted by a rat", "The camera malfunctioned", "He was told to", "He lost sight of the ball"],
-      correctAnswer: "He was distracted by a rat"
+      options: ["Director's instruction", "Camera malfunction", "Distracted by a rat", "Lost sight of ball"],
+      correctAnswer: "Distracted by a rat"
     },
     {
-      question: "Which World Series game featured Fisk's famous wave?",
-      options: ["Game 5", "Game 6", "Game 7", "Game 4"],
+      question: "Which World Series game was this iconic moment from?",
+      options: ["Game 4", "Game 5", "Game 6", "Game 7"],
       correctAnswer: "Game 6"
+    },
+    {
+      question: "What time did this game end?",
+      options: ["12:34 AM", "1:06 AM", "1:34 AM", "2:06 AM"],
+      correctAnswer: "12:34 AM"
     }
   ],
   32: [ // 1987 Twins
     {
-      question: "What caused the Metrodome's ventilation system to be adjusted?",
-      options: ["55,000 fans waving Homer Hankies", "High humidity", "Power outage", "Air pressure issues"],
+      question: "What caused the Metrodome's ventilation system to be adjusted during this season?",
+      options: ["Rain leakage", "55,000 fans waving Homer Hankies", "Power outage", "Air pressure issues"],
       correctAnswer: "55,000 fans waving Homer Hankies"
     },
     {
       question: "Which opposing manager tried to get the Homer Hankies banned?",
-      options: ["Whitey Herzog", "Tommy Lasorda", "Sparky Anderson", "Dick Williams"],
+      options: ["Whitey Herzog", "Sparky Anderson", "Tommy Lasorda", "Dick Williams"],
       correctAnswer: "Whitey Herzog"
+    },
+    {
+      question: "How many Homer Hankies were initially ordered?",
+      options: ["50,000", "100,000", "150,000", "200,000"],
+      correctAnswer: "100,000"
+    }
+  ],
+  9: [ // 1982 Expos
+    {
+      question: "How many future Hall of Famers are pictured in this Expos photo?",
+      options: ["One", "Two", "Three", "Four"],
+      correctAnswer: "Two"
+    },
+    {
+      question: "Which players in this photo would later be inducted into Cooperstown?",
+      options: ["Carter and Dawson", "Carter and Raines", "Dawson and Raines", "Carter and Rogers"],
+      correctAnswer: "Carter and Raines"
+    },
+    {
+      question: "What record would Tim Raines set during his Expos career?",
+      options: ["Most stolen bases in a season", "Most consecutive stolen bases", "Most leadoff home runs", "Most hits in a season"],
+      correctAnswer: "Most consecutive stolen bases"
     }
   ],
   // Default questions for moments without specific trivia
@@ -1035,138 +1073,11 @@ const TRIVIA_QUESTIONS = {
       question: "When was the first World Series played?",
       options: ["1901", "1903", "1905", "1907"],
       correctAnswer: "1903"
-    }
-  ],
-  3: [ // Johnny Evers
-    {
-      question: "What was Johnny Evers' nickname?",
-      options: ["The Human Crab", "The Flash", "The Spider", "The Hawk"],
-      correctAnswer: "The Human Crab"
     },
     {
-      question: "In what year was Johnny Evers elected to the Hall of Fame?",
-      options: ["1936", "1940", "1946", "1950"],
-      correctAnswer: "1946"
-    }
-  ],
-  6: [ // First All-Star Game
-    {
-      question: "Who hit the first home run in All-Star Game history?",
-      options: ["Lou Gehrig", "Babe Ruth", "Jimmie Foxx", "Al Simmons"],
-      correctAnswer: "Babe Ruth"
-    },
-    {
-      question: "What was the final score of the first MLB All-Star Game?",
-      options: ["AL 4-2", "AL 5-2", "NL 4-2", "NL 3-2"],
-      correctAnswer: "AL 4-2"
-    }
-  ],
-  8: [ // Jim Thorpe
-    {
-      question: "In which Olympic events did Jim Thorpe win gold medals in 1912?",
-      options: ["Pentathlon and Decathlon", "100m and 200m", "Long Jump and High Jump", "Shot Put and Discus"],
-      correctAnswer: "Pentathlon and Decathlon"
-    },
-    {
-      question: "When were Jim Thorpe's Olympic medals posthumously restored?",
-      options: ["1972", "1977", "1982", "1987"],
-      correctAnswer: "1982"
-    }
-  ],
-  17: [ // Willie Mays Rookie Season
-    {
-      question: "What was Willie Mays' batting average in his rookie season?",
-      options: ["0.254", "0.264", "0.274", "0.284"],
-      correctAnswer: "0.274"
-    },
-    {
-      question: "How many home runs did Mays hit in his rookie season?",
-      options: ["15", "20", "25", "30"],
-      correctAnswer: "20"
-    }
-  ],
-  25: [ // Ernie Shore's Relief Perfect Game
-    {
-      question: "What was Babe Ruth's punishment for punching the umpire?",
-      options: ["5-game suspension", "10-game suspension", "15-game suspension", "20-game suspension"],
-      correctAnswer: "10-game suspension"
-    },
-    {
-      question: "What was the final score of Shore's relief perfect game?",
-      options: ["1-0", "2-0", "3-0", "4-0"],
-      correctAnswer: "4-0"
-    }
-  ],
-  26: [ // Ted Williams
-    {
-      question: "What was Ted Williams' lifetime batting average?",
-      options: ["0.334", "0.344", "0.354", "0.364"],
-      correctAnswer: "0.344"
-    },
-    {
-      question: "How many full seasons did Williams miss due to military service?",
-      options: ["3", "4", "5", "6"],
-      correctAnswer: "5"
-    }
-  ],
-  30: [ // Babe Ruth and Lou Gehrig
-    {
-      question: "How many home runs did Ruth and Gehrig combine for in 1927?",
-      options: ["97", "107", "117", "127"],
-      correctAnswer: "107"
-    },
-    {
-      question: "How much money did Ruth and Gehrig split on their 1927 barnstorming tour?",
-      options: ["$40,000", "$60,000", "$80,000", "$100,000"],
-      correctAnswer: "80,000"
-    }
-  ],
-  34: [ // Cubs' Bear Mascot
-    {
-      question: "What was the temperature on the day this photo was taken?",
-      options: ["78°", "83°", "88°", "93°"],
-      correctAnswer: "88°"
-    },
-    {
-      question: "What was the mascot performer's connection to 'The Wizard of Oz'?",
-      options: ["Played the Lion", "Understudy for the Lion", "Played the Bear", "Directed the show"],
-      correctAnswer: "Understudy for the Lion"
-    }
-  ],
-  35: [ // Satchel Paige's Warm-Up
-    {
-      question: "Which of these was NOT one of Paige's named pitches?",
-      options: ["The Bee Ball", "The Jump Ball", "The Whipsy-Dipsy-Do", "The Curve Ball"],
-      correctAnswer: "The Curve Ball"
-    },
-    {
-      question: "Which of Paige's pitches was later banned by MLB?",
-      options: ["The Bee Ball", "The Jump Ball", "The Whipsy-Dipsy-Do", "The Hesitation Pitch"],
-      correctAnswer: "The Hesitation Pitch"
-    }
-  ],
-  39: [ // Lou Gehrig's Farewell
-    {
-      question: "How long was Gehrig's original farewell speech?",
-      options: ["4 minutes", "6 minutes", "8 minutes", "10 minutes"],
-      correctAnswer: "6 minutes"
-    },
-    {
-      question: "Who recorded the only known footage of the speech?",
-      options: ["A news reporter", "The team photographer", "The bat boy", "A fan"],
-      correctAnswer: "The bat boy"
-    }
-  ],
-  4: [ // 1991 World Series Collision
-    {
-      question: "Which players are involved in this collision at home plate?",
-      options: ["Lonnie Smith and Brian Harper", "Terry Pendleton and Junior Ortiz", "Ron Gant and Greg Olson", "David Justice and Brian Harper"],
-      correctAnswer: "Lonnie Smith and Brian Harper"
-    },
-    {
-      question: "How many games in the 1991 World Series were decided by a single run?",
-      options: ["Two", "Three", "Four", "Five"],
-      correctAnswer: "Four"
+      question: "Who is credited with inventing baseball?",
+      options: ["Abner Doubleday", "Alexander Cartwright", "Albert Spalding", "Henry Chadwick"],
+      correctAnswer: "Alexander Cartwright"
     }
   ]
 };
@@ -1985,6 +1896,9 @@ export default function BaseballTimeMachine() {
 
       {/* Footer Buttons */}
       <div className="fixed bottom-2 right-2 flex gap-2">
+        <div className="bg-yellow-600/30 text-yellow-400/80 px-3 py-1 rounded text-xs">
+          Staging Environment
+        </div>
         <button
           onClick={() => setGameMode(null)}
           className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
@@ -2019,7 +1933,7 @@ export default function BaseballTimeMachine() {
   );
 }
 
-const handleYearDigitIncrement = (digitIndex) => {
+function handleYearDigitIncrement(digitIndex) {
   const yearStr = year.toString().padStart(4, '0');
   const digits = yearStr.split('');
   
@@ -2057,4 +1971,4 @@ const handleYearDigitIncrement = (digitIndex) => {
       setIsTimerActive(true);
     }
   }
-};
+}
