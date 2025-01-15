@@ -911,6 +911,11 @@ const TRIVIA_QUESTIONS = {
   ],
   2: [ // Mickey Mantle's rookie season
     {
+      question: "How old was Mickey Mantle in his rookie season?",
+      options: ["18", "19", "23", "24"],
+      correctAnswer: "19"
+    },
+    {
       question: "What uniform number was Mantle initially assigned in this rookie season?",
       options: ["7", "6", "3", "9"],
       correctAnswer: "6"
@@ -921,9 +926,26 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "Was briefly sent to the minors"
     },
     {
-      question: "Why did Mantle switch from #6 to his famous #7?",
-      options: ["He preferred lucky number 7", "After returning from minors", "To honor Miller Huggins", "The team retired #6"],
-      correctAnswer: "After returning from minors"
+      question: "How old was Mickey Mantle when he won his first MVP award?",
+      options: ["23", "24", "25", "26"],
+      correctAnswer: "24"
+    }
+  ],
+  3: [ // Johnny Evers of the Chicago Cubs
+    {
+      question: "What was Evers' nickname due to his defensive style?",
+      options: ["The Human Crab", "The Spider", "The Flash", "The Acrobat"],
+      correctAnswer: "The Human Crab"
+    },
+    {
+      question: "How tall was Johnny Evers?",
+      options: ["5'7\"", "5'8\"", "5'9\"", "5'10\""],
+      correctAnswer: "5'9\""
+    },
+    {
+      question: "Who was the first baseman in the famous double-play combination immortalized in 'Baseball's Sad Lexicon'?",
+      options: ["Cap Anson", "Frank Chance", "Fred Merkle", "Fred Luderus"],
+      correctAnswer: "Frank Chance"
     }
   ],
   7: [ // Roger Maris
@@ -1902,31 +1924,31 @@ export default function BaseballTimeMachine() {
 
       {/* Footer Buttons */}
       {window.location.hostname === 'staging-baseball-time-machine.netlify.app' && (
-        <div className="fixed bottom-2 right-2 flex gap-2">
+      <div className="fixed bottom-2 right-2 flex gap-2">
           <div className="bg-yellow-600/30 text-yellow-400/80 px-3 py-1 rounded text-xs">
             Staging Environment
           </div>
-          <button
-            onClick={() => setGameMode(null)}
-            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-          >
+        <button
+          onClick={() => setGameMode(null)}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
             Try Classic Mode (3 Images)
-          </button>
-          <button
-            onClick={() => {
-              console.log('Feedback button clicked');
-              setShowFeedbackForm(prev => !prev);
-            }}
-            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-          >
-            Feedback (Beta)
-          </button>
-          <button
-            onClick={handlePreviewTomorrow}
-            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-          >
-            Preview Tomorrow
-          </button>
+        </button>
+        <button
+          onClick={() => {
+            console.log('Feedback button clicked');
+            setShowFeedbackForm(prev => !prev);
+          }}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Feedback (Beta)
+        </button>
+        <button
+          onClick={handlePreviewTomorrow}
+          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+        >
+          Preview Tomorrow
+        </button>
           <button
             onClick={handleStagingReset}
             className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
@@ -1934,7 +1956,7 @@ export default function BaseballTimeMachine() {
             Reset For Testing
           </button>
         </div>
-      )}
+        )}
     </div>
   );
 }
