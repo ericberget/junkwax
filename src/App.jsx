@@ -933,9 +933,9 @@ const TRIVIA_QUESTIONS = {
   ],
   3: [ // Johnny Evers of the Chicago Cubs
     {
-      question: "What was Evers' nickname due to his defensive style?",
-      options: ["The Human Crab", "The Spider", "The Flash", "The Acrobat"],
-      correctAnswer: "The Human Crab"
+      question: "Who is this Chicago Cubs player?",
+      options: ["Johnny Evers", "Joe Tinker", "Mark Grace", "Mordecai Brown"],
+      correctAnswer: "Johnny Evers"
     },
     {
       question: "How tall was Johnny Evers?",
