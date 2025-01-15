@@ -1537,7 +1537,7 @@ export default function BaseballTimeMachine() {
     setSequenceIndex(0);
     setCurrentMoment(getDailyMoment(0));
     setCollectedMoments([]);
-    setGameMode(null); // Reset game mode selection
+    setGameMode('trivia'); // Set to trivia mode instead of null
   }
 
   // Function to preview tomorrow's puzzle
@@ -1606,8 +1606,9 @@ export default function BaseballTimeMachine() {
       return;
     }
     
-    // Set the game mode first
+    // Set the game mode and save to localStorage
     setGameMode(mode);
+    localStorage.setItem('baseball-game-mode', mode);
     
     // Initialize the first moment
     const firstMoment = getDailyMoment(0);
