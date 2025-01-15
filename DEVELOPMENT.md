@@ -2,8 +2,8 @@
 
 ## Branches
 
-- `main`: Production branch, deployed to [production URL]
-- `staging`: Development/testing branch, deployed to [staging URL]
+- `main`: Production branch, deployed to baseballtimemachine.netlify.app
+- `staging`: Development/testing branch, deployed to staging-baseball-time-machine.netlify.app
 
 ## Development Workflow
 
