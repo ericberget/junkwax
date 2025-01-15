@@ -547,15 +547,6 @@ function GameOver({
                 )}
               </div>
               
-              {/* Share Button */}
-              <button
-                onClick={handleShare}
-                className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg mb-4"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-              >
-                Share Results
-              </button>
-
               {/* Action Buttons */}
               <div className="flex flex-col gap-3 mb-4">
                 <button
@@ -582,6 +573,15 @@ function GameOver({
                     <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
                   </svg>
                   My Career Stats
+                </button>
+                
+                {/* Share Button */}
+                <button
+                  onClick={handleShare}
+                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  Share Results
                 </button>
               </div>
 
