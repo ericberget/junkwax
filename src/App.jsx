@@ -1900,40 +1900,40 @@ export default function BaseballTimeMachine() {
       )}
 
       {/* Footer Buttons */}
-      <div className="fixed bottom-2 right-2 flex gap-2">
-        <div className="bg-yellow-600/30 text-yellow-400/80 px-3 py-1 rounded text-xs">
-          Staging Environment
-        </div>
-        <button
-          onClick={() => setGameMode(null)}
-          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-        >
-          Try Classic Mode (3 Images)
-        </button>
-        <button
-          onClick={() => {
-            console.log('Feedback button clicked');
-            setShowFeedbackForm(prev => !prev);
-          }}
-          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-        >
-          Feedback (Beta)
-        </button>
-        <button
-          onClick={handlePreviewTomorrow}
-          className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
-        >
-          Preview Tomorrow
-        </button>
-        {window.location.hostname === 'localhost' && (
+      {window.location.hostname === 'staging-baseball-time-machine.netlify.app' && (
+        <div className="fixed bottom-2 right-2 flex gap-2">
+          <div className="bg-yellow-600/30 text-yellow-400/80 px-3 py-1 rounded text-xs">
+            Staging Environment
+          </div>
+          <button
+            onClick={() => setGameMode(null)}
+            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+          >
+            Try Classic Mode (3 Images)
+          </button>
+          <button
+            onClick={() => {
+              console.log('Feedback button clicked');
+              setShowFeedbackForm(prev => !prev);
+            }}
+            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+          >
+            Feedback (Beta)
+          </button>
+          <button
+            onClick={handlePreviewTomorrow}
+            className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
+          >
+            Preview Tomorrow
+          </button>
           <button
             onClick={handleStagingReset}
             className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
           >
             Reset For Testing
           </button>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
