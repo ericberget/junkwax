@@ -336,6 +336,14 @@ const BASEBALL_MOMENTS = [
     funFact: "This remarkable photo by Underwood & Underwood captures the Boston Red Sox walking onto the field prior to Game 1 of the 1915 World Series at Philadelphia's Baker Bowl. Tris Speaker is visible at far right, with pitcher Rube Shore to his left wearing his distinctive coat. Vean Gregg and backup catcher Pinch Thomas are also pictured as the team, in their assorted sweaters, prepares to face the Phillies. The image provides a rare glimpse of the Baker Bowl during this era. Source: chapmandeadballcollection.com/portfolio/1915-world-series-game-1-baker-bowl/"
   },
   {
+    id: 43,
+    year: 1979,
+    image: '/79tek.jpg',
+    hint: "Pittsburgh's Submarine Specialist",
+    description: "Kent Tekulve with the Pirates",
+    funFact: "Kent Tekulve was one of baseball's most distinctive and effective relief pitchers. His submarine delivery style, along with his lean 6'4\" frame and trademark tinted glasses, made him instantly recognizable on the mound. In 1979, he was a key part of the Pirates' World Series championship team, saving three games in the Series against the Baltimore Orioles. Tekulve would go on to set a National League record for career games pitched (1,050) by a right-hander, demonstrating remarkable durability despite his unorthodox delivery."
+  },
+  {
     id: 39,
     year: 1911,
     image: '/1911.jpg',
@@ -1157,6 +1165,23 @@ const TRIVIA_QUESTIONS = {
       question: "Which photographer/agency captured this historic World Series moment?",
       options: ["Charles Conlon", "George Bain", "Underwood & Underwood", "Paul Thompson"],
       correctAnswer: "Underwood & Underwood"
+    }
+  ],
+  43: [ // Kent Tekulve
+    {
+      question: "Who is this relief pitcher hiding behind tinted glasses and a wicked sidearm delivery?",
+      options: ["Dan Quisenberry", "Kent Tekulve", "Gene Garber", "Mike Marshall"],
+      correctAnswer: "Kent Tekulve"
+    },
+    {
+      question: "How many games did Tekulve save in the 1979 World Series?",
+      options: ["One", "Two", "Three", "Four"],
+      correctAnswer: "Three"
+    },
+    {
+      question: "What National League record did Tekulve set for right-handed pitchers?",
+      options: ["Most saves in a season", "Most career games pitched", "Most innings in relief", "Most strikeouts by a reliever"],
+      correctAnswer: "Most career games pitched"
     }
   ],
   // Default questions for moments without specific trivia
