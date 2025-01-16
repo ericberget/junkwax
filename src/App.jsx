@@ -18,7 +18,10 @@ const BASEBALL_MOMENTS = [
     image: '/bismarck.jpg',
     hint: "Satchel Barnstorms in Bismarck North Dakota",
     description: "Satchel Barnstorms in Bismarck North Dakota",
-    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era."
+    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.",
+    copyright: "Louis Van Oeyen",
+    source: "Library of Congress",
+    sourceLink: "https://www.loc.gov/item/89714223/"
   },
   {
     id: 2,
@@ -366,6 +369,28 @@ const BASEBALL_MOMENTS = [
     hint: "World Series Collision",
     description: "World Series Collision",
     funFact: "This image shows a dramatic moment between Lonnie Smith (runner) and Brian Harper (catcher) during the 1991 World Series between the Atlanta Braves and the Minnesota Twins. The 1991 World Series, often dubbed the Greatest World Series Ever Played, featured a record four games decided by a single run, with three of them going into extra innings. The Minnesota Twins won Game 7 in a nail-biting 1-0 victory, clinching the championship in one of the most intense pitching duels in MLB history! The play in the image exemplifies the grit and intensity that defined this iconic series."
+  },
+  {
+    id: 45,
+    year: 1911,
+    image: '/shoeless.jpg',
+    hint: "The Natural",
+    description: "Shoeless Joe Jackson with the Cleveland Naps",
+    funFact: "Joe Jackson earned his nickname 'Shoeless' during a minor league game when he played in his socks because his new cleats hurt his feet. Despite being banned from baseball after the 1919 Black Sox scandal, Jackson maintained a .356 career batting average, the third-highest in MLB history. The photo captures him during his time with Cleveland, where he first emerged as one of baseball's premier hitters.",
+    copyright: "Louis Van Oeyen",
+    source: "Library of Congress",
+    sourceLink: "https://www.loc.gov/item/89714223/"
+  },
+  {
+    id: 46,
+    year: 1910,
+    image: '/casey.jpg',
+    hint: "Future Hall of Fame Manager",
+    description: "Casey Stengel with the Brooklyn Dodgers",
+    funFact: "Before becoming one of baseball's greatest managers, Casey Stengel was an outfielder for the Brooklyn Dodgers. Known for his wit and baseball acumen, Stengel would later lead the New York Yankees to 10 pennants and 7 World Series titles in 12 years. His colorful personality and unique way with words gave birth to the term 'Stengelese' - his distinctive way of speaking that often left reporters both amused and confused.",
+    copyright: "George Grantham Bain Collection (Library of Congress)",
+    source: "Library of Congress",
+    sourceLink: "https://www.loc.gov/resource/ppmsca.18466/"
   }
 ];
 
@@ -1225,6 +1250,62 @@ const TRIVIA_QUESTIONS = {
       question: "Who is credited with inventing baseball?",
       options: ["Abner Doubleday", "Alexander Cartwright", "Albert Spalding", "Henry Chadwick"],
       correctAnswer: "Alexander Cartwright"
+    }
+  ],
+  45: [
+    {
+      question: "What was Joe Jackson's career batting average?",
+      options: [".356", ".346", ".366", ".336"],
+      correctAnswer: ".356"
+    },
+    {
+      question: "Which team was Joe Jackson playing for when this photo was taken?",
+      options: ["Cleveland Naps", "Chicago White Sox", "Philadelphia Athletics", "Boston Red Sox"],
+      correctAnswer: "Cleveland Naps"
+    },
+    {
+      question: "How did Joe Jackson get his famous nickname 'Shoeless'?",
+      options: [
+        "He played a minor league game in his socks due to tight cleats",
+        "He couldn't afford shoes as a child",
+        "He preferred to practice barefoot",
+        "He lost his cleats before a World Series game"
+      ],
+      correctAnswer: "He played a minor league game in his socks due to tight cleats"
+    }
+  ],
+  46: [
+    {
+      question: "Which future Hall of Fame manager is shown wearing sunglasses in this photo?",
+      options: ["Casey Stengel", "John McGraw", "Miller Huggins", "Connie Mack"],
+      correctAnswer: "Casey Stengel"
+    },
+    {
+      question: "With which team would Casey Stengel win 7 World Series titles as manager?",
+      options: ["Brooklyn Dodgers", "Boston Braves", "New York Yankees", "New York Mets"],
+      correctAnswer: "New York Yankees"
+    },
+    {
+      question: "In what decade would Stengel begin his legendary managerial career?",
+      options: ["1920s", "1930s", "1940s", "1950s"],
+      correctAnswer: "1930s"
+    }
+  ],
+  5: [
+    {
+      question: "What industry did these baseball players work in?",
+      options: ["Silk Weaving", "Coal Mining", "Steel Working", "Ship Building"],
+      correctAnswer: "Silk Weaving"
+    },
+    {
+      question: "Which New Jersey city was known as 'Silk City' in the early 1900s?",
+      options: ["Newark", "Paterson", "Trenton", "Camden"],
+      correctAnswer: "Paterson"
+    },
+    {
+      question: "What type of baseball team was this - professional or industrial?",
+      options: ["Industrial League", "Minor League", "Major League", "Semi-Pro"],
+      correctAnswer: "Industrial League"
     }
   ]
 };
@@ -2184,6 +2265,32 @@ function GameOver({ score, achievements, onRestart, onViewCareer, onShare, gameM
       <div className="game-over-content">
         <h2>Game Over!</h2>
         // ... rest of game over content
+      </div>
+    </div>
+  );
+}
+
+function TodaysMoment({ moment, imageOpacity }) {
+  return (
+    <div className="today-moment">
+      <div className="moment-image-container">
+        <img 
+          src={moment.image} 
+          alt={moment.description}
+          style={{ opacity: imageOpacity }}
+          className="moment-image"
+        />
+      </div>
+      <div className="moment-details">
+        <p className="text-lg text-gray-200 mb-4">{moment.funFact}</p>
+        {moment.copyright && (
+          <p className="text-gray-500 text-sm">
+            Photograph by: {moment.copyright}
+            {moment.sourceLink && (
+              <> • <a href={moment.sourceLink} target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">{moment.source}</a></>
+            )}
+          </p>
+        )}
       </div>
     </div>
   );
