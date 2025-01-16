@@ -320,6 +320,22 @@ const BASEBALL_MOMENTS = [
     funFact: "This 1955 photo captures a historic moment in Yankees history, showing Yogi Berra with Elston Howard during Howard's groundbreaking rookie season. Howard became the first African American player on the Yankees that year, and the two catchers developed a strong friendship with Berra serving as a mentor during the transition. Howard would later succeed Berra as the Yankees' primary catcher and go on to win the American League MVP award in 1963, becoming the first Black player in AL history to win the award. Howard would later say that Berra was one of the first Yankees to welcome him and help him adjust to life in the major leagues."
   },
   {
+    id: 41,
+    year: 1924,
+    image: '/walteretc.jpg',
+    hint: "The Big Train's Championship Season",
+    description: "Walter Johnson and the Washington Senators",
+    funFact: "This 1924 photo captures Walter Johnson during the Senators' first championship season. After 18 years of brilliant but often frustrating seasons with Washington, 'The Big Train' finally reached the World Series. At age 36, Johnson lost his first two starts against the Giants but came back to win Game 7 in relief, pitching four scoreless innings. The victory was especially sweet as Johnson had been with the Senators since 1907, enduring many losing seasons before finally reaching baseball's pinnacle. His teammates carried him off the field after the final out, celebrating not just the championship but the crowning moment of Johnson's legendary career. Source: chapmandeadballcollection.com/photographs/"
+  },
+  {
+    id: 42,
+    year: 1915,
+    image: '/1915WS.jpg',
+    hint: "Red Sox at Baker Bowl",
+    description: "1915 World Series, Game 1",
+    funFact: "This remarkable photo by Underwood & Underwood captures the Boston Red Sox walking onto the field prior to Game 1 of the 1915 World Series at Philadelphia's Baker Bowl. Tris Speaker is visible at far right, with pitcher Rube Shore to his left wearing his distinctive coat. Vean Gregg and backup catcher Pinch Thomas are also pictured as the team, in their assorted sweaters, prepares to face the Phillies. The image provides a rare glimpse of the Baker Bowl during this era. Source: chapmandeadballcollection.com/portfolio/1915-world-series-game-1-baker-bowl/"
+  },
+  {
     id: 39,
     year: 1911,
     image: '/1911.jpg',
@@ -1107,6 +1123,40 @@ const TRIVIA_QUESTIONS = {
       question: "What historic achievement did Elston Howard accomplish in 1963?",
       options: ["First Black AL MVP", "Most home runs by a catcher", "Gold Glove winner", "All-Star Game MVP"],
       correctAnswer: "First Black AL MVP"
+    }
+  ],
+  41: [ // Walter Johnson
+    {
+      question: "What was Walter Johnson's famous nickname?",
+      options: ["The Big Train", "The Washington Express", "The Human Cannon", "The Senator"],
+      correctAnswer: "The Big Train"
+    },
+    {
+      question: "How many years did Johnson pitch for Washington before winning his first World Series?",
+      options: ["10", "15", "18", "20"],
+      correctAnswer: "18"
+    },
+    {
+      question: "What role did Johnson play in Game 7 of the 1924 World Series?",
+      options: ["Starting pitcher", "Relief pitcher", "Did not play", "Pinch hitter"],
+      correctAnswer: "Relief pitcher"
+    }
+  ],
+  42: [ // 1915 World Series
+    {
+      question: "Which Red Sox player can be seen at the far right of this photo?",
+      options: ["Babe Ruth", "Tris Speaker", "Harry Hooper", "Duffy Lewis"],
+      correctAnswer: "Tris Speaker"
+    },
+    {
+      question: "At which historic ballpark was this World Series game played?",
+      options: ["Fenway Park", "Shibe Park", "Baker Bowl", "Braves Field"],
+      correctAnswer: "Baker Bowl"
+    },
+    {
+      question: "Which photographer/agency captured this historic World Series moment?",
+      options: ["Charles Conlon", "George Bain", "Underwood & Underwood", "Paul Thompson"],
+      correctAnswer: "Underwood & Underwood"
     }
   ],
   // Default questions for moments without specific trivia
