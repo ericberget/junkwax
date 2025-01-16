@@ -1302,6 +1302,23 @@ const TRIVIA_QUESTIONS = {
       options: ["Industrial League", "Minor League", "Major League", "Semi-Pro"],
       correctAnswer: "Industrial League"
     }
+  ],
+  10: [ // 1911 Honus Wagner
+    {
+      question: "Who is the player shown in this batting stance photo?",
+      options: ["Tris Speaker", "Honus Wagner", "Hack Wilson", "Ty Cobb"],
+      correctAnswer: "Honus Wagner"
+    },
+    {
+      question: "What position did Wagner primarily play during his career?",
+      options: ["First Base", "Second Base", "Third Base", "Shortstop"],
+      correctAnswer: "Shortstop"
+    },
+    {
+      question: "In 1911, Wagner was playing for which team?",
+      options: ["Pittsburgh Pirates", "Chicago Cubs", "New York Giants", "Boston Braves"],
+      correctAnswer: "Pittsburgh Pirates"
+    }
   ]
 };
 
@@ -2233,37 +2250,7 @@ function handleYearDigitIncrement(digitIndex) {
   }
 }
 
-function TriviaFeedback({ trivia, onAnswerSelected, currentQuestionIndex }) {
-  return (
-    <div className="trivia-container" style={styles.fadeIn}>
-      <div className="trivia-content">
-        <h3>{trivia[currentQuestionIndex].question}</h3>
-        <div className="options-grid">
-          {trivia[currentQuestionIndex].options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => onAnswerSelected(option)}
-              className="option-button"
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
-function GameOver({ score, achievements, onRestart, onViewCareer, onShare, gameMode, collectedMoments }) {
-  return (
-    <div className="game-over-container" style={styles.slideUp}>
-      <div className="game-over-content">
-        <h2>Game Over!</h2>
-        // ... rest of game over content
-      </div>
-    </div>
-  );
-}
 
 function TodaysMoment({ moment, imageOpacity }) {
   return (
