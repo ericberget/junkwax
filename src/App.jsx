@@ -330,7 +330,7 @@ const BASEBALL_MOMENTS = [
   {
     id: 42,
     year: 1915,
-    image: '/1915WS.jpg',
+    image: '/1915ws.jpg',
     hint: "Red Sox at Baker Bowl",
     description: "1915 World Series, Game 1",
     funFact: "This remarkable photo by Underwood & Underwood captures the Boston Red Sox walking onto the field prior to Game 1 of the 1915 World Series at Philadelphia's Baker Bowl. Tris Speaker is visible at far right, with pitcher Rube Shore to his left wearing his distinctive coat. Vean Gregg and backup catcher Pinch Thomas are also pictured as the team, in their assorted sweaters, prepares to face the Phillies. The image provides a rare glimpse of the Baker Bowl during this era. Source: chapmandeadballcollection.com/portfolio/1915-world-series-game-1-baker-bowl/"
