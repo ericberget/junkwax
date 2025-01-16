@@ -329,11 +329,11 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 42,
-    year: 1915,
-    image: '/1915ws.jpg',
-    hint: "Red Sox at Baker Bowl",
-    description: "1915 World Series, Game 1",
-    funFact: "This remarkable photo by Underwood & Underwood captures the Boston Red Sox walking onto the field prior to Game 1 of the 1915 World Series at Philadelphia's Baker Bowl. Tris Speaker is visible at far right, with pitcher Rube Shore to his left wearing his distinctive coat. Vean Gregg and backup catcher Pinch Thomas are also pictured as the team, in their assorted sweaters, prepares to face the Phillies. The image provides a rare glimpse of the Baker Bowl during this era. Source: chapmandeadballcollection.com/portfolio/1915-world-series-game-1-baker-bowl/"
+    year: 1916,
+    image: '/ruthBostonPitching.jpg',
+    hint: "The Babe Before the Bambino",
+    description: "Babe Ruth as a Red Sox Pitcher",
+    funFact: "Before becoming baseball's most legendary slugger, Babe Ruth was one of the American League's best left-handed pitchers. With the Red Sox, he won 89 games over six seasons and posted a remarkable 2.19 ERA. In 1916, he led the league with a 1.75 ERA and nine shutouts. Ruth's success on the mound, including a 29-inning scoreless streak in World Series play, is often overshadowed by his later hitting prowess with the Yankees."
   },
   {
     id: 43,
@@ -342,6 +342,14 @@ const BASEBALL_MOMENTS = [
     hint: "Pittsburgh's Submarine Specialist",
     description: "Kent Tekulve with the Pirates",
     funFact: "Kent Tekulve was one of baseball's most distinctive and effective relief pitchers. His submarine delivery style, along with his lean 6'4\" frame and trademark tinted glasses, made him instantly recognizable on the mound. In 1979, he was a key part of the Pirates' World Series championship team, saving three games in the Series against the Baltimore Orioles. Tekulve would go on to set a National League record for career games pitched (1,050) by a right-hander, demonstrating remarkable durability despite his unorthodox delivery."
+  },
+  {
+    id: 44,
+    year: 1915,
+    image: '/1915ws.jpg',
+    hint: "Red Sox at Baker Bowl",
+    description: "1915 World Series, Game 1",
+    funFact: "This remarkable photo by Underwood & Underwood captures the Boston Red Sox walking onto the field prior to Game 1 of the 1915 World Series at Philadelphia's Baker Bowl. Tris Speaker is visible at far right, with pitcher Rube Shore to his left wearing his distinctive coat. Vean Gregg and backup catcher Pinch Thomas are also pictured as the team, in their assorted sweaters, prepares to face the Phillies. The image provides a rare glimpse of the Baker Bowl during this era. Source: chapmandeadballcollection.com/portfolio/1915-world-series-game-1-baker-bowl/"
   },
   {
     id: 39,
@@ -1150,24 +1158,24 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "Relief pitcher"
     }
   ],
-  42: [ // 1915 World Series
+  42: [ // Babe Ruth Red Sox
     {
-      question: "Which Red Sox player can be seen at the far right of this photo?",
-      options: ["Babe Ruth", "Tris Speaker", "Harry Hooper", "Duffy Lewis"],
-      correctAnswer: "Tris Speaker"
+      question: "What was Babe Ruth's ERA in his remarkable 1916 season?",
+      options: ["1.75", "2.01", "2.28", "2.44"],
+      correctAnswer: "1.75"
     },
     {
-      question: "At which historic ballpark was this World Series game played?",
-      options: ["Fenway Park", "Shibe Park", "Baker Bowl", "Braves Field"],
-      correctAnswer: "Baker Bowl"
+      question: "How many shutouts did Ruth throw to lead the league in 1916?",
+      options: ["Seven", "Eight", "Nine", "Ten"],
+      correctAnswer: "Nine"
     },
     {
-      question: "Which Washington Senators pitcher would win his first World Series nine years after this photo was taken?",
-      options: ["Walter Johnson", "George Mogridge", "Tom Zachary", "Stan Coveleski"],
-      correctAnswer: "Walter Johnson"
+      question: "How many games did Ruth win as a pitcher with the Red Sox?",
+      options: ["78", "89", "94", "102"],
+      correctAnswer: "89"
     }
   ],
-  43: [ // Kent Tekulve
+  43: [ // Kent Tekulve trivia stays the same
     {
       question: "Who is this relief pitcher hiding behind tinted glasses and a wicked sidearm delivery?",
       options: ["Dan Quisenberry", "Kent Tekulve", "Gene Garber", "Mike Marshall"],
@@ -1182,6 +1190,23 @@ const TRIVIA_QUESTIONS = {
       question: "What National League record did Tekulve set for right-handed pitchers?",
       options: ["Most saves in a season", "Most career games pitched", "Most innings in relief", "Most strikeouts by a reliever"],
       correctAnswer: "Most career games pitched"
+    }
+  ],
+  44: [ // 1915 World Series trivia moves here
+    {
+      question: "Which Red Sox player can be seen at the far right of this photo?",
+      options: ["Babe Ruth", "Tris Speaker", "Harry Hooper", "Duffy Lewis"],
+      correctAnswer: "Tris Speaker"
+    },
+    {
+      question: "At which historic ballpark was this World Series game played?",
+      options: ["Fenway Park", "Shibe Park", "Baker Bowl", "Braves Field"],
+      correctAnswer: "Baker Bowl"
+    },
+    {
+      question: "Which Washington Senators pitcher would win his first World Series nine years after this photo was taken?",
+      options: ["Walter Johnson", "George Mogridge", "Tom Zachary", "Stan Coveleski"],
+      correctAnswer: "Walter Johnson"
     }
   ],
   // Default questions for moments without specific trivia
