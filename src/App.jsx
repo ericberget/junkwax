@@ -312,6 +312,14 @@ const BASEBALL_MOMENTS = [
     funFact: "On July 4, 1939, Lou Gehrig delivered his famous 'Luckiest Man' speech at Yankee Stadium. What many don't know is that Gehrig initially didn't want to speak at all. He had to be convinced by his wife Eleanor and team officials. When he finally agreed, he spoke without any written notes, from the heart. The Yankees' bat boy that day had the presence of mind to record the speech on a home movie camera, giving us the only known footage of this historic moment. The original speech lasted about 6 minutes, but only about 1 minute of footage survives today."
   },
   {
+    id: 40,
+    year: 1963,
+    image: '/YogiandHoward.jpg',
+    hint: "Yankees Battery Mates",
+    description: "Yogi Berra and Elston Howard at Yankee Stadium",
+    funFact: "This 1963 photo captures a significant moment in Yankees history, showing Yogi Berra with Elston Howard, who became the first African American player on the Yankees in 1955. Howard not only succeeded Berra as the Yankees' primary catcher but also won the American League MVP award in 1963, becoming the first Black player in AL history to win the award. The two catchers shared a strong friendship, with Berra helping mentor Howard during the transition. Howard would later say that Berra was one of the first Yankees to welcome him and help him adjust to life in the major leagues."
+  },
+  {
     id: 39,
     year: 1911,
     image: '/1911.jpg',
@@ -1082,6 +1090,23 @@ const TRIVIA_QUESTIONS = {
       question: "What record would Tim Raines set during his Expos career?",
       options: ["Most stolen bases in a season", "Most consecutive stolen bases", "Most leadoff home runs", "Most hits in a season"],
       correctAnswer: "Most consecutive stolen bases"
+    }
+  ],
+  40: [ // Yogi Berra and Elston Howard
+    {
+      question: "What historic achievement did Elston Howard accomplish in 1963?",
+      options: ["First Black AL MVP", "Most home runs by a catcher", "Gold Glove winner", "All-Star Game MVP"],
+      correctAnswer: "First Black AL MVP"
+    },
+    {
+      question: "What position did both Yogi Berra and Elston Howard primarily play?",
+      options: ["First Base", "Catcher", "Left Field", "Third Base"],
+      correctAnswer: "Catcher"
+    },
+    {
+      question: "In what year did Elston Howard break the Yankees' color barrier?",
+      options: ["1947", "1951", "1955", "1959"],
+      correctAnswer: "1955"
     }
   ],
   // Default questions for moments without specific trivia
