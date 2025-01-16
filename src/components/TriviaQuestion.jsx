@@ -61,7 +61,7 @@ export function TriviaQuestion({ question, options, correctAnswer, onAnswer, que
   return (
     <div className="space-y-6">
       <h3 
-        className="text-2xl text-[#f5f2e6] mb-6"
+        className="text-3xl text-[#f5f2e6] mb-6 mt-10"
         style={{ fontFamily: 'Douglas-Burlington-Regular' }}
       >
         {question}
