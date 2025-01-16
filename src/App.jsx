@@ -313,11 +313,11 @@ const BASEBALL_MOMENTS = [
   },
   {
     id: 40,
-    year: 1963,
+    year: 1955,
     image: '/YogiandHoward.jpg',
     hint: "Yankees Battery Mates",
     description: "Yogi Berra and Elston Howard at Yankee Stadium",
-    funFact: "This 1963 photo captures a significant moment in Yankees history, showing Yogi Berra with Elston Howard, who became the first African American player on the Yankees in 1955. Howard not only succeeded Berra as the Yankees' primary catcher but also won the American League MVP award in 1963, becoming the first Black player in AL history to win the award. The two catchers shared a strong friendship, with Berra helping mentor Howard during the transition. Howard would later say that Berra was one of the first Yankees to welcome him and help him adjust to life in the major leagues."
+    funFact: "This 1955 photo captures a historic moment in Yankees history, showing Yogi Berra with Elston Howard during Howard's groundbreaking rookie season. Howard became the first African American player on the Yankees that year, and the two catchers developed a strong friendship with Berra serving as a mentor during the transition. Howard would later succeed Berra as the Yankees' primary catcher and go on to win the American League MVP award in 1963, becoming the first Black player in AL history to win the award. Howard would later say that Berra was one of the first Yankees to welcome him and help him adjust to life in the major leagues."
   },
   {
     id: 39,
@@ -1094,19 +1094,19 @@ const TRIVIA_QUESTIONS = {
   ],
   40: [ // Yogi Berra and Elston Howard
     {
-      question: "What historic achievement did Elston Howard accomplish in 1963?",
-      options: ["First Black AL MVP", "Most home runs by a catcher", "Gold Glove winner", "All-Star Game MVP"],
-      correctAnswer: "First Black AL MVP"
-    },
-    {
-      question: "What position did both Yogi Berra and Elston Howard primarily play?",
-      options: ["First Base", "Catcher", "Left Field", "Third Base"],
-      correctAnswer: "Catcher"
+      question: "Who was the first African American player to play for the New York Yankees?",
+      options: ["Larry Doby", "Elston Howard", "Monte Irvin", "Vic Power"],
+      correctAnswer: "Elston Howard"
     },
     {
       question: "In what year did Elston Howard break the Yankees' color barrier?",
       options: ["1947", "1951", "1955", "1959"],
       correctAnswer: "1955"
+    },
+    {
+      question: "What historic achievement did Elston Howard accomplish in 1963?",
+      options: ["First Black AL MVP", "Most home runs by a catcher", "Gold Glove winner", "All-Star Game MVP"],
+      correctAnswer: "First Black AL MVP"
     }
   ],
   // Default questions for moments without specific trivia
