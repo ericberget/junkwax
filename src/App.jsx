@@ -1162,9 +1162,9 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "Baker Bowl"
     },
     {
-      question: "Which photographer/agency captured this historic World Series moment?",
-      options: ["Charles Conlon", "George Bain", "Underwood & Underwood", "Paul Thompson"],
-      correctAnswer: "Underwood & Underwood"
+      question: "Which Washington Senators pitcher would win his first World Series nine years after this photo was taken?",
+      options: ["Walter Johnson", "George Mogridge", "Tom Zachary", "Stan Coveleski"],
+      correctAnswer: "Walter Johnson"
     }
   ],
   43: [ // Kent Tekulve
