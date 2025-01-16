@@ -2238,37 +2238,7 @@ function handleYearDigitIncrement(digitIndex) {
   }
 }
 
-function TriviaFeedback({ trivia, onAnswerSelected, currentQuestionIndex }) {
-  return (
-    <div className="trivia-container" style={styles.fadeIn}>
-      <div className="trivia-content">
-        <h3>{trivia[currentQuestionIndex].question}</h3>
-        <div className="options-grid">
-          {trivia[currentQuestionIndex].options.map((option, index) => (
-            <button
-              key={index}
-              onClick={() => onAnswerSelected(option)}
-              className="option-button"
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
-function GameOver({ score, achievements, onRestart, onViewCareer, onShare, gameMode, collectedMoments }) {
-  return (
-    <div className="game-over-container" style={styles.slideUp}>
-      <div className="game-over-content">
-        <h2>Game Over!</h2>
-        // ... rest of game over content
-      </div>
-    </div>
-  );
-}
 
 function TodaysMoment({ moment, imageOpacity }) {
   return (
