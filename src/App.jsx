@@ -989,11 +989,6 @@ const TRIVIA_QUESTIONS = {
       question: "What happened to Mantle during this rookie season?",
       options: ["Won Rookie of the Year", "Was briefly sent to the minors", "Hit for the cycle", "Made the All-Star team"],
       correctAnswer: "Was briefly sent to the minors"
-    },
-    {
-      question: "How old was Mickey Mantle when he won his first MVP award?",
-      options: ["23", "24", "25", "26"],
-      correctAnswer: "24"
     }
   ],
   3: [ // Johnny Evers of the Chicago Cubs
