@@ -18,7 +18,7 @@ const BASEBALL_MOMENTS = [
     image: '/bismarck.jpg',
     hint: "Satchel Barnstorms in Bismarck North Dakota",
     description: "Satchel Barnstorms in Bismarck North Dakota",
-    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.\n\nPhoto source: Negro Leagues Baseball Museum",
+    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. During his time in Bismarck, Paige discovered an unusual secret weapon - a snake oil remedy given to him by local Sioux Indians. Though they warned him it was only for snake bites, Paige experimented with it as a post-game arm treatment in the cold North Dakota climate. Finding that it helped loosen his arm, he began using it regularly and kept a jar of the mysterious liniment with him. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.\n\nPhoto source: Negro Leagues Baseball Museum",
     copyright: "Negro Leagues Baseball Museum",
     source: "Negro Leagues Baseball Museum",
     sourceLink: "https://www.nlbm.com/"
@@ -959,14 +959,19 @@ function Collection({ onClose, collectedMoments, gameMode }) {
 const TRIVIA_QUESTIONS = {
   1: [ // Satchel in Bismarck
     {
-      question: "In this photo, which white outfielder has his arm around Satchel Paige?",
-      options: ["Neil Churchill", "Moose Johnson", "Double Duty Radcliffe", "Quincy Trouppe"],
-      correctAnswer: "Moose Johnson"
+      question: "Neil Churchill signed Satchel Paige to play in 1933 and 1935 in Bismarck North Dakota. What was Satchel Paige's given name?",
+      options: ["Edward", "Leroy", "Samuel", "William"],
+      correctAnswer: "Leroy"
     },
     {
-      question: "Who was the player-manager of this integrated team?",
-      options: ["Satchel Paige", "Neil Churchill", "Moose Johnson", "Jackie Robinson"],
-      correctAnswer: "Neil Churchill"
+      question: "What is the origin of 'Double Duty' Radcliffe's nickname?",
+      options: [
+        "He played two positions in one day",
+        "He caught one game and pitched another in a doubleheader",
+        "He worked two jobs during the offseason",
+        "He played in both the Negro Leagues and MLB"
+      ],
+      correctAnswer: "He caught one game and pitched another in a doubleheader"
     },
     {
       question: "What made this team historically significant?",
