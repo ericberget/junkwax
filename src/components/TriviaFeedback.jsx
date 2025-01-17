@@ -145,6 +145,11 @@ export function TriviaFeedback({
                 {/* Fun Fact */}
                 <div className="text-gray-300 text-left max-w-3xl mx-auto px-1">
                   {funFact}
+                  {funFact?.source && (
+                    <div className="text-gray-500 text-sm mt-2">
+                      Source: {funFact.source}
+                    </div>
+                  )}
                 </div>
 
                 {/* Next Button */}

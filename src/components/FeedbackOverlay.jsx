@@ -181,6 +181,11 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
                    fontSize: '1.05rem'
                  }}>
               {funFact}
+              {funFact?.source && (
+                <div className="text-gray-500 text-sm mt-2">
+                  Source: {funFact.source}
+                </div>
+              )}
             </div>
 
             {/* Next Button - Desktop Only */}

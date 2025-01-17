@@ -976,7 +976,7 @@ const TRIVIA_QUESTIONS = {
     {
       question: "How many years before Jackie Robinson broke the color barrier did this team play?",
       options: ["2", "12", "22", "32"],
-      correctAnswer: "22"
+      correctAnswer: "12"
     }
   ],
   2: [ // Mickey Mantle's rookie season
