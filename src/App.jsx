@@ -18,10 +18,10 @@ const BASEBALL_MOMENTS = [
     image: '/bismarck.jpg',
     hint: "Satchel Barnstorms in Bismarck North Dakota",
     description: "Satchel Barnstorms in Bismarck North Dakota",
-    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.",
-    copyright: "Louis Van Oeyen",
-    source: "Library of Congress",
-    sourceLink: "https://www.loc.gov/item/89714223/"
+    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see player-manager Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.\n\nPhoto source: Negro Leagues Baseball Museum",
+    copyright: "Negro Leagues Baseball Museum",
+    source: "Negro Leagues Baseball Museum",
+    sourceLink: "https://www.nlbm.com/"
   },
   {
     id: 2,
@@ -959,9 +959,9 @@ function Collection({ onClose, collectedMoments, gameMode }) {
 const TRIVIA_QUESTIONS = {
   1: [ // Satchel in Bismarck
     {
-      question: "How many future Hall of Famers appear in this team photo?",
-      options: ["None", "One (Satchel Paige)", "Two", "Three"],
-      correctAnswer: "One (Satchel Paige)"
+      question: "In this photo, which white outfielder has his arm around Satchel Paige?",
+      options: ["Neil Churchill", "Moose Johnson", "Double Duty Radcliffe", "Quincy Trouppe"],
+      correctAnswer: "Moose Johnson"
     },
     {
       question: "Who was the player-manager of this integrated team?",
