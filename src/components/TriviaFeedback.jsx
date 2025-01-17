@@ -65,7 +65,7 @@ export function TriviaFeedback({
               <div className="flex justify-center items-center">
                 <div className="flex flex-col items-center">
                   <div 
-                    className="text-[#f5f2e6]/70 mb-2 text-sm md:text-base"
+                    className="text-[#f5f2e6] mb-2 text-sm md:text-base"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                   >
                     CORRECT YEAR
@@ -74,7 +74,7 @@ export function TriviaFeedback({
                     {yearDigits.map((digit, index) => (
                       <div 
                         key={index}
-                        className="w-12 h-16 bg-gray-700/50 rounded-lg flex items-center justify-center text-2xl text-[#f5f2e6]"
+                        className="w-12 h-16 bg-[#1e4fba] rounded-lg flex items-center justify-center text-2xl text-[#f5f2e6]"
                         style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                       >
                         {digit}
@@ -119,12 +119,18 @@ export function TriviaFeedback({
             {/* Trivia Section */}
             {showingQuestions ? (
               <div className="bg-gray-900/50 p-6 rounded-lg">
-                <div className="text-center mb-6">
-                  <div className="text-[#f5f2e6] text-lg mb-2">
-                    Trivia Round
+                <div className="flex justify-between items-start mb-6">
+                  <div className="inline-block bg-[#1e4fba] px-6 py-2 rounded-lg text-center text-[#f5f2e6] text-xl md:text-2xl"
+                    style={{ 
+                      fontFamily: 'Douglas-Burlington-Regular',
+                      letterSpacing: '3px'
+                    }}
+                  >
+                    TRIVIA ROUND
                   </div>
-                  <div className="text-green-400 text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-                    +{triviaPoints} bonus points
+                  <div className="text-green-400" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+                    <span className="text-4xl">+{triviaPoints}</span>
+                    <span className="text-2xl"> POINTS</span>
                   </div>
                 </div>
 

@@ -959,7 +959,7 @@ function Collection({ onClose, collectedMoments, gameMode }) {
 const TRIVIA_QUESTIONS = {
   1: [ // Satchel in Bismarck
     {
-      question: "Neil Churchill signed Satchel Paige to play in 1933 and 1935 in Bismarck North Dakota. What was Satchel Paige's given name?",
+      question: "What is the name of the pitcher standing in the middle back row?",
       options: ["Edward", "Leroy", "Samuel", "William"],
       correctAnswer: "Leroy"
     },
@@ -974,9 +974,9 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "He caught one game and pitched another in a doubleheader"
     },
     {
-      question: "What made this team historically significant?",
-      options: ["First professional night game", "First integrated professional team", "First team to tour Japan", "First team to use batting helmets"],
-      correctAnswer: "First integrated professional team"
+      question: "How many years before Jackie Robinson broke the color barrier did this team play?",
+      options: ["2", "12", "22", "32"],
+      correctAnswer: "22"
     }
   ],
   2: [ // Mickey Mantle's rookie season
