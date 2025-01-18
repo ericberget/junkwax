@@ -1621,7 +1621,9 @@ export default function BaseballTimeMachine() {
           source: currentMoment.source,
           sourcelink: currentMoment.sourceLink
         },
-        isGameOver: sequenceIndex >= 2,
+        isGameOver: (outs + 1 >= 3) || 
+                   (gameMode === 'trivia' && sequenceIndex === 0) || 
+                   (gameMode === 'classic' && sequenceIndex >= 2),
         isFoulBall: false,
         currentYear: currentMoment.year,
         trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
@@ -1708,7 +1710,9 @@ export default function BaseballTimeMachine() {
         source: currentMoment.source,
         sourcelink: currentMoment.sourceLink
       },
-      isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
+      isGameOver: (outs + 1 >= 3) || 
+                 (gameMode === 'trivia' && sequenceIndex === 0) || 
+                 (gameMode === 'classic' && sequenceIndex >= 2),
       isFoulBall: false,
       currentYear: currentMoment.year,
       trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
