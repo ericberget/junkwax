@@ -1341,7 +1341,7 @@ const TRIVIA_QUESTIONS = {
   ],
   34: [ // 1908 Cubs Mascot
     {
-      question: "When did the Cubs last win the World Series before their 2016 victory?",
+      question: "Before their 2016 championship, when did the Chicago Cubs last win the World Series?",
       options: ["1898", "1908", "1918", "1928"],
       correctAnswer: "1908"
     },
