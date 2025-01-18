@@ -180,10 +180,17 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
                    lineHeight: '1.7',
                    fontSize: '1.05rem'
                  }}>
-              {funFact}
+              {funFact?.text?.split('\n\n').map((paragraph, index) => (
+                <p key={index} className="mb-4">{paragraph}</p>
+              ))}
               {funFact?.source && (
-                <div className="text-gray-500 text-sm mt-2">
+                <div className="text-gray-400/60 text-sm mt-2 italic">
                   Source: {funFact.source}
+                </div>
+              )}
+              {funFact?.sourcelink && (
+                <div className="text-gray-400/60 text-sm mt-1 italic">
+                  {funFact.sourcelink}
                 </div>
               )}
             </div>

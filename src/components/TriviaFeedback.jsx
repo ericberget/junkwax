@@ -15,6 +15,7 @@ export function TriviaFeedback({
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [triviaPoints, setTriviaPoints] = useState(0);
   const [showingQuestions, setShowingQuestions] = useState(true);
+  const [showFunFact, setShowFunFact] = useState(false);
   
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
@@ -25,6 +26,7 @@ export function TriviaFeedback({
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       setShowingQuestions(false);
+      setShowFunFact(true);
     }
   };
 
@@ -118,7 +120,7 @@ export function TriviaFeedback({
 
             {/* Trivia Section */}
             {showingQuestions ? (
-              <div className="bg-gray-900/50 p-6 rounded-lg">
+              <div className="bg-gray-900/50 p-6 rounded-lg animate-fadeIn">
                 <div className="flex justify-between items-start mb-6">
                   <div className="inline-block bg-[#1e4fba] px-6 py-2 rounded-lg text-center text-[#f5f2e6] text-xl md:text-2xl"
                     style={{ 
@@ -140,14 +142,21 @@ export function TriviaFeedback({
                   questionNumber={currentQuestionIndex + 1}
                 />
               </div>
-            ) : (
-              <>
+            ) : showFunFact ? (
+              <div className="animate-fadeIn">
                 {/* Fun Fact */}
                 <div className="text-gray-300 text-left max-w-3xl mx-auto px-1">
-                  {funFact}
+                  {funFact?.text?.split('\n\n').map((paragraph, index) => (
+                    <p key={index} className="mb-4">{paragraph}</p>
+                  ))}
                   {funFact?.source && (
-                    <div className="text-gray-500 text-sm mt-2">
+                    <div className="text-gray-400/60 text-sm mt-2 italic">
                       Source: {funFact.source}
+                    </div>
+                  )}
+                  {funFact?.sourcelink && (
+                    <div className="text-gray-400/60 text-sm mt-1 italic">
+                      {funFact.sourcelink}
                     </div>
                   )}
                 </div>
@@ -162,8 +171,8 @@ export function TriviaFeedback({
                     {isGameOver ? "View Results" : "Next"}
                   </button>
                 </div>
-              </>
-            )}
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
