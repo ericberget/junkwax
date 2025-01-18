@@ -7,15 +7,14 @@ export function TriviaFeedback({
   points, 
   image, 
   funFact,
-  trivia,
+  trivia = [],
   onComplete,
   currentYear,
   isGameOver
 }) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [triviaPoints, setTriviaPoints] = useState(0);
-  const [showingQuestions, setShowingQuestions] = useState(true);
-  const [showFunFact, setShowFunFact] = useState(false);
+  const [showingQuestions, setShowingQuestions] = useState(trivia && trivia.length > 0);
   
   const handleAnswer = (isCorrect) => {
     if (isCorrect) {
@@ -26,7 +25,6 @@ export function TriviaFeedback({
       setCurrentQuestionIndex(prev => prev + 1);
     } else {
       setShowingQuestions(false);
-      setShowFunFact(true);
     }
   };
 
@@ -119,7 +117,7 @@ export function TriviaFeedback({
             </div>
 
             {/* Trivia Section */}
-            {showingQuestions ? (
+            {showingQuestions && trivia && trivia.length > 0 && (
               <div className="bg-gray-900/50 p-6 rounded-lg animate-fadeIn">
                 <div className="flex justify-between items-start mb-6">
                   <div className="inline-block bg-[#1e4fba] px-6 py-2 rounded-lg text-center text-[#f5f2e6] text-xl md:text-2xl"
@@ -142,7 +140,9 @@ export function TriviaFeedback({
                   questionNumber={currentQuestionIndex + 1}
                 />
               </div>
-            ) : showFunFact ? (
+            )}
+            
+            {(!showingQuestions || !trivia || trivia.length === 0) && (
               <div className="animate-fadeIn">
                 {/* Fun Fact */}
                 <div className="text-gray-300 text-left max-w-3xl mx-auto px-1">
@@ -172,7 +172,7 @@ export function TriviaFeedback({
                   </button>
                 </div>
               </div>
-            ) : null}
+            )}
           </div>
         </div>
       </div>
