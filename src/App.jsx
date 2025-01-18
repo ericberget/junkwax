@@ -18,7 +18,7 @@ const BASEBALL_MOMENTS = [
     image: '/bismarck.jpg',
     hint: "Satchel Barnstorms in Bismarck North Dakota",
     description: "Satchel Barnstorms in Bismarck North Dakota",
-    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated. In the image, we can see automotive dealer and manager, Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. During his time in Bismarck, Paige discovered an unusual secret weapon - a snake oil remedy given to him by local Sioux Indians. Though they warned him it was only for snake bites, Paige experimented with it as a post-game arm treatment in the cold North Dakota climate. Finding that it helped loosen his arm, he began using it regularly and kept a jar of the mysterious liniment with him. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.\n\nPhoto source: Negro Leagues Baseball Museum",
+    funFact: "This team photograph from 1935 offers a fascinating glimpse into an important moment in baseball history. According to author Tom Dunkel, it's the only known picture of the Bismarck team taken just before they left for the National Tournament. The lineup features an integrated group of players, with both Black and white athletes on the squad. This was highly unusual for the time, as the sport remained largely segregated.\n\nIn the image, we can see automotive dealer and manager, Neil Churchill kneeling in the front row, while star pitcher Satchel Paige stands alongside his teammates. Notably, white outfielder Moose Johnson has his hand resting on Paiges shoulder, a gesture that symbolizes the camaraderie and acceptance within the team. During his time in Bismarck, Paige discovered an unusual secret weapon - a snake oil remedy given to him by local Sioux Indians. Though they warned him it was only for snake bites, Paige experimented with it as a post-game arm treatment in the cold North Dakota climate.\n\nFinding that it helped loosen his arm, he began using it regularly and kept a jar of the mysterious liniment with him. Today, baseball historians view the 1935 Bismarck squad as a pivotal step toward the integration of the major leagues. While Jackie Robinson would not break the color barrier until 1947, this team foreshadowed the sport's more inclusive future. Their photograph serves as a tangible reminder of the progress that was slowly taking shape, even amidst the widespread segregation of the era.",
     copyright: "Negro Leagues Baseball Museum",
     source: "Negro Leagues Baseball Museum",
     sourceLink: "https://www.nlbm.com/"
@@ -53,7 +53,7 @@ const BASEBALL_MOMENTS = [
     image: '/Honus1896.jpg',
     hint: "The Flying Dutchman's Minor League Days",
     description: "Paterson Silk Weavers, Atlantic League, 1896",
-    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s. In 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
+    funFact: "This remarkable 1896 photo captures two future Hall of Famers at the start of their careers: 22-year-old Honus Wagner (top, third from left) and Ed Barrow (middle, second from left). While Wagner would become baseball's greatest shortstop, Barrow would make his mark as an executive, helping build the Yankees dynasty of the 1920s and 1930s.\n\nIn 1896, Wagner was still developing his skills in the minors, playing for $35 a month with the Paterson Silk Weavers. His manager? None other than Ed Barrow, who would later say he knew Wagner was special when he saw him jump a fence from a standing position while chasing a foul ball."
   },
   {
     id: 7,
@@ -61,7 +61,7 @@ const BASEBALL_MOMENTS = [
     image: '/1961.jpg',
     hint: "The Reluctant Record Breaker",
     description: "Roger Maris in the dugout",
-    funFact: "Roger Maris, born in Hibbing, Minnesota and raised in North Dakota, became known as baseball's 'reluctant superstar.' Despite breaking Babe Ruth's single-season home run record in 1961 with 61 homers, Maris never seemed comfortable with fame. The pressure of chasing Ruth's record was so intense that his hair began falling out during the season. Commissioner Ford Frick's decision to put an asterisk next to his record (because Maris hit his in a 162-game season versus Ruth's 154) added to the controversy. The asterisk, which technically never existed in the record books but lived on in baseball lore, wasn't formally removed until 1991 - six years after Maris's death."
+    funFact: "Roger Maris, born in Hibbing, Minnesota and raised in North Dakota, became known as baseball's 'reluctant superstar.' Despite breaking Babe Ruth's single-season home run record in 1961 with 61 homers, Maris never seemed comfortable with fame. The pressure of chasing Ruth's record was so intense that his hair began falling out during the season.\n\nCommissioner Ford Frick's decision to put an asterisk next to his record (because Maris hit his in a 162-game season versus Ruth's 154) added to the controversy. The asterisk, which technically never existed in the record books but lived on in baseball lore, wasn't formally removed until 1991 - six years after Maris's death."
   },
   {
     id: 8,
@@ -69,7 +69,7 @@ const BASEBALL_MOMENTS = [
     image: '/1913Thorpe.jpg',
     hint: "History's Greatest All-Around Athlete",
     description: "Jim Thorpe with the New York Giants",
-    funFact: "Jim Thorpe might be the most talented athlete in American history. A member of the Sac and Fox Nation, he won Olympic gold medals in both the pentathlon and decathlon in 1912, played six seasons of Major League Baseball, was an inaugural member of the Pro Football Hall of Fame, and even played professional basketball. After winning his Olympic medals, King Gustav V of Sweden told him, 'Sir, you are the greatest athlete in the world,' to which Thorpe simply replied, 'Thanks, King.' Tragically, his Olympic medals were stripped away when it was discovered he had played semi-pro baseball (though they were posthumously restored in 1982). Despite this setback, he went on to play MLB baseball from 1913 to 1919, including time with the New York Giants, Cincinnati Reds, and Boston Braves."
+    funFact: "Jim Thorpe might be the most talented athlete in American history. A member of the Sac and Fox Nation, he won Olympic gold medals in both the pentathlon and decathlon in 1912, played six seasons of Major League Baseball, was an inaugural member of the Pro Football Hall of Fame, and even played professional basketball.\n\nAfter winning his Olympic medals, King Gustav V of Sweden told him, 'Sir, you are the greatest athlete in the world,' to which Thorpe simply replied, 'Thanks, King.' Tragically, his Olympic medals were stripped away when it was discovered he had played semi-pro baseball (though they were posthumously restored in 1982). Despite this setback, he went on to play MLB baseball from 1913 to 1919, including time with the New York Giants, Cincinnati Reds, and Boston Braves."
   },
   {
     id: 9,
@@ -101,7 +101,7 @@ const BASEBALL_MOMENTS = [
     image: '/kirby.jpg',
     hint: "The Future Hall of Famer's Rookie Season",
     description: "Kirby Puckett's rookie season with the Minnesota Twins",
-    funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984. In his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown."
+    funFact: "Kirby Puckett's path to the majors was anything but typical. He was discovered by Twins scout Jim Rantz while playing in a semi-pro tournament in Illinois. After being drafted, Puckett rocketed through the minor leagues, making his MLB debut on May 8, 1984.\n\nIn his very first game, he went 4-for-5 with a stolen base, becoming the 9th player in MLB history to collect four hits in their debut. Despite his relatively late start in baseball and standing just 5'8\", Puckett would go on to become one of baseball's most beloved figures, leading the Twins to two World Series championships and earning a place in Cooperstown."
   },
   {
     id: 13,
@@ -126,7 +126,7 @@ const BASEBALL_MOMENTS = [
     image: '/1933.jpg',
     hint: "The First All-Star Game",
     description: "The First MLB All-Star Game at Comiskey Park",
-    funFact: "This image captures a historic moment in baseball history - the first Major League Baseball All-Star Game, played on July 6, 1933, at Chicago's Comiskey Park. The game was conceived by Chicago Tribune sports editor Arch Ward as part of the city's Century of Progress Exposition. The American League, led by Babe Ruth (who hit the first home run in All-Star Game history), defeated the National League 4-2. The success of this 'one-time' exhibition led to it becoming an annual tradition, marking one of baseball's most enduring innovations from the Great Depression era. The game featured an incredible lineup of future Hall of Famers, including Lou Gehrig, Jimmie Foxx, Al Simmons, and Charlie Gehringer for the American League, facing Carl Hubbell, Bill Terry, Pie Traynor, and Chuck Klein of the National League."
+    funFact: "This image captures a historic moment in baseball history - the first Major League Baseball All-Star Game, played on July 6, 1933, at Chicago's Comiskey Park. The game was conceived by Chicago Tribune sports editor Arch Ward as part of the city's Century of Progress Exposition. The American League, led by Babe Ruth (who hit the first home run in All-Star Game history), defeated the National League 4-2.\n\nThe success of this 'one-time' exhibition led to it becoming an annual tradition, marking one of baseball's most enduring innovations from the Great Depression era. The game featured an incredible lineup of future Hall of Famers, including Lou Gehrig, Jimmie Foxx, Al Simmons, and Charlie Gehringer for the American League, facing Carl Hubbell, Bill Terry, Pie Traynor, and Chuck Klein of the National League."
   },
   {
     id: 17,
@@ -150,7 +150,7 @@ const BASEBALL_MOMENTS = [
     image: '/ruthKnockedOut.jpg',
     hint: "The Babe's Dangerous Collision",
     description: "Babe Ruth Knocked Unconscious at Griffith Stadium",
-    funFact: " On July 5th, 1924, in the fourth inning of a game against the Washington Senators at Griffith Stadium, Babe Ruth chased a long fly ball and crashed full-speed into the concrete wall. The collision knocked him unconscious for nearly five minutes, creating a scene that stunned the crowd into silence. Despite the severity of the impact, Ruth not only returned to the game but also hit a double in his next at-bat. This incident exemplified Ruth's legendary toughness and dedication - after the game he simply said, 'I feel a bit woozy, but outside of a slight headache, I'm all right.' The photo became one of baseball's most memorable images, showing the dramatic moment when even the seemingly invincible Babe Ruth proved mortal.",
+    funFact: "On July 5th, 1924, in the fourth inning of a game against the Washington Senators at Griffith Stadium, Babe Ruth chased a long fly ball and crashed full-speed into the concrete wall. The collision knocked him unconscious for nearly five minutes, creating a scene that stunned the crowd into silence.\n\nDespite the severity of the impact, Ruth not only returned to the game but also hit a double in his next at-bat. This incident exemplified Ruth's legendary toughness and dedication - after the game he simply said, 'I feel a bit woozy, but outside of a slight headache, I'm all right.' The photo became one of baseball's most memorable images, showing the dramatic moment when even the seemingly invincible Babe Ruth proved mortal.",
     source: "https://www.loc.gov/item/2016838013/"
   },
   {
@@ -240,7 +240,7 @@ const BASEBALL_MOMENTS = [
     image: '/BabeLou.jpg',
     hint: "Murderers' Row",
     description: "Babe Ruth and Lou Gehrig",
-    funFact: "Despite being baseball's most famous duo, Ruth and Gehrig had a complex relationship. They went on a 21-game barnstorming tour together in 1927, splitting $80,000, but didn't speak for much of it. Ruth loved staying up late, drinking, and carousing, while Gehrig preferred reading and going to bed early. During the tour, they took separate cars to games and stayed in different hotels. Still, they combined for 107 home runs that season, with Ruth hitting 60 and Gehrig 47."
+    funFact: "Despite being baseball's most famous duo, Ruth and Gehrig had a complex relationship. They went on a 21-game barnstorming tour together in 1927, splitting $80,000, but didn't speak for much of it.\n\nRuth loved staying up late, drinking, and carousing, while Gehrig preferred reading and going to bed early. During the tour, they took separate cars to games and stayed in different hotels. Still, they combined for 107 home runs that season, with Ruth hitting 60 and Gehrig 47."
   },
   {
     id: 31,
@@ -272,7 +272,10 @@ const BASEBALL_MOMENTS = [
     image: '/cubsMascot.jpg',
     hint: "The Cubs' Nightmare-Inducing Mascot",
     description: "The Cubs' Terrifying Bear Mascot",
-    funFact: "This haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.' With temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.' Read More: https://www.toddradom.com/blog/2018/2/28/the-story-behind-the-chicago-cubs-nightmare-inducing-bear-mascot-of-1908"
+    funFact: "This haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.'\n\nWith temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.'",
+    copyright: "Louis Van Oeyen",
+    source: "Library of Congress",
+    sourceLink: "https://www.loc.gov/item/89714223/"
   },
   {
     id: 35,
@@ -572,16 +575,17 @@ function GameOver({
 
   return (
     <div 
-      className="min-h-screen w-full overflow-hidden" 
+      className="min-h-screen w-full overflow-hidden animate-fadeIn" 
       style={{ 
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.95) 70%), url('/bg.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat',
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        animation: 'fadeIn 0.5s ease-out'
       }}>
       <div className="text-center p-4 sm:p-6 max-w-4xl mx-auto">
-        <div className="text-center mb-6">
+        <div className="text-center mb-6 animate-slideDown" style={{ animation: 'slideDown 0.8s ease-out' }}>
           <img  
             src="/LOGO.png"
             className="game-over-logo w-full max-w-[944px] sm:max-w-[840px] md:max-w-[1050px] mx-auto px-1 sm:px-2 md:px-0"
@@ -592,19 +596,22 @@ function GameOver({
         {/* Two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           {/* Left Column - Score and Share */}
-          <div className="flex flex-col">
+          <div className="flex flex-col animate-slideUp" style={{ animation: 'slideUp 0.8s ease-out 0.3s both' }}>
             <div className="bg-gray-800/90 p-6 rounded-lg border border-gray-700">
               <h2 className="text-3xl text-white mb-4 text-center" 
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-          Game Over!
-        </h2>
+                Game Over!
+              </h2>
               <div 
-                className="text-7xl text-green-400 mb-4 text-center"
-                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                className="text-7xl text-green-400 mb-4 text-center animate-scaleIn"
+                style={{ 
+                  fontFamily: 'Douglas-Burlington-Regular',
+                  animation: 'scaleIn 0.5s ease-out 0.8s both'
+                }}
               >
                 {typeof score === 'number' ? score : 0} points
               </div>
-              <div className="text-xl text-[#f5f2e6] mb-6">
+              <div className="text-xl text-[#f5f2e6] mb-6 animate-fadeIn" style={{ animation: 'fadeIn 0.5s ease-out 1s both' }}>
                 {gameMode === 'classic' ? (
                   `You got ${correctGuesses} perfect ${correctGuesses === 1 ? 'guess' : 'guesses'}!`
                 ) : (
@@ -613,7 +620,7 @@ function GameOver({
               </div>
               
               {/* Action Buttons */}
-              <div className="flex flex-col gap-3 mb-4">
+              <div className="flex flex-col gap-3 mb-4 animate-fadeIn" style={{ animation: 'fadeIn 0.5s ease-out 1.2s both' }}>
                 <button
                   onClick={onShowCollection}
                   className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 rounded-lg text-xl transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#d5d2c6] flex items-center justify-center gap-2"
@@ -651,7 +658,7 @@ function GameOver({
               </div>
 
               {/* Mode Indicator */}
-              <div className="text-center mt-4 text-gray-400">
+              <div className="text-center mt-4 text-gray-400 animate-fadeIn" style={{ animation: 'fadeIn 0.5s ease-out 1.4s both' }}>
                 Played in {gameMode === 'classic' ? 'Classic' : 'Trivia'} Mode
               </div>
             </div>
@@ -659,9 +666,10 @@ function GameOver({
 
           {/* Right Column - Today's Moments */}
           <div 
-            className="bg-gray-800/90 p-6 rounded-lg border border-gray-700 relative overflow-hidden"
+            className="bg-gray-800/90 p-6 rounded-lg border border-gray-700 relative overflow-hidden animate-slideUp"
             style={{
-              minHeight: '300px'
+              minHeight: '300px',
+              animation: 'slideUp 0.8s ease-out 0.5s both'
             }}
           >
             {/* Background Image */}
@@ -713,9 +721,12 @@ function GameOver({
         </div>
 
         <div className="flex flex-col items-center gap-4">
-          {/* Achievements Section */}
+          {/* Achievements Section with animation */}
           {achievements.length > 0 && (
-            <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto w-full">
+            <div 
+              className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto w-full animate-slideUp"
+              style={{ animation: 'slideUp 0.8s ease-out 0.7s both' }}
+            >
               <h3 
                 className="text-2xl text-[#f5f2e6] mb-4"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -746,8 +757,11 @@ function GameOver({
             </div>
           )}
           
-          {/* Books Section */}
-          <div className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto">
+          {/* Books Section with animation */}
+          <div 
+            className="bg-gray-800/90 rounded-lg p-6 border border-gray-700 mt-8 max-w-2xl mx-auto animate-slideUp"
+            style={{ animation: 'slideUp 0.8s ease-out 0.9s both' }}
+          >
             <div className="flex items-center justify-center gap-6">
               <img 
                 src="/books/BOOKSTACK.png" 
@@ -1324,6 +1338,33 @@ const TRIVIA_QUESTIONS = {
       options: ["Pittsburgh Pirates", "Chicago Cubs", "New York Giants", "Boston Braves"],
       correctAnswer: "Pittsburgh Pirates"
     }
+  ],
+  34: [ // 1908 Cubs Mascot
+    {
+      question: "When did the Cubs last win the World Series before their 2016 victory?",
+      options: ["1898", "1908", "1918", "1928"],
+      correctAnswer: "1908"
+    },
+    {
+      question: "The person inside this early Cubs mascot costume had a connection to which entertainment production?",
+      options: [
+        "The Wizard of Oz stage show",
+        "The Chicago Zoo's animal shows",
+        "Ringling Brothers Circus",
+        "Buffalo Bill's Wild West Show"
+      ],
+      correctAnswer: "The Wizard of Oz stage show"
+    },
+    {
+      question: "How did the person in the suit cool themselves?",
+      options: [
+        "Ice packs in the suit",
+        "Electric fan inside",
+        "Pulling a string to open the mouth",
+        "Taking frequent breaks"
+      ],
+      correctAnswer: "Pulling a string to open the mouth"
+    }
   ]
 };
 
@@ -1354,6 +1395,26 @@ const styles = {
     '100%': {
       opacity: 1,
       transform: 'translateY(0)'
+    }
+  },
+  '@keyframes slideDown': {
+    '0%': {
+      opacity: 0,
+      transform: 'translateY(-20px)'
+    },
+    '100%': {
+      opacity: 1,
+      transform: 'translateY(0)'
+    }
+  },
+  '@keyframes scaleIn': {
+    '0%': {
+      opacity: 0,
+      transform: 'scale(0.9)'
+    },
+    '100%': {
+      opacity: 1,
+      transform: 'scale(1)'
     }
   }
 };
@@ -1555,7 +1616,11 @@ export default function BaseballTimeMachine() {
         yearDifference: difference,
         points: points,
         image: currentMoment.image,
-        funFact: currentMoment.funFact,
+        funFact: {
+          text: currentMoment.funFact,
+          source: currentMoment.source,
+          sourcelink: currentMoment.sourceLink
+        },
         isGameOver: sequenceIndex >= 2,
         isFoulBall: false,
         currentYear: currentMoment.year,
@@ -1579,7 +1644,11 @@ export default function BaseballTimeMachine() {
         yearDifference: difference,
         points: 0,
         image: currentMoment.image,
-        funFact: currentMoment.funFact,
+        funFact: {
+          text: currentMoment.funFact,
+          source: currentMoment.source,
+          sourcelink: currentMoment.sourceLink
+        },
         isGameOver: newOuts >= 3,
         isFoulBall: false,
         currentYear: currentMoment.year,
@@ -1634,7 +1703,11 @@ export default function BaseballTimeMachine() {
       yearDifference: difference,
       points: points,
       image: currentMoment.image,
-      funFact: currentMoment.funFact,
+      funFact: {
+        text: currentMoment.funFact,
+        source: currentMoment.source,
+        sourcelink: currentMoment.sourceLink
+      },
       isGameOver: (outs + 1 >= 3) || (sequenceIndex >= 2),
       isFoulBall: false,
       currentYear: currentMoment.year,
