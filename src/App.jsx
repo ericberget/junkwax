@@ -1356,14 +1356,14 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "The Wizard of Oz stage show"
     },
     {
-      question: "How did the person in the suit cool themselves?",
+      question: "Which Hall of Fame pitcher was a star for the 1908 Cubs?",
       options: [
-        "Ice packs in the suit",
-        "Electric fan inside",
-        "Pulling a string to open the mouth",
-        "Taking frequent breaks"
+        "Mordecai Brown",
+        "Christy Mathewson",
+        "Walter Johnson",
+        "Cy Young"
       ],
-      correctAnswer: "Pulling a string to open the mouth"
+      correctAnswer: "Mordecai Brown"
     }
   ]
 };
