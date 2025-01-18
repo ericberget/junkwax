@@ -1360,7 +1360,7 @@ const TRIVIA_QUESTIONS = {
       options: [
         "Mordecai Brown",
         "Christy Mathewson",
-        "Walter Johnson",
+        "Four Fingered Freddy Sullivan",
         "Cy Young"
       ],
       correctAnswer: "Mordecai Brown"
