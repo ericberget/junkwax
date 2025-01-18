@@ -269,12 +269,12 @@ const BASEBALL_MOMENTS = [
   {
     id: 34,
     year: 1908,
-    image: '/cubsMascot.jpg',
-    hint: "The Cubs' Nightmare-Inducing Mascot",
-    description: "The Cubs' Terrifying Bear Mascot",
-    funFact: "This haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.'\n\nWith temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.'",
+    image: '/cubsmascot.jpg',
+    hint: "The Last Cubs Championship Before 2016",
+    description: "1908 Chicago Cubs Mascot",
+    funFact: "The 1908 Chicago Cubs were one of baseball's greatest early dynasties, winning their second straight World Series title. Led by the legendary pitching of Mordecai 'Three Finger' Brown (29-9, 1.47 ERA) and the infield trio of Tinker, Evers, and Chance - immortalized in the poem 'Baseball's Sad Lexicon' - the Cubs won 99 games. Their dramatic pennant race with the New York Giants included the famous 'Merkle's Boner' play, where Fred Merkle's baserunning error cost the Giants a crucial game.\n\nThis haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.' With temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.' This would be the Cubs' last World Series title for 108 years, until their drought-breaking victory in 2016.",
     copyright: "Louis Van Oeyen",
-    source: "Library of Congress",
+    source: "Library of Congress, Baseball Hall of Fame",
     sourceLink: "https://www.loc.gov/item/89714223/"
   },
   {
@@ -1626,7 +1626,7 @@ export default function BaseballTimeMachine() {
                    (gameMode === 'classic' && sequenceIndex >= 2),
         isFoulBall: false,
         currentYear: currentMoment.year,
-        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
+        trivia: gameMode === 'trivia' ? (TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default) : []
       });
       setShowFeedback(true);
       return;
@@ -1654,7 +1654,7 @@ export default function BaseballTimeMachine() {
         isGameOver: newOuts >= 3,
         isFoulBall: false,
         currentYear: currentMoment.year,
-        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
+        trivia: gameMode === 'trivia' ? (TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default) : []
       });
       setShowFeedback(true);
       return;
@@ -1672,7 +1672,7 @@ export default function BaseballTimeMachine() {
         strikes: newStrikes,
         isFoulBall: true,
         currentYear: currentMoment.year,
-        trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
+        trivia: gameMode === 'trivia' ? (TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default) : []
       });
       setShowFeedback(true);
       return;
@@ -1715,7 +1715,7 @@ export default function BaseballTimeMachine() {
                  (gameMode === 'classic' && sequenceIndex >= 2),
       isFoulBall: false,
       currentYear: currentMoment.year,
-      trivia: gameMode === 'trivia' ? TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default : null
+      trivia: gameMode === 'trivia' ? (TRIVIA_QUESTIONS[currentMoment.id] || TRIVIA_QUESTIONS.default) : []
     });
     setShowFeedback(true);
     
