@@ -108,8 +108,8 @@ const BASEBALL_MOMENTS = [
     year: 1981,
     image: '/boggs.jpg',
     hint: "longest game in history",
-    description: "boggs",
-    funFact: "Boggs vs Ripken in the longerst game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23."
+    description: "Wade Boggs in the Longest Game",
+    funFact: "Boggs vs Ripken in the longest game ever played. Boggs and Ripken were top prospects for the Red Sox and Orioles, respectively. The Pawtucket Red Sox hosted the Rochester Red Wings on a cold and windy spring Saturday, April 18. After 32 innings, with the game tied at 2, the decision was made to finish the game at a later date. It was 4:09 AM. According to reports, 19 fans remained in the stands; each one was granted lifetime passes to games at McCoy Stadium in Pawtucket. The Red Sox won the game 3-2 in 33 innings when the game resumed on June 23."
   },
   {
     id: 14,
@@ -393,24 +393,7 @@ const BASEBALL_MOMENTS = [
     copyright: "George Grantham Bain Collection (Library of Congress)",
     source: "Library of Congress",
     sourceLink: "https://www.loc.gov/resource/ppmsca.18466/"
-  },
-  13: [ // wade boggs
-    {
-      question: "Who is this mustached Red Sox prospect?",
-      options: ["Wade Boggs", "Bill Buckner", "Marty Barrett", "Dwight Evans"],
-      correctAnswer: "Wade Boggs"
-    },
-    {
-      question: "What makes this game historically significant?",
-      options: ["Most strikeouts in a game", "Longest game in pro baseball history", "Most extra innings without scoring", "First night game in minor leagues"],
-      correctAnswer: "Longest game in pro baseball history"
-    },
-    {
-      question: "What were Wade Boggs' career home runs and hits?",
-      options: ["118 HRs and 3,010 hits", "218 HRs and 2,866 hits", "318 HRs and 2,466 hits", "158 HRs and 3,343 hits"],
-      correctAnswer: "118 HRs and 3,010 hits"
-    }
-  ]
+  }
 ];
 
 const ACHIEVEMENTS = {
