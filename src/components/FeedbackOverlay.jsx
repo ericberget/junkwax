@@ -183,14 +183,18 @@ export function FeedbackOverlay({ result, yearDifference, points, image, funFact
               {funFact?.text?.split('\n\n').map((paragraph, index) => (
                 <p key={index} className="mb-4">{paragraph}</p>
               ))}
-              {funFact?.source && (
-                <div className="text-gray-400/60 text-sm mt-2 italic">
-                  Source: {funFact.source}
-                </div>
-              )}
-              {funFact?.sourcelink && (
-                <div className="text-gray-400/60 text-sm mt-1 italic">
-                  {funFact.sourcelink}
+              {(funFact?.source || funFact?.sourcelink) && (
+                <div className="border-t border-gray-700 pt-3 mt-4 mb-8 sm:mb-16">
+                  {funFact?.source && (
+                    <div className="text-gray-400 text-sm mb-1 hover:text-gray-300 transition-colors duration-200">
+                      Source: {funFact.source}
+                    </div>
+                  )}
+                  {funFact?.sourcelink && (
+                    <div className="text-gray-400 text-sm hover:text-gray-300 transition-colors duration-200">
+                      {funFact.sourcelink}
+                    </div>
+                  )}
                 </div>
               )}
             </div>

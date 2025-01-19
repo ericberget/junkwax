@@ -269,13 +269,12 @@ const BASEBALL_MOMENTS = [
   {
     id: 34,
     year: 1908,
-    image: '/cubsmascot.jpg',
-    hint: "The Last Cubs Championship Before 2016",
+    image: '/cubsMascot.jpg',
+    hint: "Early Cubs Mascot",
     description: "1908 Chicago Cubs Mascot",
-    funFact: "The 1908 Chicago Cubs were one of baseball's greatest early dynasties, winning their second straight World Series title. Led by the legendary pitching of Mordecai 'Three Finger' Brown (29-9, 1.47 ERA) and the infield trio of Tinker, Evers, and Chance - immortalized in the poem 'Baseball's Sad Lexicon' - the Cubs won 99 games. Their dramatic pennant race with the New York Giants included the famous 'Merkle's Boner' play, where Fred Merkle's baserunning error cost the Giants a crucial game.\n\nThis haunting photo was taken on July 10, 1908, before a Cubs-Phillies game at Chicago's West Side Park. The man in the bear suit was actually an understudy for Arthur Hill, a famed British 'animal impersonator' who played the Cowardly Lion in the original 1902 stage production of 'The Wizard of Oz.' With temperatures reaching 88° that day, the poor understudy sat in the heavy costume for two hours, only able to cool himself by pulling a string to open the bear's mouth. After the Cubs won in 11 innings, he celebrated by 'doing a bit of capering in the manner of polar bears released from captivity.' This would be the Cubs' last World Series title for 108 years, until their drought-breaking victory in 2016.",
-    copyright: "Louis Van Oeyen",
-    source: "Library of Congress, Baseball Hall of Fame",
-    sourceLink: "https://www.loc.gov/item/89714223/"
+    funFact: "This unique mascot costume was worn during the Cubs' historic 1908 season, which would become their last World Series championship for 108 years until 2016. The person inside the costume was actually connected to the original stage production of 'The Wizard of Oz.'\n\nThe 1908 Cubs were one of the most dominant teams in baseball history. Led by the legendary pitching of Mordecai 'Three Finger' Brown (who lost parts of two fingers in a farm machinery accident), they won 99 games and clinched the pennant in a controversial game against the New York Giants - the famous 'Merkle's Boner' game. Their pitching staff posted an incredible 1.75 team ERA, and they defeated the Detroit Tigers in the World Series, winning their second consecutive championship.",
+    source: "Baseball Hall of Fame Archives",
+    sourceLink: "https://baseballhall.org/discover/inside-the-archive-cubs-mascot"
   },
   {
     id: 35,
@@ -394,7 +393,24 @@ const BASEBALL_MOMENTS = [
     copyright: "George Grantham Bain Collection (Library of Congress)",
     source: "Library of Congress",
     sourceLink: "https://www.loc.gov/resource/ppmsca.18466/"
-  }
+  },
+  13: [ // wade boggs
+    {
+      question: "Who is this mustached Red Sox prospect?",
+      options: ["Wade Boggs", "Bill Buckner", "Marty Barrett", "Dwight Evans"],
+      correctAnswer: "Wade Boggs"
+    },
+    {
+      question: "What makes this game historically significant?",
+      options: ["Most strikeouts in a game", "Longest game in pro baseball history", "Most extra innings without scoring", "First night game in minor leagues"],
+      correctAnswer: "Longest game in pro baseball history"
+    },
+    {
+      question: "What were Wade Boggs' career home runs and hits?",
+      options: ["118 HRs and 3,010 hits", "218 HRs and 2,866 hits", "318 HRs and 2,466 hits", "158 HRs and 3,343 hits"],
+      correctAnswer: "118 HRs and 3,010 hits"
+    }
+  ]
 ];
 
 const ACHIEVEMENTS = {
@@ -1061,6 +1077,26 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "Never played high school ball"
     }
   ],
+
+  13: [ // wade boggs
+    {
+      question: "Who is this mustached Red Sox prospect?",
+      options: ["Wade Boggs", "Bill Buckner", "Marty Barrett", "Dwight Evans"],
+      correctAnswer: "Wade Boggs"
+    },
+    {
+      question: "What makes this game historically significant?",
+      options: ["Most strikeouts in a game", "Longest game in pro baseball history", "Most extra innings without scoring", "First night game in minor leagues"],
+      correctAnswer: "Longest game in pro baseball history"
+    },
+    {
+      question: "What were Wade Boggs' career home runs and hits?",
+      options: ["118 HRs and 3,010 hits", "218 HRs and 2,866 hits", "318 HRs and 2,466 hits", "158 HRs and 3,343 hits"],
+      correctAnswer: "118 HRs and 3,010 hits"
+    }
+  ],
+
+
   19: [ // Babe Ruth Knocked Out
     {
       question: "After being knocked unconscious in this game, what did Ruth do in his next at-bat?",
