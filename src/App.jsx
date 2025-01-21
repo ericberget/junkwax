@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Card, CardContent } from "./components/ui/card";
 import { Trophy, Medal, Star, Timer as TimerIcon, Award, Check, X } from 'lucide-react';
 import { Timer } from './components/Timer';
@@ -9,6 +9,8 @@ import { ImageZoom } from './components/ImageZoom';
 import { FeedbackForm } from './components/FeedbackForm';
 import { GameModeSelect } from './components/GameModeSelect';
 import { TriviaFeedback } from './components/TriviaFeedback';
+import { Collection } from './components/Collection';
+import { UnderMaintenance } from './components/UnderMaintenance';
 
 
 const BASEBALL_MOMENTS = [
@@ -1439,6 +1441,7 @@ const styles = {
 };
 
 export default function BaseballTimeMachine() {
+  const [isUnderMaintenance, setIsUnderMaintenance] = useState(false);
   const [gameMode, setGameMode] = useState(() => {
     // Check if there's a saved game mode in localStorage
     const savedMode = localStorage.getItem('baseball-game-mode');
@@ -2377,4 +2380,8 @@ function TodaysMoment({ moment, imageOpacity }) {
       </div>
     </div>
   );
+}
+
+if (isUnderMaintenance) {
+  return <UnderMaintenance />;
 }
