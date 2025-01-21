@@ -1441,7 +1441,16 @@ const styles = {
 };
 
 export default function BaseballTimeMachine() {
-  const [isUnderMaintenance, setIsUnderMaintenance] = useState(false);
+  const [isUnderMaintenance, setIsUnderMaintenance] = useState(() => {
+    const saved = localStorage.getItem('baseball-maintenance');
+    return saved ? JSON.parse(saved) : true;
+  });
+
+  // Update localStorage when maintenance state changes
+  useEffect(() => {
+    localStorage.setItem('baseball-maintenance', JSON.stringify(isUnderMaintenance));
+  }, [isUnderMaintenance]);
+
   const [gameMode, setGameMode] = useState(() => {
     // Check if there's a saved game mode in localStorage
     const savedMode = localStorage.getItem('baseball-game-mode');
