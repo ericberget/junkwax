@@ -395,29 +395,7 @@ const BASEBALL_MOMENTS = [
     copyright: "George Grantham Bain Collection (Library of Congress)",
     source: "Library of Congress",
     sourceLink: "https://www.loc.gov/resource/ppmsca.18466/"
-  },
-  33: [ // Kirk Gibson's World Series Homer
-    {
-      question: "What injuries was Kirk Gibson dealing with during this World Series?",
-      options: ["Hamstring and knee", "Ankle and shoulder", "Back and hip", "Wrist and elbow"],
-      correctAnswer: "Hamstring and knee"
-    },
-    {
-      question: "Who was the Hall of Fame closer that Gibson hit this home run off of?",
-      options: ["Goose Gossage", "Lee Smith", "Dennis Eckersley", "Bruce Sutter"],
-      correctAnswer: "Dennis Eckersley"
-    },
-    {
-      question: "What was Jack Buck's famous call of this moment?",
-      options: [
-        "The Giants win the pennant!",
-        "I don't believe what I just saw!",
-        "Touch 'em all time!",
-        "Holy cow!"
-      ],
-      correctAnswer: "I don't believe what I just saw!"
-    }
-  ]
+  }
 ];
 
 const ACHIEVEMENTS = {
