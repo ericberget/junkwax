@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from "./components/ui/card";
 import { Trophy, Medal, Star, Timer as TimerIcon, Award, Check, X } from 'lucide-react';
 import { Timer } from './components/Timer';
@@ -9,8 +9,6 @@ import { ImageZoom } from './components/ImageZoom';
 import { FeedbackForm } from './components/FeedbackForm';
 import { GameModeSelect } from './components/GameModeSelect';
 import { TriviaFeedback } from './components/TriviaFeedback';
-import { Collection } from './components/Collection';
-import { UnderMaintenance } from './components/UnderMaintenance';
 
 
 const BASEBALL_MOMENTS = [
@@ -1167,6 +1165,7 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "100,000"
     }
   ],
+
   33: [ // Kirk Gibson's World Series Homer
     {
       question: "What injuries was Kirk Gibson dealing with during this World Series?",
@@ -1174,21 +1173,17 @@ const TRIVIA_QUESTIONS = {
       correctAnswer: "Hamstring and knee"
     },
     {
-      question: "Who was the Hall of Fame closer that Gibson hit this home run off of?",
-      options: ["Goose Gossage", "Lee Smith", "Dennis Eckersley", "Bruce Sutter"],
-      correctAnswer: "Dennis Eckersley"
+      question: "What was the final score of the game?",
+      options: ["4-3", "5-4", "6-5", "7-6"],
+      correctAnswer: "4-3"
     },
     {
-      question: "What was Jack Buck's famous call of this moment?",
-      options: [
-        "The Giants win the pennant!",
-        "I don't believe what I just saw!",
-        "Touch 'em all time!",
-        "Holy cow!"
-      ],
-      correctAnswer: "I don't believe what I just saw!"
+      question: "Who was the Hall of Fame closer that Gibson hit the home run off of?",
+      options: ["Dennis Eckersley", "Goose Gossage", "Lee Smith", "Bruce Sutter"],
+      correctAnswer: "Dennis Eckersley"
     }
   ],
+  
   9: [ // 1982 Expos
     {
       question: "How many future Hall of Famers are pictured in this Expos photo?",
@@ -1408,28 +1403,6 @@ const TRIVIA_QUESTIONS = {
       ],
       correctAnswer: "Mordecai Brown"
     }
-  ],
-  33: [ // Kirk Gibson's World Series Homer
-    {
-      question: "What injuries was Kirk Gibson dealing with during this World Series?",
-      options: ["Hamstring and knee", "Ankle and shoulder", "Back and hip", "Wrist and elbow"],
-      correctAnswer: "Hamstring and knee"
-    },
-    {
-      question: "Who was the Hall of Fame closer that Gibson hit this home run off of?",
-      options: ["Goose Gossage", "Lee Smith", "Dennis Eckersley", "Bruce Sutter"],
-      correctAnswer: "Dennis Eckersley"
-    },
-    {
-      question: "What was Jack Buck's famous call of this moment?",
-      options: [
-        "The Giants win the pennant!",
-        "I don't believe what I just saw!",
-        "Touch 'em all time!",
-        "Holy cow!"
-      ],
-      correctAnswer: "I don't believe what I just saw!"
-    }
   ]
 };
 
@@ -1485,16 +1458,6 @@ const styles = {
 };
 
 export default function BaseballTimeMachine() {
-  const [isUnderMaintenance, setIsUnderMaintenance] = useState(() => {
-    const saved = localStorage.getItem('baseball-maintenance');
-    return saved ? JSON.parse(saved) : true;
-  });
-
-  // Update localStorage when maintenance state changes
-  useEffect(() => {
-    localStorage.setItem('baseball-maintenance', JSON.stringify(isUnderMaintenance));
-  }, [isUnderMaintenance]);
-
   const [gameMode, setGameMode] = useState(() => {
     // Check if there's a saved game mode in localStorage
     const savedMode = localStorage.getItem('baseball-game-mode');
@@ -2433,8 +2396,4 @@ function TodaysMoment({ moment, imageOpacity }) {
       </div>
     </div>
   );
-}
-
-if (isUnderMaintenance) {
-  return <UnderMaintenance />;
 }
