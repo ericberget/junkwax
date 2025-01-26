@@ -949,16 +949,21 @@ function Collection({ onClose, collectedMoments, gameMode }) {
               Close
       </button>
             <div 
-              className="relative bg-[#f5f2e6] p-2"
+              className="relative bg-[#f5f2e6] p-1 sm:p-2 w-full sm:w-auto"
               style={{
-                boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
+                maxHeight: '70vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
-              onClick={e => e.stopPropagation()}
             >
               <img
                 src={selectedImage.image}
                 alt={selectedImage.description}
-                className="w-full h-auto object-contain max-h-[90vh]"
+                className="w-full h-auto object-contain"
+                style={{
+                  maxHeight: '100%'
+                }}
               />
             </div>
           </div>
@@ -2114,11 +2119,11 @@ export default function BaseballTimeMachine() {
                 
                 {/* Main image container */}
                 <div 
-                  className="relative bg-[#f5f2e6] p-2 sm:p-4 w-full sm:w-auto"
+                  className="relative bg-[#f5f2e6] p-1 sm:p-2 w-full sm:w-auto"
                   style={{
                     zIndex: 2,
                     boxShadow: '10px 6px 12px rgba(0, 0, 0, 0.9)',
-                    maxWidth: '100%',
+                    maxWidth: '70%',
                     margin: '0'
                   }}
                 >
