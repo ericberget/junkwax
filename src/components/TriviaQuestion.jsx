@@ -45,9 +45,9 @@ export function TriviaQuestion({ question, options, correctAnswer, onAnswer, que
     <div style={{ 
       color: '#ffffff', 
       fontFamily: 'Douglas-Burlington-Regular', 
-      fontSize: '24px',
+      fontSize: '34px',
       fontWeight: 'bold',
-      marginTop: '10px',
+      margin: '10px',
       textAlign: 'center'
     }}>
       Correct! +100 points
@@ -59,39 +59,29 @@ export function TriviaQuestion({ question, options, correctAnswer, onAnswer, que
   );
 
   return (
-    <div className="space-y-6">
-      <h3 
-        className="text-3xl text-[#f5f2e6] mb-6 mt-10"
-        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-      >
+    <div className="space-y-4">
+      <div style={{ fontSize: '30px', fontFamily: 'Douglas-Burlington-Regular' }} className="text-[#f5f2e6] text-xl md:text-2xl mb-6">
         {question}
-      </h3>
-
-      <div className="grid grid-cols-1 gap-4">
+      </div>
+      
+      <div className="space-y-2">
         {options.map((option, index) => (
           <button
             key={index}
             onClick={() => handleAnswer(option)}
-            disabled={hasAnswered}
-            className={`
-              ${getButtonClass(option)}
-              p-4 rounded-lg text-left text-[#f5f2e6] transition-all duration-300
-              ${hasAnswered ? '' : 'hover:transform hover:scale-[1.02]'}
-            `}
+            className="w-full text-left p-4 rounded-lg bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 transition-colors duration-200"
           >
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-full border-2 border-[#f5f2e6]/30 flex items-center justify-center text-sm">
-                {String.fromCharCode(65 + index)}
-              </div>
-              <span className="text-lg">{option}</span>
-            </div>
+            <span className="inline-block w-8 opacity-50">
+              {String.fromCharCode(65 + index)}
+            </span>
+            {option}
           </button>
         ))}
       </div>
 
       {hasAnswered && (
         <div className="space-y-4">
-          <div className={`p-4 rounded-lg ${selectedAnswer === correctAnswer ? 'bg-green-600/20' : 'bg-red-600/20'}`}>
+          <div className={`p-4 rounded-lg ${selectedAnswer === correctAnswer ? 'bg-green-600/30' : 'bg-red-600/20'}`}>
             {pointsMessage}
           </div>
 
@@ -99,7 +89,7 @@ export function TriviaQuestion({ question, options, correctAnswer, onAnswer, que
             <button
               onClick={handleNext}
               className="bg-[#1e4fba] hover:bg-[#2460e6] text-white py-2 px-6 rounded-lg text-lg transition-all duration-300 ease-in-out shadow-md hover:shadow-lg active:bg-[#1a3f8c]"
-              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              style={{ fontSize: '24px', fontFamily: 'Douglas-Burlington-Regular' }}
             >
               {questionNumber === 2 ? 'Continue' : 'Next Question'}
             </button>

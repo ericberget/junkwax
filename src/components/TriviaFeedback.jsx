@@ -66,7 +66,7 @@ export function TriviaFeedback({
                 <div className="flex flex-col items-center">
                   <div 
                     className="text-[#f5f2e6] mb-2 text-sm md:text-base"
-                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                    style={{ letterSpacing: '3px', fontFamily: 'Douglas-Burlington-Regular' }}
                   >
                     CORRECT YEAR
                   </div>
@@ -75,7 +75,7 @@ export function TriviaFeedback({
                       <div 
                         key={index}
                         className="w-12 h-16 bg-[#1e4fba] rounded-lg flex items-center justify-center text-2xl text-[#f5f2e6]"
-                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                        style={{ fontSize: '2rem', fontFamily: 'Douglas-Burlington-Regular' }}
                       >
                         {digit}
                       </div>
@@ -105,13 +105,16 @@ export function TriviaFeedback({
             </div>
 
             {/* Image */}
-            <div className="relative bg-[#f5f2e6] p-4">
+            <div className="relative bg-gray-900/10 flex justify-center items-center p-4">
               <img
                 src={image}
                 alt="Baseball moment"
-                className="w-full h-[400px] object-cover"
+                className="w-full object-cover"
                 style={{
-                  maxWidth: '100%'
+                  maxWidth: '80%',
+                  border: '5px solid #f5f2e6',
+                  boxShadow: '0px 0px 10px -10px rgba(0, 0, 0, 0.5)'
+            
                 }}
               />
             </div>
