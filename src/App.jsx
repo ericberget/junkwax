@@ -117,8 +117,8 @@ const BASEBALL_MOMENTS = [
     image: '/1901Tug.jpg',
     hint: "Cleveland's First AL Season",
     description: "1901 Cleveland Blues Team Photo",
-    funFact: "This Cleveland team played in the very first American League game ever on April 24, 1901. Then called the Blues and managed by Jimmy McAleer (in derby hat), they would later become known as the Indians in 1915 and Guardians in 2022. On May 23rd of their inaugural season, they pulled off one of the greatest comebacks in baseball history, scoring 9 runs with two outs in the ninth to win 14-13.",
-    source: "https://sabr.org/gamesproj/game/may-23-1901-hopeless-defeat-turned-into-glorious-victory/"
+    funFact: "This Cleveland team played in the very first American League game ever on April 24, 1901. At that time they were called the Blues and were managed by Jimmy McAleer (in derby hat). tTey would later become known as the Indians in 1915 and Guardians in 2022. On May 23rd of their inaugural season, they pulled off one of the greatest comebacks in baseball history, scoring 9 runs with two outs in the ninth to win 14-13.",
+    source: "https://sabr.org/gamesproj/game/may-23-1901-hopeless-defeat-turned-into-glorious-victory/",
   },
   {
     id: 6,
@@ -1081,6 +1081,24 @@ const TRIVIA_QUESTIONS = {
       question: "What were Wade Boggs' career home runs and hits?",
       options: ["118 HRs and 3,010 hits", "218 HRs and 2,866 hits", "318 HRs and 2,466 hits", "158 HRs and 3,343 hits"],
       correctAnswer: "118 HRs and 3,010 hits"
+    }
+  ],
+
+  14: [ // 1901
+    {
+      question: "What was the team name of the Cleveland team in their first American League season?",
+      options: ["Blues", "Indians", "Spiders", "Jolly Rogers"],
+      correctAnswer: "Blues"
+    },
+    {
+      question: "What was the manager of the Cleveland team in their inaugural AL season?",
+      options: ["Jimmy McAleer", "Nap Lajoie", "Cy Young", "Tris Speaker"],
+      correctAnswer: "Jimmy McAleer"
+    },
+    {
+      question: "What was the final score of the game?",
+      options: ["1-0", "2-1", "3-2", "4-3"],
+      correctAnswer: "1-0"
     }
   ],
 
@@ -2306,7 +2324,7 @@ export default function BaseballTimeMachine() {
           onClick={() => setGameMode(null)}
           className="bg-gray-600/30 hover:bg-gray-600/50 text-white/50 hover:text-white/80 px-3 py-1 rounded text-xs transition-all duration-200"
         >
-            Try Classic Mode (3 Images)
+            Try Altnerate Mode (3 Images)
         </button>
         <button
           onClick={() => {
