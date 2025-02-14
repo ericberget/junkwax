@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CARD_COMPANIES, getRandomPuzzle } from './JunkwaxPuzzles';
 
+// Sound effects
+const PERFECT_SOUND = new Audio('/sounds/perfect.mp3');
+
 function CareerStatsModal({ onClose, currentPuzzle, score }) {
   const [careerStats, setCareerStats] = useState({
     totalPoints: 0,
@@ -149,6 +152,11 @@ export function JunkwaxGame() {
     
     setScore(points);
     setHasGuessed(true);
+
+    // Play sound effect for perfect score
+    if (points === 300) {
+      PERFECT_SOUND.play().catch(err => console.log('Error playing sound:', err));
+    }
   };
 
   const handleNext = () => {
@@ -177,7 +185,7 @@ export function JunkwaxGame() {
       <div 
         className="min-h-screen w-full animate-fadeIn" 
         style={{ 
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
+          backgroundImage: `url('/bg.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -186,10 +194,10 @@ export function JunkwaxGame() {
       >
         <div className="max-w-4xl mx-auto p-4">
           <div className="text-center mb-16 pt-8 animate-slideDown">
-            <img  
-              src="/LOGO.png"
-              className="w-full max-w-[650px] mx-auto"
-              alt="Baseball Time Machine" 
+            <img 
+              src="/junkwax-logo.png"
+              alt="Junkwax Millionaire"
+              className="w-full max-w-[750px] mx-auto"
             />
           </div>
 
@@ -278,7 +286,7 @@ export function JunkwaxGame() {
     <div 
       className="min-h-screen w-full" 
       style={{ 
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -287,12 +295,11 @@ export function JunkwaxGame() {
     >
       <div className="max-w-6xl mx-auto p-4">
         <div className="text-center mb-12">
-          <h1 
-            className="text-6xl text-[#d4b483] mb-4"
-            style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-          >
-            JUNKWAX MILLIONAIRE
-          </h1>
+          <img 
+            src="/junkwax-logo.png"
+            alt="Junkwax Millionaire"
+            className="w-full max-w-[600px] mx-auto"
+          />
         </div>
 
         <div className="rounded-lg p-4">
@@ -350,7 +357,7 @@ export function JunkwaxGame() {
 
                   {/* Year Slider */}
                   <div>
-                    <label className="block text-[#f5f2e6] mb-2">Year: {yearGuess}</label>
+                    <label className="block text-[#f5f2e6] mt-12 mb-2">Year: {yearGuess}</label>
                     <div className="space-y-2">
                       <input
                         type="range"
@@ -369,7 +376,7 @@ export function JunkwaxGame() {
 
                   {/* Card Company Select */}
                   <div>
-                    <label className="block text-[#f5f2e6] mb-2">Card Company</label>
+                    <label className="block text-[#f5f2e6] mt-12 mb-2">Card Company</label>
                     <select
                       value={companyGuess}
                       onChange={(e) => setCompanyGuess(e.target.value)}
@@ -387,7 +394,7 @@ export function JunkwaxGame() {
                     className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                   >
-                    Final Answer
+                    Take a Swing
                   </button>
                 </form>
               ) : (
@@ -430,15 +437,8 @@ export function JunkwaxGame() {
 
                   <div className="flex gap-4 animate-slideUp-4">
                     <button
-                      onClick={handlePlayAgain}
-                      className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out hover:scale-105"
-                      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                    >
-                      Play Again
-                    </button>
-                    <button
                       onClick={handleNext}
-                      className="flex-1 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out hover:scale-105"
+                      className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out hover:scale-105"
                       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                     >
                       Next
