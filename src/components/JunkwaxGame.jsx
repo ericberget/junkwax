@@ -175,7 +175,7 @@ export function JunkwaxGame() {
   if (gameOver) {
     return (
       <div 
-        className="min-h-screen w-full" 
+        className="min-h-screen w-full animate-fadeIn" 
         style={{ 
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
           backgroundSize: 'cover',
@@ -185,7 +185,7 @@ export function JunkwaxGame() {
         }}
       >
         <div className="max-w-4xl mx-auto p-4">
-          <div className="text-center mb-16 pt-8">
+          <div className="text-center mb-16 pt-8 animate-slideDown">
             <img  
               src="/LOGO.png"
               className="w-full max-w-[650px] mx-auto"
@@ -194,7 +194,7 @@ export function JunkwaxGame() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-6 rounded-lg">
+            <div className="p-6 rounded-lg animate-slideUp">
               <h2 
                 className="text-4xl text-[#f5f2e6] mb-6 text-center"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -202,7 +202,7 @@ export function JunkwaxGame() {
                 GAME OVER!
               </h2>
               <div 
-                className="text-8xl text-green-400 mb-2 text-center"
+                className="text-8xl text-green-400 mb-2 text-center animate-scaleIn"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                 {score}
@@ -222,21 +222,21 @@ export function JunkwaxGame() {
               <div className="flex flex-col gap-4">
                 <button
                   onClick={() => setShowCareerStats(true)}
-                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   MY CAREER STATS
                 </button>
                 <button
                   onClick={handlePlayAgain}
-                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   PLAY AGAIN
                 </button>
                 <button
                   onClick={handleShare}
-                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02]"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   {copied ? 'COPIED!' : 'SHARE RESULTS'}
@@ -244,7 +244,7 @@ export function JunkwaxGame() {
               </div>
             </div>
 
-            <div className="p-6 rounded-lg">
+            <div className="p-6 rounded-lg animate-slideUp animation-delay-200">
               <h2 
                 className="text-2xl text-[#f5f2e6] mb-4"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -255,7 +255,7 @@ export function JunkwaxGame() {
                 <img
                   src={currentPuzzle.fullImage}
                   alt="Baseball Card"
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  className="w-full h-auto rounded-lg shadow-lg transition-all duration-500 hover:scale-[1.02]"
                   style={{ maxWidth: '100%', margin: '0 auto' }}
                 />
               </div>
@@ -276,7 +276,7 @@ export function JunkwaxGame() {
 
   return (
     <div 
-      className="min-h-screen w-full" 
+      className="min-h-screen w-full animate-fadeIn" 
       style={{ 
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
         backgroundSize: 'cover',
@@ -286,7 +286,7 @@ export function JunkwaxGame() {
       }}
     >
       <div className="max-w-6xl mx-auto p-4">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 animate-slideDown">
           <h1 
             className="text-6xl text-[#d4b483] mb-4"
             style={{ fontFamily: 'Douglas-Burlington-Regular' }}
@@ -298,17 +298,21 @@ export function JunkwaxGame() {
         <div className="rounded-lg p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Left side - Image */}
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center animate-slideUp">
               <div className="w-full max-w-[500px] relative">
                 <img
                   src={hasGuessed ? currentPuzzle.fullImage : currentPuzzle.zoomImage}
                   alt="Baseball Card Detail"
-                  className="w-full h-auto rounded-lg"
+                  className="w-full h-auto rounded-lg transition-all duration-500"
+                  style={{ 
+                    transform: hasGuessed ? 'scale(1)' : 'scale(1.5)',
+                    opacity: imageOpacity 
+                  }}
                 />
                 {!hasGuessed && (
                   <button
                     onClick={() => setShowZoom(true)}
-                    className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-colors duration-200"
+                    className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 p-2 rounded-full transition-all duration-200 hover:scale-110"
                     title="Zoom Image"
                   >
                     <svg 
@@ -333,23 +337,23 @@ export function JunkwaxGame() {
             </div>
 
             {/* Right side - Form/Results */}
-            <div>
+            <div className="animate-slideUp animation-delay-200">
               {!hasGuessed ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Player Name Input */}
-                  <div>
+                  <div className="transform transition-all duration-300 hover:scale-[1.02]">
                     <label className="block text-[#f5f2e6] mb-2">Who is this player?</label>
                     <input
                       type="text"
                       value={playerGuess}
                       onChange={(e) => setPlayerGuess(e.target.value)}
-                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
+                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none transition-all duration-300"
                       placeholder="Enter player name..."
                     />
                   </div>
 
                   {/* Year Slider */}
-                  <div>
+                  <div className="transform transition-all duration-300 hover:scale-[1.02]">
                     <label className="block text-[#f5f2e6] mb-2">Year: {yearGuess}</label>
                     <div className="space-y-2">
                       <input
@@ -368,12 +372,12 @@ export function JunkwaxGame() {
                   </div>
 
                   {/* Card Company Select */}
-                  <div>
+                  <div className="transform transition-all duration-300 hover:scale-[1.02]">
                     <label className="block text-[#f5f2e6] mb-2">Card Company</label>
                     <select
                       value={companyGuess}
                       onChange={(e) => setCompanyGuess(e.target.value)}
-                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
+                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none transition-all duration-300"
                     >
                       <option value="">Select company...</option>
                       {CARD_COMPANIES.map(company => (
@@ -384,36 +388,36 @@ export function JunkwaxGame() {
 
                   <button
                     type="submit"
-                    className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
+                    className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                     style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                   >
                     Final Answer
                   </button>
                 </form>
               ) : (
-                <div className="space-y-6">
+                <div className="space-y-6 animate-fadeIn">
                   <div className="text-center">
-                    <div className="text-6xl text-green-400 mb-6" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
+                    <div className="text-6xl text-green-400 mb-6 animate-scaleIn" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
                       {score} points
                     </div>
                   </div>
 
                   <div className="space-y-4 text-lg">
-                    <p className="text-[#f5f2e6] flex items-center justify-between">
+                    <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp">
                       <span className="flex items-baseline gap-3">
                         <span className="text-gray-400 text-base">Player:</span>
                         <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{playerGuess}</span>
                       </span>
                       <span className="text-2xl">{playerGuess.toLowerCase() === currentPuzzle.player.toLowerCase() ? '✅' : '❌'}</span>
                     </p>
-                    <p className="text-[#f5f2e6] flex items-center justify-between">
+                    <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp animation-delay-100">
                       <span className="flex items-baseline gap-3">
                         <span className="text-gray-400 text-base">Year:</span>
                         <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{yearGuess}</span>
                       </span>
                       <span className="text-2xl">{yearGuess === currentPuzzle.year ? '✅' : '❌'}</span>
                     </p>
-                    <p className="text-[#f5f2e6] flex items-center justify-between">
+                    <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp animation-delay-200">
                       <span className="flex items-baseline gap-3">
                         <span className="text-gray-400 text-base">Company:</span>
                         <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{companyGuess}</span>
@@ -422,23 +426,23 @@ export function JunkwaxGame() {
                     </p>
                   </div>
 
-                  <div className="bg-gray-900/50 p-4 rounded-lg mt-6">
+                  <div className="bg-gray-900/50 p-4 rounded-lg mt-6 animate-fadeIn animation-delay-300">
                     <p className="text-gray-300 text-sm leading-relaxed">
                       {currentPuzzle.description}
                     </p>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 animate-slideUp animation-delay-400">
                     <button
                       onClick={handlePlayAgain}
-                      className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
+                      className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 rounded-lg text-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                     >
                       Play Again
                     </button>
                     <button
                       onClick={handleNext}
-                      className="flex-1 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
+                      className="flex-1 bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                       style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                     >
                       Next
@@ -454,13 +458,13 @@ export function JunkwaxGame() {
       {/* Zoom Modal */}
       {!hasGuessed && showZoom && (
         <div 
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fadeIn"
           onClick={() => setShowZoom(false)}
         >
-          <div className="relative max-w-4xl w-full">
+          <div className="relative max-w-4xl w-full animate-scaleIn">
             <button
               onClick={() => setShowZoom(false)}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl"
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-xl transition-colors duration-200"
             >
               Close
             </button>
