@@ -185,7 +185,7 @@ export function JunkwaxGame() {
       <div 
         className="min-h-screen w-full animate-fadeIn" 
         style={{ 
-          backgroundImage: `url('/bg.jpg')`,
+          backgroundImage: `url('baseballcards/bg-wood.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -286,7 +286,7 @@ export function JunkwaxGame() {
     <div 
       className="min-h-screen w-full" 
       style={{ 
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg.jpg')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg-wood.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -337,7 +337,7 @@ export function JunkwaxGame() {
                   </button>
                 )}
               </div>
-            </div>
+          </div>
 
             {/* Right side - Form/Results */}
             <div>
@@ -346,18 +346,26 @@ export function JunkwaxGame() {
                   {/* Player Name Input */}
                   <div>
                     <label className="block text-[#f5f2e6] mb-2">Who is this player?</label>
-                    <input
-                      type="text"
-                      value={playerGuess}
-                      onChange={(e) => setPlayerGuess(e.target.value)}
+                <input
+                  type="text"
+                  value={playerGuess}
+                  onChange={(e) => setPlayerGuess(e.target.value)}
                       className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
-                      placeholder="Enter player name..."
-                    />
-                  </div>
+                  placeholder="Enter player name..."
+                />
+              </div>
 
                   {/* Year Slider */}
                   <div>
-                    <label className="block text-[#f5f2e6] mt-12 mb-2">Year: {yearGuess}</label>
+                    <label className="block text-[#f5f2e6] mt-12 mb-2">
+                      <span>Year: </span>
+                      <span 
+                        className="text-3xl text-[#d4b483]"
+                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                      >
+                        {yearGuess}
+                      </span>
+                    </label>
                     <div className="space-y-2">
                       <input
                         type="range"
@@ -377,25 +385,25 @@ export function JunkwaxGame() {
                   {/* Card Company Select */}
                   <div>
                     <label className="block text-[#f5f2e6] mt-12 mb-2">Card Company</label>
-                    <select
+                <select
                       value={companyGuess}
                       onChange={(e) => setCompanyGuess(e.target.value)}
                       className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
-                    >
-                      <option value="">Select company...</option>
-                      {CARD_COMPANIES.map(company => (
-                        <option key={company} value={company}>{company}</option>
-                      ))}
-                    </select>
-                  </div>
+                >
+                  <option value="">Select company...</option>
+                  {CARD_COMPANIES.map(company => (
+                    <option key={company} value={company}>{company}</option>
+                  ))}
+                </select>
+              </div>
 
-                  <button
+              <button
                     type="submit"
                     className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
-                    style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                  >
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
                     Take a Swing
-                  </button>
+              </button>
                 </form>
               ) : (
                 <div className="space-y-6 animate-fadeIn">
@@ -403,29 +411,29 @@ export function JunkwaxGame() {
                     <div className="text-6xl text-green-400 mb-6 animate-popIn" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
                       {score} points
                     </div>
-                  </div>
+            </div>
 
-                  <div className="space-y-4 text-lg">
+              <div className="space-y-4 text-lg">
                     <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp-1">
                       <span className="flex items-baseline gap-3">
                         <span className="text-gray-400 text-base">Player:</span>
-                        <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{playerGuess}</span>
+                        <span className="text-4xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{playerGuess}</span>
                       </span>
-                      <span className="text-2xl animate-checkmarkPop">{playerGuess.toLowerCase() === currentPuzzle.player.toLowerCase() ? '✅' : '❌'}</span>
+                      <span className="text-4xl animate-checkmarkPop">{playerGuess.toLowerCase() === currentPuzzle.player.toLowerCase() ? '✅' : '❌'}</span>
                     </p>
                     <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp-2">
                       <span className="flex items-baseline gap-3">
-                        <span className="text-gray-400 text-base">Year:</span>
-                        <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{yearGuess}</span>
+                        <span className="text-gray-400 text-base">Year (YOUR GUESS):</span>
+                        <span className="text-4xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{yearGuess}</span>
                       </span>
-                      <span className="text-2xl animate-checkmarkPop">{yearGuess === currentPuzzle.year ? '✅' : '❌'}</span>
+                      <span className="text-4xl animate-checkmarkPop">{yearGuess === currentPuzzle.year ? '✅' : '❌'}</span>
                     </p>
                     <p className="text-[#f5f2e6] flex items-center justify-between animate-slideUp-3">
                       <span className="flex items-baseline gap-3">
                         <span className="text-gray-400 text-base">Company:</span>
-                        <span className="text-2xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{companyGuess}</span>
+                        <span className="text-4xl" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>{companyGuess}</span>
                       </span>
-                      <span className="text-2xl animate-checkmarkPop">{companyGuess === currentPuzzle.company ? '✅' : '❌'}</span>
+                      <span className="text-4xl animate-checkmarkPop">{companyGuess === currentPuzzle.company ? '✅' : '❌'}</span>
                     </p>
                   </div>
 
@@ -433,16 +441,16 @@ export function JunkwaxGame() {
                     <p className="text-gray-300 text-sm leading-relaxed">
                       {currentPuzzle.description}
                     </p>
-                  </div>
+              </div>
 
                   <div className="flex gap-4 animate-slideUp-4">
-                    <button
+              <button
                       onClick={handleNext}
                       className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300 ease-in-out hover:scale-105"
-                      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                    >
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
                       Next
-                    </button>
+              </button>
                   </div>
                 </div>
               )}

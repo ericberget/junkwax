@@ -3,10 +3,10 @@ export const JUNKWAX_PUZZLES = [
     id: 1,
     player: 'Chipper Jones',
     year: 1991,
-    company: 'Upper Deck',
+    company: 'Topps',
     zoomImage: '/baseballcards/c1zoom.jpg',
     fullImage: '/baseballcards/c1.jpg',
-    description: "This 1991 Upper Deck card features a young Chipper Jones before his legendary career with the Atlanta Braves. Selected first overall in the 1990 MLB draft, Jones would go on to become one of the greatest switch-hitters in baseball history. An eight-time All-Star and the 1999 NL MVP, Chipper finished his career with a .303 batting average, 468 home runs, and 1,623 RBI. He was inducted into the Baseball Hall of Fame in 2018 with 97.2% of the vote."
+    description: "This 1991 Topps card features a young Chipper Jones before his legendary career with the Atlanta Braves. Selected first overall in the 1990 MLB draft, Jones would go on to become one of the greatest switch-hitters in baseball history. An eight-time All-Star and the 1999 NL MVP, Chipper finished his career with a .303 batting average, 468 home runs, and 1,623 RBI. He was inducted into the Baseball Hall of Fame in 2018 with 97.2% of the vote."
   },
   {
     id: 2,
@@ -52,6 +52,87 @@ export const JUNKWAX_PUZZLES = [
     zoomImage: '/baseballcards/c6zoom.jpg',
     fullImage: '/baseballcards/c6.jpg',
     description: "This 1987 Fleer card captures Tony Gwynn during his prime years with the San Diego Padres. Known as 'Mr. Padre', Gwynn was one of the greatest pure hitters in baseball history. An eight-time batting champion and 15-time All-Star, Gwynn finished his career with a remarkable .338 batting average and 3,141 hits. His incredible bat control and consistency at the plate made him nearly impossible to strike out, and he was inducted into the Baseball Hall of Fame in 2007 with 97.6% of the vote."
+  },
+  {
+    id: 8,
+    player: 'Barry Bonds',
+    year: 1987,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c8zoom.jpg',
+    fullImage: '/baseballcards/c8.jpg',
+    description: "This 1987 Topps card features Barry Bonds in his rookie year with the Pittsburgh Pirates. The iconic wood-grain border design frames one of baseball's most talented young outfielders at the start of what would become a record-breaking career. Bonds would go on to become MLB's all-time home run leader (762), set the single-season home run record (73), and win a record seven MVP awards. His combination of power and speed made him the only player in MLB history to hit 500 home runs and steal 500 bases."
+  },
+  {
+    id: 10,
+    player: 'Wade Boggs',
+    year: 1988,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c10zoom.jpg',
+    fullImage: '/baseballcards/c10.jpg',
+    description: "This 1988 Topps card captures Wade Boggs during his dominant years with the Boston Red Sox. A hitting machine, Boggs won five batting titles in the 1980s and finished his career with a remarkable .328 batting average. Known for his incredible plate discipline and pre-game routines (including eating chicken before every game), Boggs collected 3,010 hits over his 18-year career. A 12-time All-Star and 1996 World Series champion with the Yankees, Boggs was inducted into the Baseball Hall of Fame in 2005 with 91.9% of the vote."
+  },
+  {
+    id: 11,
+    player: 'Benito Santiago',
+    year: 1991,
+    company: 'Upper Deck',
+    zoomImage: '/baseballcards/c11zoom.jpg',
+    fullImage: '/baseballcards/c11.jpg',
+    description: "This 1991 Upper Deck card features Benito Santiago with the San Diego Padres. Santiago revolutionized the catching position with his unique ability to throw out baserunners from his knees, combining defensive excellence with offensive prowess. He won the NL Rookie of the Year in 1987 and set a rookie record with a 34-game hitting streak. A five-time All-Star and three-time Gold Glove winner, Santiago's innovative catching style influenced a generation of backstops and helped him throw out an impressive 35% of would-be base stealers during his 20-year career."
+  },
+  {
+    id: 13,
+    player: 'Bo Jackson',
+    year: 1990,
+    company: 'Donruss',
+    zoomImage: '/baseballcards/c13zoom.jpg',
+    fullImage: '/baseballcards/c13.jpg',
+    description: "This 1990 Donruss card captures Bo Jackson during his electrifying years with the Kansas City Royals. A two-sport phenomenon, Jackson was the first athlete to be named an All-Star in both baseball and football. His combination of raw power and blazing speed made him one of the most exciting players to watch in MLB history. Known for incredible feats like running up outfield walls and breaking bats over his knee, Bo's legendary athleticism and 'Bo Knows' Nike campaign made him a cultural icon of the era. Despite his career being cut short by injury, Jackson's impact on baseball and popular culture remains indelible."
+  },
+  {
+    id: 14,
+    player: 'Bo Jackson',
+    year: 1989,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c14zoom.jpg',
+    fullImage: '/baseballcards/c14.jpg',
+    description: "This 1989 Topps card showcases Bo Jackson with the Kansas City Royals, capturing him during the peak of his dual-sport career. The card was released during a time when Bo was achieving the seemingly impossible - playing professional baseball and football at an elite level. In 1989, Jackson would go on to make the MLB All-Star team and produce one of his most memorable seasons, hitting .256 with 32 home runs and 105 RBIs, while displaying his trademark combination of power and speed with 26 stolen bases. His larger-than-life persona and superhuman athletic abilities made him one of the most collected athletes of the junk wax era."
+  },
+  {
+    id: 15,
+    player: 'Mark McGwire',
+    year: 1987,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c15zoom.jpg',
+    fullImage: '/baseballcards/c15.jpg',
+    description: "This 1987 Topps card captures Mark McGwire during his historic rookie season with the Oakland Athletics. The iconic wood-grain border design frames one of baseball's most prolific power hitters at the start of his career. McGwire would go on to set a rookie record with 49 home runs in 1987, earning him the AL Rookie of the Year award. His career would reach its pinnacle in 1998 when he hit 70 home runs, breaking Roger Maris's single-season record. McGwire finished his career with 583 home runs and formed one half of the famous 'Bash Brothers' with Jose Canseco during Oakland's dominant late 1980s run."
+  },
+  {
+    id: 16,
+    player: 'Rafael Palmeiro',
+    year: 1987,
+    company: 'Donruss',
+    zoomImage: '/baseballcards/c16zoom.jpg',
+    fullImage: '/baseballcards/c16.jpg',
+    description: "This 1987 Donruss card features Rafael Palmeiro at the start of his career with the Chicago Cubs. The card captures Palmeiro before he developed into one of baseball's most consistent power hitters. Over his 20-year career, Palmeiro would become one of only seven players in MLB history to achieve both 3,000 hits and 500 home runs. A four-time All-Star and three-time Gold Glove winner, Palmeiro was known for his sweet left-handed swing and remarkable durability, playing in at least 152 games in 14 different seasons."
+  },
+  {
+    id: 17,
+    player: 'Kirby Puckett',
+    year: 1988,
+    company: 'Fleer',
+    zoomImage: '/baseballcards/c17zoom.jpg',
+    fullImage: '/baseballcards/c17.jpg',
+    description: "This 1988 Fleer card captures Kirby Puckett during his prime years with the Minnesota Twins. One of baseball's most beloved players, Puckett's infectious smile and incredible talent made him a fan favorite throughout his career. A ten-time All-Star and six-time Gold Glove winner, Puckett led the Twins to World Series championships in 1987 and 1991. His Game 6 walk-off home run in the 1991 World Series remains one of baseball's most memorable moments. Despite his career being cut short by glaucoma, Puckett finished with a .318 lifetime batting average and was inducted into the Hall of Fame in 2001."
+  },
+  {
+    id: 19,
+    player: 'Ken Griffey Jr.',
+    year: 1991,
+    company: 'Score',
+    zoomImage: '/baseballcards/c19zoom.jpg',
+    fullImage: '/baseballcards/c19.jpg',
+    description: "This 1991 Score card features Ken Griffey Jr. during his early years with the Seattle Mariners, when he was already establishing himself as one of baseball's most exciting young stars. 'The Kid' was known for his picture-perfect swing and spectacular center field play. Griffey would go on to become one of baseball's most iconic players, hitting 630 home runs, winning 10 consecutive Gold Gloves (1990-1999), and making 13 All-Star teams. His charismatic personality and style of play helped revitalize baseball in the 1990s, and he was inducted into the Hall of Fame in 2016 with a then-record 99.32% of the vote."
   }
 ];
 
