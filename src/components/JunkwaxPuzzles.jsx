@@ -43,6 +43,15 @@ export const JUNKWAX_PUZZLES = [
     zoomImage: '/baseballcards/c5zoom.jpg',
     fullImage: '/baseballcards/c5.jpg',
     description: "This 1991 Upper Deck card captures 'Prime Time' Deion Sanders during his time with the Atlanta Braves. One of the greatest athletes in sports history, Sanders is the only person to play in both a Super Bowl and World Series. His blazing speed and electric personality made him a fan favorite in both baseball and football. In 1991, he hit .304 for the Braves during their worst-to-first season while also starring as a cornerback for the Atlanta Falcons, making him one of the last great two-sport athletes. A member of the Pro Football Hall of Fame, Sanders finished his MLB career with 186 stolen bases and a .263 batting average across nine seasons."
+  },
+  {
+    id: 6,
+    player: 'Tony Gwynn',
+    year: 1987,
+    company: 'Fleer',
+    zoomImage: '/baseballcards/c6zoom.jpg',
+    fullImage: '/baseballcards/c6.jpg',
+    description: "This 1987 Fleer card captures Tony Gwynn during his prime years with the San Diego Padres. Known as 'Mr. Padre', Gwynn was one of the greatest pure hitters in baseball history. An eight-time batting champion and 15-time All-Star, Gwynn finished his career with a remarkable .338 batting average and 3,141 hits. His incredible bat control and consistency at the plate made him nearly impossible to strike out, and he was inducted into the Baseball Hall of Fame in 2007 with 97.6% of the vote."
   }
 ];
 

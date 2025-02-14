@@ -1,5 +1,130 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CARD_COMPANIES, getRandomPuzzle } from './JunkwaxPuzzles';
+
+function CareerStatsModal({ onClose, currentPuzzle, score }) {
+  const [careerStats, setCareerStats] = useState({
+    totalPoints: 0,
+    gamesPlayed: 0,
+    collection: []
+  });
+
+  useEffect(() => {
+    // Load career stats from localStorage
+    const savedStats = localStorage.getItem('junkwax-career-stats');
+    if (savedStats) {
+      const stats = JSON.parse(savedStats);
+      setCareerStats(stats);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Update career stats when game ends
+    const savedStats = localStorage.getItem('junkwax-career-stats');
+    const stats = savedStats ? JSON.parse(savedStats) : {
+      totalPoints: 0,
+      gamesPlayed: 0,
+      collection: []
+    };
+
+    // Update stats
+    const newStats = {
+      totalPoints: stats.totalPoints + score,
+      gamesPlayed: stats.gamesPlayed + 1,
+      collection: [...stats.collection]
+    };
+
+    // Add current puzzle to collection if not already present
+    if (score === 300 && !stats.collection.some(card => card.id === currentPuzzle.id)) {
+      newStats.collection.push(currentPuzzle);
+    }
+
+    // Save updated stats
+    localStorage.setItem('junkwax-career-stats', JSON.stringify(newStats));
+    setCareerStats(newStats);
+  }, [score, currentPuzzle]);
+
+  return (
+    <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center overflow-y-auto">
+      <div className="max-w-6xl w-full mx-auto p-4">
+        <div className="bg-gray-800/90 rounded-lg p-8 border border-gray-700">
+          <div className="flex justify-between items-center mb-8">
+            <h2 
+              className="text-4xl text-[#f5f2e6]"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              Career Stats
+            </h2>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-white text-2xl"
+            >
+              ×
+            </button>
+          </div>
+
+          {/* Stats Overview */}
+          <div className="text-center mb-12">
+            <h3 
+              className="text-2xl text-[#f5f2e6] mb-4"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              Total Career Points
+            </h3>
+            <div 
+              className="text-8xl text-green-400 mb-8"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              {careerStats.totalPoints}
+            </div>
+            <div className="grid grid-cols-2 gap-8 max-w-md mx-auto">
+              <div>
+                <div className="text-4xl text-[#f5f2e6]">{careerStats.gamesPlayed}</div>
+                <div className="text-gray-400">Games Played</div>
+              </div>
+              <div>
+                <div className="text-4xl text-[#f5f2e6]">{careerStats.collection.length}</div>
+                <div className="text-gray-400">Cards Collected</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card Case */}
+          <div>
+            <h3 
+              className="text-2xl text-[#f5f2e6] mb-6"
+              style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+            >
+              Card Case ({careerStats.collection.length})
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {careerStats.collection.map((card, index) => (
+                <div 
+                  key={card.id}
+                  className="bg-gray-900/50 rounded-lg overflow-hidden"
+                >
+                  <img
+                    src={card.fullImage}
+                    alt={card.player}
+                    className="w-full h-auto"
+                  />
+                  <div className="p-4">
+                    <div className="text-[#f5f2e6] text-lg">{card.year}</div>
+                    <div className="text-gray-400">{card.player}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {careerStats.collection.length === 0 && (
+              <div className="text-center py-12 text-gray-400">
+                Get a perfect score to add cards to your collection!
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function JunkwaxGame() {
   const [currentPuzzle, setCurrentPuzzle] = useState(getRandomPuzzle());
@@ -10,6 +135,9 @@ export function JunkwaxGame() {
   const [score, setScore] = useState(0);
   const [showZoom, setShowZoom] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [showCareerStats, setShowCareerStats] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,11 +156,20 @@ export function JunkwaxGame() {
   };
 
   const handlePlayAgain = () => {
-    setHasGuessed(false);
-    setPlayerGuess('');
-    setYearGuess(1990);
-    setCompanyGuess('');
-    setCurrentPuzzle(getRandomPuzzle());
+    window.location.reload();
+  };
+
+  const handleShare = () => {
+    const shareText = `🎴 Junkwax Millionaire\n\n${score} points\n\nPlay now at baseballtimemachine.com`;
+    
+    navigator.clipboard.writeText(shareText)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(err => {
+        console.error('Failed to copy:', err);
+      });
   };
 
   if (gameOver) {
@@ -58,40 +195,81 @@ export function JunkwaxGame() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-6 rounded-lg">
-              <h2 className="text-3xl text-white mb-4 text-center">Game Over!</h2>
-              <div className="text-7xl text-green-400 mb-4 text-center">{score} points</div>
-              <div className="text-xl text-[#f5f2e6] mb-6 text-center">
+              <h2 
+                className="text-4xl text-[#f5f2e6] mb-6 text-center"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                GAME OVER!
+              </h2>
+              <div 
+                className="text-8xl text-green-400 mb-2 text-center"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                {score}
+              </div>
+              <div 
+                className="text-2xl text-green-300 mb-8 text-center"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                POINTS
+              </div>
+              <div 
+                className="text-xl text-[#f5f2e6] mb-8 text-center"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
                 Thanks for playing Junkwax Millionaire!
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 <button
-                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-3 rounded-lg text-xl transition-all duration-300"
+                  onClick={() => setShowCareerStats(true)}
+                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  My Career Stats
+                  MY CAREER STATS
                 </button>
                 <button
-                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-3 rounded-lg text-xl transition-all duration-300"
+                  onClick={handlePlayAgain}
+                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
-                  Share Results
+                  PLAY AGAIN
+                </button>
+                <button
+                  onClick={handleShare}
+                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                >
+                  {copied ? 'COPIED!' : 'SHARE RESULTS'}
                 </button>
               </div>
             </div>
 
             <div className="p-6 rounded-lg">
-              <h2 className="text-2xl text-[#f5f2e6] mb-4">Today's Card</h2>
+              <h2 
+                className="text-2xl text-[#f5f2e6] mb-4"
+                style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+              >
+                TODAY'S CARD
+              </h2>
               <div className="relative">
                 <img
                   src={currentPuzzle.fullImage}
                   alt="Baseball Card"
-                  className="w-full h-auto rounded-lg"
-                  style={{ maxWidth: '500px', margin: '0 auto' }}
+                  className="w-full h-auto rounded-lg shadow-lg"
+                  style={{ maxWidth: '100%', margin: '0 auto' }}
                 />
               </div>
             </div>
           </div>
         </div>
+
+        {showCareerStats && (
+          <CareerStatsModal
+            onClose={() => setShowCareerStats(false)}
+            currentPuzzle={currentPuzzle}
+            score={score}
+          />
+        )}
       </div>
     );
   }
