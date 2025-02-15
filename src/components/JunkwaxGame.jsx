@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CARD_COMPANIES, getRandomPuzzle } from './JunkwaxPuzzles';
+import { FeedbackForm } from './FeedbackForm';
 
 // Sound effects
 const PERFECT_SOUND = new Audio('/sounds/perfect.mp3');
@@ -141,12 +142,23 @@ export function JunkwaxGame() {
   const [showShareModal, setShowShareModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showCareerStats, setShowCareerStats] = useState(false);
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     let points = 0;
     
-    if (playerGuess.toLowerCase() === currentPuzzle.player.toLowerCase()) points += 100;
+    // Normalize player names for comparison
+    const normalizePlayerName = (name) => {
+      return name.toLowerCase()
+        .replace(/\s+jr\.?$/i, '') // Remove Jr. or Jr from the end
+        .trim();
+    };
+
+    const normalizedGuess = normalizePlayerName(playerGuess);
+    const normalizedCorrect = normalizePlayerName(currentPuzzle.player);
+    
+    if (normalizedGuess === normalizedCorrect) points += 100;
     if (yearGuess === currentPuzzle.year) points += 100;
     if (companyGuess === currentPuzzle.company) points += 100;
     
@@ -219,7 +231,7 @@ export function JunkwaxGame() {
                 className="text-2xl text-green-300 mb-8 text-center animate-slideUp-2"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
-                POINTS
+                points
               </div>
               <div 
                 className="text-xl text-[#f5f2e6] mb-8 text-center animate-slideUp-3"
@@ -230,7 +242,7 @@ export function JunkwaxGame() {
               <div className="flex flex-col gap-4 animate-slideUp-4">
                 <button
                   onClick={() => setShowCareerStats(true)}
-                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-[#1e4fba] py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   MY CAREER STATS
@@ -244,7 +256,7 @@ export function JunkwaxGame() {
                 </button>
                 <button
                   onClick={handleShare}
-                  className="w-full bg-[#1e4fba] hover:bg-[#2460e6] text-white py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  className="w-full bg-[#f5f2e6] hover:bg-[#e5e2d6] text-gray-900 py-4 rounded-lg text-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
                   style={{ fontFamily: 'Douglas-Burlington-Regular' }}
                 >
                   {copied ? 'COPIED!' : 'SHARE RESULTS'}
@@ -284,7 +296,7 @@ export function JunkwaxGame() {
 
   return (
     <div 
-      className="min-h-screen w-full" 
+      className="min-h-screen w-full relative" 
       style={{ 
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%), url('/bg-wood.jpg')`,
         backgroundSize: 'cover',
@@ -299,8 +311,8 @@ export function JunkwaxGame() {
             src="/junkwax-logo.png"
             alt="Junkwax Millionaire"
             className="w-full max-w-[600px] mx-auto"
-          />
-        </div>
+            />
+          </div>
 
         <div className="rounded-lg p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -337,39 +349,55 @@ export function JunkwaxGame() {
                   </button>
                 )}
               </div>
-          </div>
+              </div>
 
             {/* Right side - Form/Results */}
             <div>
               {!hasGuessed ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Player Name Input */}
-                  <div>
-                    <label className="block text-[#f5f2e6] mb-2">Who is this player?</label>
-                <input
-                  type="text"
-                  value={playerGuess}
-                  onChange={(e) => setPlayerGuess(e.target.value)}
-                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
-                  placeholder="Enter player name..."
-                />
+                  {/* Card Company Select */}
+                <div>
+                <select
+                      value={companyGuess}
+                      onChange={(e) => setCompanyGuess(e.target.value)}
+                      className="w-full p-3 rounded-lg bg-gradient-to-b from-[#1e4fba] to-[#163c8c] text-[#f5f2e6] border-2 border-gray-600/50 focus:border-[#d4b483] focus:outline-none text-2xl text-center cursor-pointer appearance-none shadow-lg"
+                      style={{ 
+                        fontFamily: 'Douglas-Burlington-Regular',
+                        backgroundImage: `
+                          linear-gradient(to bottom, #1e4fba, #163c8c),
+                          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23f5f2e6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")
+                        `,
+                        backgroundPosition: 'center, right 1rem center',
+                        backgroundRepeat: 'no-repeat, no-repeat',
+                        backgroundSize: 'cover, 1.2rem',
+                        paddingRight: '3rem'
+                      }}
+                    >
+                      <option value="" className="bg-[#1e4fba] text-xl">Select Card Brand</option>
+                  {CARD_COMPANIES.map(company => (
+                        <option 
+                          key={company} 
+                          value={company}
+                          className="bg-[#1e4fba]"
+                        >
+                          {company}
+                        </option>
+                  ))}
+                </select>
               </div>
 
                   {/* Year Slider */}
-                  <div>
-                    <label className="block text-[#f5f2e6] mt-12 mb-2">
-                      <span>Year: </span>
-                      <span 
-                        className="text-3xl text-[#d4b483]"
-                        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
-                      >
-                        {yearGuess}
-                      </span>
-                    </label>
-                    <div className="space-y-2">
-                      <input
-                        type="range"
-                        min="1980"
+                  <div className="mt-24 border-2 border-gray-600/50 p-12 rounded-lg bg-gray-700/30">
+                    <span 
+                      className="text-4xl text-[#d4b483] mt-10 block mb-4 text-center mt-8"
+                      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                    >
+                      {yearGuess}
+                    </span>
+                <div className="space-y-6">
+                  <input
+                    type="range"
+                    min="1980"
                         max="2000"
                         value={yearGuess}
                         onChange={(e) => setYearGuess(Number(e.target.value))}
@@ -379,27 +407,24 @@ export function JunkwaxGame() {
                         <span>1980</span>
                         <span>2000</span>
                       </div>
-                    </div>
-                  </div>
-
-                  {/* Card Company Select */}
-                  <div>
-                    <label className="block text-[#f5f2e6] mt-12 mb-2">Card Company</label>
-                <select
-                      value={companyGuess}
-                      onChange={(e) => setCompanyGuess(e.target.value)}
-                      className="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-[#d4b483] focus:outline-none"
-                >
-                  <option value="">Select company...</option>
-                  {CARD_COMPANIES.map(company => (
-                    <option key={company} value={company}>{company}</option>
-                  ))}
-                </select>
+                </div>
               </div>
+
+                  {/* Player Name Input */}
+                  <div className="mt-28">
+                    <input
+                      type="text"
+                      value={playerGuess}
+                      onChange={(e) => setPlayerGuess(e.target.value)}
+                      className="w-full p-4 rounded-lg bg-gray-700/30 text-[#f5f2e6] border-2 border-gray-600/50 focus:border-[#d4b483] focus:outline-none text-3xl text-center placeholder:text-[#f5f2e6]/50 focus:placeholder:text-transparent"
+                      style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+                      placeholder="Enter player name..."
+                    />
+                  </div>
 
               <button
                     type="submit"
-                    className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-xl transition-all duration-300 ease-in-out"
+                    className="w-full bg-[#d4b483] hover:bg-[#c4a473] text-gray-900 py-3 rounded-lg text-2xl transition-all duration-300 ease-in-out mt-12"
                 style={{ fontFamily: 'Douglas-Burlington-Regular' }}
               >
                     Take a Swing
@@ -409,7 +434,7 @@ export function JunkwaxGame() {
                 <div className="space-y-6 animate-fadeIn">
                   <div className="text-center">
                     <div className="text-6xl text-green-400 mb-6 animate-popIn" style={{ fontFamily: 'Douglas-Burlington-Regular' }}>
-                      {score} points
+                      +{score} <span className="text-2xl">points</span>
                     </div>
             </div>
 
@@ -476,10 +501,36 @@ export function JunkwaxGame() {
               src={currentPuzzle.zoomImage}
               alt="Baseball Card Detail"
               className="w-full h-auto"
-              style={{ maxHeight: '80vh', objectFit: 'contain' }}
+              style={{ 
+                maxHeight: '80vh', 
+                objectFit: 'contain',
+                boxShadow: '0 0 150px 30px rgba(0, 0, 0, 0.9), 0 0 30px 10px rgba(0, 0, 0, 0.8)'
+              }}
             />
           </div>
         </div>
+      )}
+
+      {/* Feedback Button - Now outside the game over check */}
+      <button
+        onClick={() => setShowFeedbackForm(true)}
+        className="fixed bottom-4 right-4 bg-[#1e4fba] hover:bg-[#2460e6] text-white px-4 py-2 rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 z-50"
+        style={{ fontFamily: 'Douglas-Burlington-Regular' }}
+      >
+        Feedback
+      </button>
+
+      {/* Feedback Form Modal */}
+      {showFeedbackForm && (
+        <FeedbackForm onClose={() => setShowFeedbackForm(false)} />
+      )}
+
+      {showCareerStats && (
+        <CareerStatsModal
+          onClose={() => setShowCareerStats(false)}
+          currentPuzzle={currentPuzzle}
+          score={score}
+        />
       )}
     </div>
   );

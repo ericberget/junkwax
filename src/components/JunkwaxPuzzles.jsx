@@ -75,7 +75,7 @@ export const JUNKWAX_PUZZLES = [
     id: 11,
     player: 'Benito Santiago',
     year: 1991,
-    company: 'Upper Deck',
+    company: 'Topps',
     zoomImage: '/baseballcards/c11zoom.jpg',
     fullImage: '/baseballcards/c11.jpg',
     description: "This 1991 Upper Deck card features Benito Santiago with the San Diego Padres. Santiago revolutionized the catching position with his unique ability to throw out baserunners from his knees, combining defensive excellence with offensive prowess. He won the NL Rookie of the Year in 1987 and set a rookie record with a 34-game hitting streak. A five-time All-Star and three-time Gold Glove winner, Santiago's innovative catching style influenced a generation of backstops and helped him throw out an impressive 35% of would-be base stealers during his 20-year career."
@@ -91,21 +91,21 @@ export const JUNKWAX_PUZZLES = [
   },
   {
     id: 14,
-    player: 'Bo Jackson',
-    year: 1989,
-    company: 'Topps',
+    player: 'Mark McGwire',
+    year: 1990,
+    company: 'Upper Deck',
     zoomImage: '/baseballcards/c14zoom.jpg',
     fullImage: '/baseballcards/c14.jpg',
-    description: "This 1989 Topps card showcases Bo Jackson with the Kansas City Royals, capturing him during the peak of his dual-sport career. The card was released during a time when Bo was achieving the seemingly impossible - playing professional baseball and football at an elite level. In 1989, Jackson would go on to make the MLB All-Star team and produce one of his most memorable seasons, hitting .256 with 32 home runs and 105 RBIs, while displaying his trademark combination of power and speed with 26 stolen bases. His larger-than-life persona and superhuman athletic abilities made him one of the most collected athletes of the junk wax era."
+    description: "This 1990 Upper Deck card captures Mark McGwire during his prime years with the Oakland Athletics. As one half of the 'Bash Brothers' with Jose Canseco, McGwire was one of baseball's most feared power hitters. He would go on to break Roger Maris's single-season home run record in 1998 with 70 home runs, a feat that captivated the nation. McGwire finished his career with 583 home runs, and his rookie cards from 1985 were some of the most sought-after cards of the junk wax era."
   },
   {
     id: 15,
-    player: 'Mark McGwire',
+    player: 'Keith Hernandez',
     year: 1987,
     company: 'Topps',
     zoomImage: '/baseballcards/c15zoom.jpg',
     fullImage: '/baseballcards/c15.jpg',
-    description: "This 1987 Topps card captures Mark McGwire during his historic rookie season with the Oakland Athletics. The iconic wood-grain border design frames one of baseball's most prolific power hitters at the start of his career. McGwire would go on to set a rookie record with 49 home runs in 1987, earning him the AL Rookie of the Year award. His career would reach its pinnacle in 1998 when he hit 70 home runs, breaking Roger Maris's single-season record. McGwire finished his career with 583 home runs and formed one half of the famous 'Bash Brothers' with Jose Canseco during Oakland's dominant late 1980s run."
+    description: "This 1987 Topps All-Star card features Keith Hernandez during his prime with the New York Mets. A five-time All-Star and eleven-time Gold Glove winner, Hernandez was known for his exceptional defense at first base and his keen batting eye. He was a key member of the 1986 World Series champion Mets team and finished his career with a .296 batting average. His innovative defensive play revolutionized the first base position, and he remains the all-time leader in assists by a first baseman. Hernandez was also part of the 1982 Cardinals World Series championship team and won the NL batting title in 1979 with a .344 average."
   },
   {
     id: 16,
@@ -126,6 +126,15 @@ export const JUNKWAX_PUZZLES = [
     description: "This 1988 Fleer card captures Kirby Puckett during his prime years with the Minnesota Twins. One of baseball's most beloved players, Puckett's infectious smile and incredible talent made him a fan favorite throughout his career. A ten-time All-Star and six-time Gold Glove winner, Puckett led the Twins to World Series championships in 1987 and 1991. His Game 6 walk-off home run in the 1991 World Series remains one of baseball's most memorable moments. Despite his career being cut short by glaucoma, Puckett finished with a .318 lifetime batting average and was inducted into the Hall of Fame in 2001."
   },
   {
+    id: 18,
+    player: 'Cal Ripken Jr.',
+    year: 1991,
+    company: 'Donruss',
+    zoomImage: '/baseballcards/c18zoom.jpg',
+    fullImage: '/baseballcards/c18.jpg',
+    description: "This 1991 Donruss card features Cal Ripken Jr. during his remarkable consecutive games streak with the Baltimore Orioles. Known as 'The Iron Man', Ripken would go on to break Lou Gehrig's seemingly unbreakable record of 2,130 consecutive games played, eventually extending the streak to 2,632 games. A 19-time All-Star and two-time AL MVP, Ripken revolutionized the shortstop position with his 6'4\" frame and consistent offensive production. He finished his career with 3,184 hits, 431 home runs, and was inducted into the Hall of Fame in 2007 with 98.53% of the vote, then the third-highest percentage in history."
+  },
+  {
     id: 19,
     player: 'Ken Griffey Jr.',
     year: 1991,
@@ -133,6 +142,33 @@ export const JUNKWAX_PUZZLES = [
     zoomImage: '/baseballcards/c19zoom.jpg',
     fullImage: '/baseballcards/c19.jpg',
     description: "This 1991 Score card features Ken Griffey Jr. during his early years with the Seattle Mariners, when he was already establishing himself as one of baseball's most exciting young stars. 'The Kid' was known for his picture-perfect swing and spectacular center field play. Griffey would go on to become one of baseball's most iconic players, hitting 630 home runs, winning 10 consecutive Gold Gloves (1990-1999), and making 13 All-Star teams. His charismatic personality and style of play helped revitalize baseball in the 1990s, and he was inducted into the Hall of Fame in 2016 with a then-record 99.32% of the vote."
+  },
+  {
+    id: 21,
+    player: 'Frank Thomas',
+    year: 1992,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c21zoom.jpg',
+    fullImage: '/baseballcards/c21.jpg',
+    description: "This 1992 Topps card captures 'The Big Hurt' Frank Thomas during his early dominant years with the Chicago White Sox. Thomas was one of the most feared hitters of his era, combining exceptional power with a keen batting eye. He would win back-to-back AL MVP awards in 1993-94, and finish his career with a .301 batting average, 521 home runs, and 1,704 RBI. Thomas was also known for his patience at the plate, leading the league in walks four times and on-base percentage four times. He was inducted into the Hall of Fame in 2014 with 83.7% of the vote and remains one of the most dominant right-handed hitters in baseball history."
+  },
+  {
+    id: 22,
+    player: 'Manny Ramirez',
+    year: 1992,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c22zoom.jpg',
+    fullImage: '/baseballcards/c22.jpg',
+    description: "This 1992 Topps card features Manny Ramirez at the beginning of what would become one of the most prolific hitting careers in baseball history. A 12-time All-Star and 9-time Silver Slugger winner, Ramirez would go on to hit .312 with 555 home runs and 1,831 RBI over his 19-year career. His natural hitting ability and quirky personality made him one of baseball's most entertaining players, coining the phrase 'Manny being Manny.' He was a key part of the Boston Red Sox's historic 2004 World Series championship team, winning World Series MVP honors, and helped end the team's 86-year championship drought."
+  },
+  {
+    id: 23,
+    player: 'Jeff Bagwell',
+    year: 1992,
+    company: 'Topps',
+    zoomImage: '/baseballcards/c23zoom.jpg',
+    fullImage: '/baseballcards/c23.jpg',
+    description: "This 1992 Topps card captures Jeff Bagwell early in his career with the Houston Astros. After winning NL Rookie of the Year in 1991, Bagwell would establish himself as one of the most consistent and powerful first basemen of his era. His unique crouched batting stance became iconic as he went on to win the 1994 NL MVP award, make four All-Star teams, and earn three Silver Slugger awards. Bagwell spent his entire 15-year career with the Astros, finishing with a .297 batting average, 449 home runs, and 1,529 RBI. He was inducted into the Hall of Fame in 2017 with 86.2% of the vote and remains one of the greatest players in Astros history."
   }
 ];
 
